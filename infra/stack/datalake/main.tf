@@ -10,3 +10,8 @@ resource "aws_s3_bucket" "datalake" {
     bucket = "datalake-${var.stage}.${var.project}"
     tags = "${local.tags}"
 }
+
+resource "aws_s3_bucket" "datalake-tmp" {
+    bucket = "datalake-tmp-${var.stage}.${var.project}"
+    tags = "${local.tags}"
+}

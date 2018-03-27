@@ -1,8 +1,14 @@
+buildscript {
+    repositories { mavenCentral() }
+    dependencies { classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1" }
+}
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.31'
     id 'io.spring.dependency-management' version '1.0.4.RELEASE'
-    id "com.github.johnrengelman.plugin-shadow" version "2.0.3"
 }
+
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'fr.xebia.api'
 

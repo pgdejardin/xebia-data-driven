@@ -1,4 +1,4 @@
-service: xke-api
+service: xebia-data-driven
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -22,7 +22,7 @@ package:
   artifact: build/libs/calendar-extract-all.jar
 
 functions:
-  hello:
+  calendar-extract:
     handler: fr.xebia.api.xke.calendar.lambda.LambdaCalendarExtract
     timeout: 60
     events:

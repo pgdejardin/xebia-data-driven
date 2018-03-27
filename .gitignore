@@ -1,2 +1,10 @@
+# idea
 .idea
 *.iml
+
+# gradle
+build
+
+# serverless
+.serverless
+serverless-secrets.yml

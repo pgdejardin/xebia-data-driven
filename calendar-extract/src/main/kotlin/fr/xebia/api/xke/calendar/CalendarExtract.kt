@@ -3,7 +3,6 @@ package fr.xebia.api.xke.calendar
 import fr.xebia.api.xke.calendar.source.CalendarSource
 import fr.xebia.api.xke.calendar.store.CalendarStore
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.LocalTime
 
 data class CalendarEvent(val summary: String,
@@ -14,14 +13,14 @@ class CalendarExtract(private val calendarSource: CalendarSource,
 
     fun extract(begin: LocalDate, end: LocalDate) {
 
-        for (localDate in begin..end) {
+        for (monthBeginDate in begin..end) {
 
-            val beginDateTime = LocalDateTime.of(localDate, LocalTime.MIDNIGHT)
-            val endDateTime = LocalDateTime.of(localDate, LocalTime.MAX)
+            val monthBegin = monthBeginDate.atStartOfDay()
+            val monthEnd = monthBeginDate.plusMonths(1).minusDays(1).atTime(LocalTime.MAX)
 
-            val calendarEvents = calendarSource.find(beginDateTime, endDateTime)
+            val calendarEvents = calendarSource.find(monthBegin, monthEnd)
 
-            calendarStore.store(localDate, calendarEvents)
+            calendarStore.store(monthBeginDate, calendarEvents)
         }
     }
 }
@@ -30,7 +29,7 @@ operator fun LocalDate.rangeTo(end: LocalDate) = object : Iterable<LocalDate> {
 
     override fun iterator() = object : Iterator<LocalDate> {
 
-        private var next = this@rangeTo
+        private var next = this@rangeTo.withDayOfMonth(1)
 
         override fun hasNext() = next <= end
 

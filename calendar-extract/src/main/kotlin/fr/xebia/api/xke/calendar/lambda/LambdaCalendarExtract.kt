@@ -18,8 +18,8 @@ class LambdaCalendarExtract : RequestHandler<String, Unit> {
         val calendarSource = calendarSource()
         val calendarStore = calendarStore()
 
-        val from = "EXTRACT_BEGIN".env(LocalDate::parse, LocalDate.now())
-        val end = "EXTRACT_END".env(LocalDate::parse, LocalDate.now().plusMonths(1))
+        val from = "EXTRACT_BEGIN".env(LocalDate::parse) { LocalDate.now().withDayOfMonth(1) }
+        val end = "EXTRACT_END".env(LocalDate::parse) { LocalDate.now().withDayOfMonth(1).plusMonths(1) }
 
         val calendarExtract = CalendarExtract(calendarSource, calendarStore)
 
@@ -53,6 +53,7 @@ class LambdaCalendarExtract : RequestHandler<String, Unit> {
     private fun String.env() =
         System.getenv(this) ?: throw IllegalArgumentException("$this environment variable is not specified")
 
-    private fun <T> String.env(converter: (String) -> T, default: T) = converter(System.getenv(this)) ?: default
+    private fun <T> String.env(converter: (String) -> T, default: () -> T) = System.getenv(this)?.let(converter)
+        ?: default()
 
 }

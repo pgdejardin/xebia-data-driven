@@ -20,15 +20,15 @@ Fill secrets in `serverless-secrets.yml` using following syntax
 
 ```yaml
 default: &default
-    <<: *default
-    CALENDAR_ID: "..."
+  <<: *default
+  CALENDAR_ID: "..."
 
 dev:
-    <<: *default
-    CREDENTIAL_BUCKET: "..."
-    CREDENTIAL_KEY: "..."
-    STORE_BUCKET: "..."
-    STORE_KEY: "..."
+  <<: *default
+  CREDENTIAL_BUCKET: "..."
+  CREDENTIAL_KEY: "..."
+  STORE_BUCKET: "..."
+  STORE_KEY: "..."
 ```
 
 Build and deploy function:

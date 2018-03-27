@@ -5,11 +5,11 @@ variable "project_tags" {
     type = "map"
 }
 
-variable "environment" {}
-variable "environment_tags" {
+variable "stage" {}
+variable "stage_tags" {
     type = "map"
 }
 
 locals {
-    tags = "${merge(var.project_tags, var.environment_tags)}"
+    tags = "${merge(var.project_tags, var.stage_tags)}"
 }

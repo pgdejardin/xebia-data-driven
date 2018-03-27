@@ -1,6 +1,6 @@
-environment = "dev"
-environment_tags = {
-    Environment = "dev"
+stage = "dev"
+stage_tags = {
+    Stage = "dev"
 }
 
 region = "eu-west-1"

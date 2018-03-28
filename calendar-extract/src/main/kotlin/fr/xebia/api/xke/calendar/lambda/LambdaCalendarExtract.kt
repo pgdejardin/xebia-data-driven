@@ -11,9 +11,9 @@ import fr.xebia.api.xke.calendar.store.CalendarStore
 import fr.xebia.api.xke.calendar.store.s3.S3CalendarStore
 import java.time.LocalDate
 
-class LambdaCalendarExtract : RequestHandler<String, Unit> {
+class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
 
-    override fun handleRequest(input: String, context: Context) {
+    override fun handleRequest(input: Any?, context: Context) {
 
         val calendarSource = calendarSource()
         val calendarStore = calendarStore()
@@ -53,7 +53,6 @@ class LambdaCalendarExtract : RequestHandler<String, Unit> {
     private fun String.env() =
         System.getenv(this) ?: throw IllegalArgumentException("$this environment variable is not specified")
 
-    private fun <T> String.env(converter: (String) -> T, default: () -> T) = System.getenv(this)?.let(converter)
-        ?: default()
+    private fun <T> String.env(convert: String.() -> T, default: () -> T) = System.getenv(this)?.convert() ?: default()
 
 }

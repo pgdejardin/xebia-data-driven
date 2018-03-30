@@ -4,6 +4,7 @@ jobs:
   test_calendar_extract:
     docker:
       - image: circleci/openjdk:8-jdk
+    working_directory: ~/project/calendar-extract
     steps:
       - checkout
       - restore_cache:

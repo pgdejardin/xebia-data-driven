@@ -7,7 +7,7 @@ import java.io.InputStream
 class S3GoogleCalendarCredential(private val bucketName: String,
                                  private val key: String) : GoogleCalendarCredential {
 
-    private val amazonS3 = AmazonS3ClientBuilder.defaultClient()
+    private val amazonS3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
     override fun find(): InputStream = amazonS3.getObject(bucketName, key).objectContent
 

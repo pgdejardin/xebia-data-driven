@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
 class S3CalendarStore(private val bucketName: String,
                       private val key: String) : CalendarStore {
 
-    private val s3 = AmazonS3ClientBuilder.defaultClient()
+    private val s3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
     private val objectMapper = ObjectMapper()
 

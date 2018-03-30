@@ -13,10 +13,10 @@ provider:
       Action:
         - "s3:*"
       Resource:
-        - "arn:aws:s3:::datalake-${self:custom.stage}.api.xebia.fr"
-        - "arn:aws:s3:::datalake-${self:custom.stage}.api.xebia.fr/*"
-        - "arn:aws:s3:::datalake-tmp-${self:custom.stage}.api.xebia.fr"
-        - "arn:aws:s3:::datalake-tmp-${self:custom.stage}.api.xebia.fr/*"
+        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}"
+        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}/*"
+        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}"
+        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}/*"
 
 package:
   artifact: build/libs/calendar-extract-all.jar

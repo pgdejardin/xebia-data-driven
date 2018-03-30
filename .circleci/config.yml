@@ -11,7 +11,7 @@ jobs:
           keys:
             - gradle-{{ checksum "~/project/calendar-extract/build.gradle" }}
             - gradle
-      - run: ./gradlew test
+      - run: ~/project/calendar-extract/gradlew test -p ~/project/calendar-extract
       - save_cache:
           key: gradle-{{ checksum "~/project/calendar-extract/build.gradle" }}
           paths:

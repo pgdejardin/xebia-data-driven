@@ -4,13 +4,14 @@ jobs:
   test_calendar_extract:
     docker:
       - image: circleci/openjdk:8-jdk
+    working_directory: ~/project/calendar-extract
     steps:
       - checkout
       - restore_cache:
           keys:
             - gradle-{{ checksum "~/project/calendar-extract/build.gradle" }}
             - gradle
-      - run: ~/project/calendar-extract/gradlew test
+      - run: ./gradlew test
       - save_cache:
           key: gradle-{{ checksum "~/project/calendar-extract/build.gradle" }}
           paths:

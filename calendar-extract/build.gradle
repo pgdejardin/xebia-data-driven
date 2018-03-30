@@ -1,6 +1,9 @@
 buildscript {
     repositories { mavenCentral() }
-    dependencies { classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1" }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+    }
 }
 
 plugins {
@@ -9,6 +12,7 @@ plugins {
 }
 
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 group = 'fr.xebia.api'
 
@@ -37,7 +41,9 @@ dependencies {
     compile 'com.amazonaws:aws-lambda-java-core:1.1.0'
     compile 'com.amazonaws:aws-lambda-java-events:2.0.1'
 
-    testCompile('junit:junit:4.12')
+    testCompile 'org.mockito:mockito-core:2.17.0'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
 
 task deploy(type: Exec, dependsOn: 'shadowJar', group: 'serverless') {

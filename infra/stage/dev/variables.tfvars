@@ -4,4 +4,3 @@ stage_tags = {
 }
 
 region = "eu-west-1"
-

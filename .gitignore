@@ -8,3 +8,6 @@ build
 # serverless
 .serverless
 serverless-secrets.yml
+
+# node.js
+node_modules

@@ -1,4 +1,5 @@
-service: xebia-data-driven
+service:
+  name: xdd-calendar-extract
 
 custom:
   stage: ${opt:stage, self:provider.stage}

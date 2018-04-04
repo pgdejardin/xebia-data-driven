@@ -1,6 +1,6 @@
 project = "xdd"
 project_tags = {
-    ManagedBy = "Terraform"
+    Manager = "Terraform"
     Project = "xdd"
 }
 

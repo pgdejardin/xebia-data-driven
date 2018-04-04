@@ -1,12 +1,11 @@
-service: xebia-data-driven-xke
+service:
+  name: xdd-xke-api-calendar-transform
 
 plugins:
   - serverless-webpack
   - serverless-offline
   - serverless-plugin-existing-s3
 
-# serverless-webpack configuration
-# Enable auto-packing of external modules
 custom:
   stage: ${opt:stage, self:provider.stage}
   webpack:
@@ -19,8 +18,8 @@ provider:
   stage: dev
   region: eu-west-1
   environment:
-    XKE_BUCKET_NAME: datalake-${self:custom.stage}.api.xebia.fr
-    XKE_TABLE: xke-xebia-data-${self:custom.stage}
+    XKE_BUCKET_NAME: ${self:custom.stage}-xdd-datalake.xebia.fr
+    XKE_TABLE: ${self:custom.stage}-xdd-xke-api
     SLOTS_TO_EXCLUDE: 'XKE,Fondations,Déjeuner,New Comers,Notation Globale'
   iamRoleStatements:
     - Effect: 'Allow'
@@ -61,6 +60,7 @@ resources:
       Type: 'AWS::DynamoDB::Table'
 #      DeletionPolicy: Retain
       Properties:
+        TableName: ${self:provider.environment.XKE_TABLE}
         AttributeDefinitions:
           - AttributeName: 'year'
             AttributeType: 'S'
@@ -74,4 +74,3 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.XKE_TABLE}

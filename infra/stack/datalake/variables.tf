@@ -18,3 +18,4 @@ locals {
 }
 
 variable "region" {}
+variable "bucket_name_suffix" {}

@@ -7,7 +7,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "datalake" {
-    bucket = "datalake-${var.stage}.${var.project}"
+    bucket = "${local.name}.${var.bucket_name_suffix}"
     tags = "${local.tags}"
 }
 

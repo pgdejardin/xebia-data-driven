@@ -1,5 +1,7 @@
-project = "api.xebia.fr"
+project = "xdd"
 project_tags = {
     ManagedBy = "Terraform"
-    Project = "api.xebia.fr"
+    Project = "xdd"
 }
+
+bucket_name_suffix = "xebia.fr"

@@ -7,7 +7,7 @@ terragrunt = {
             region = "eu-west-1"
             bucket = "xdd-terraform-state.xebia.fr"
             key = "${path_relative_to_include()}"
-            dynamodb_table = "xdd-terraform-state-lock.xebia.fr"
+            dynamodb_table = "xdd-terraform-state-lock"
         }
     }
 

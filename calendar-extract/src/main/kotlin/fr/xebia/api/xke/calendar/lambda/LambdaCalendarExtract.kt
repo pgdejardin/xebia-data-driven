@@ -42,7 +42,7 @@ class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
         val credentialBucket = "CREDENTIAL_BUCKET".env()
         val credentialKey = "CREDENTIAL_KEY".env()
 
-        return S3GoogleCalendarCredential(credentialBucket, credentialKey)
+        return S3GoogleCalendarCredential(amazonS3, credentialBucket, credentialKey)
     }
 
     private fun calendarStore(): CalendarStore {

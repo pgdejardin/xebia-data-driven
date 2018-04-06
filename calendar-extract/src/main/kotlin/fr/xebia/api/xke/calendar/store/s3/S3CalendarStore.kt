@@ -16,11 +16,11 @@ class S3CalendarStore(private val bucketName: String,
 
     private val filePattern = DateTimeFormatter.ofPattern("yyyy-MM")
 
-    override fun store(date: LocalDate, calendarEvents: List<CalendarEvent>) {
+    override fun store(extractDate: LocalDate, calendarDate: LocalDate, calendarEvents: List<CalendarEvent>) {
 
         val body = objectMapper.writeValueAsString(calendarEvents)
 
-        val keyForDate = "$key/${date.format(filePattern)}.json"
+        val keyForDate = "$key/${calendarDate.format(filePattern)}.json"
 
         s3.putObject(bucketName, keyForDate, body)
     }

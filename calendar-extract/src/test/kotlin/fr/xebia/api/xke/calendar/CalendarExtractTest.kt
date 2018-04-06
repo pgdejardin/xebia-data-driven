@@ -30,6 +30,7 @@ class CalendarExtractTest {
     @DisplayName("extraction should be stored in one month only when begin and end dates are in the same month")
     fun extractionInOneMonth() {
 
+        val today = LocalDate.now()
         given(calendarSource.find(
             date(2018, 1, 1).atStartOfDay(),
             date(2018, 1, 31).atEndOfDay())
@@ -37,7 +38,7 @@ class CalendarExtractTest {
 
         calendarExtract.extract(date(2018, 1, 1), date(2018, 1, 2))
 
-        verify(calendarStore).store(date(2018, 1, 1), januaryEvents)
+        verify(calendarStore).store(today, date(2018, 1, 1), januaryEvents)
         verifyNoMoreInteractions(calendarStore)
     }
 
@@ -45,6 +46,7 @@ class CalendarExtractTest {
     @DisplayName("extraction should be stored in two months when begin and end dates are in consecutive months")
     fun extractionInTwoMonths() {
 
+        val today = LocalDate.now()
         given(calendarSource.find(
             date(2018, 1, 1).atStartOfDay(),
             date(2018, 1, 31).atEndOfDay())
@@ -57,13 +59,13 @@ class CalendarExtractTest {
 
         calendarExtract.extract(date(2018, 1, 1), date(2018, 2, 1))
 
-        verify(calendarStore).store(date(2018, 1, 1), januaryEvents)
-        verify(calendarStore).store(date(2018, 2, 1), februaryEvents)
+        verify(calendarStore).store(today, date(2018, 1, 1), januaryEvents)
+        verify(calendarStore).store(today, date(2018, 2, 1), februaryEvents)
         verifyNoMoreInteractions(calendarStore)
     }
 
     private fun date(year: Int, month: Int, day: Int) = LocalDate.of(year, month, day)
 
-    private fun LocalDate.atEndOfDay() = this.atTime(java.time.LocalTime.MAX)
+    private fun LocalDate.atEndOfDay() = atTime(java.time.LocalTime.MAX)
 
 }

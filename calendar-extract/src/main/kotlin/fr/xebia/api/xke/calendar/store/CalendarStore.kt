@@ -5,6 +5,6 @@ import java.time.LocalDate
 
 interface CalendarStore {
 
-    fun store(date: LocalDate, calendarEvents: List<CalendarEvent>)
+    fun store(extractDate: LocalDate = LocalDate.now(), calendarDate: LocalDate, calendarEvents: List<CalendarEvent>)
 
 }

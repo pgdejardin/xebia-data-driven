@@ -11,14 +11,19 @@ data class CalendarEvent(val summary: String,
 class CalendarExtract(private val calendarSource: CalendarSource,
                       private val calendarStore: CalendarStore) {
 
-    fun extract(begin: LocalDate, end: LocalDate) = (begin..end).forEach { monthBeginDate ->
+    fun extract(begin: LocalDate, end: LocalDate) {
 
-        val monthBegin = monthBeginDate.atStartOfDay()
-        val monthEnd = monthBeginDate.plusMonths(1).minusDays(1).atTime(LocalTime.MAX)
+        val extractDate = LocalDate.now()
 
-        val calendarEvents = calendarSource.find(monthBegin, monthEnd)
+        (begin..end).forEach { monthBeginDate ->
 
-        calendarStore.store(monthBeginDate, calendarEvents)
+            val monthBegin = monthBeginDate.atStartOfDay()
+            val monthEnd = monthBeginDate.plusMonths(1).minusDays(1).atTime(LocalTime.MAX)
+
+            val calendarEvents = calendarSource.find(monthBegin, monthEnd)
+
+            calendarStore.store(extractDate, monthBeginDate, calendarEvents)
+        }
     }
 }
 

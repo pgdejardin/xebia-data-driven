@@ -14,7 +14,7 @@ import java.time.LocalDate
 
 class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
 
-    private val s3 by lazy(AmazonS3ClientBuilder::defaultClient)
+    private val amazonS3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
     override fun handleRequest(input: Any?, context: Context) {
 
@@ -50,7 +50,7 @@ class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
         val storeBucket = "STORE_BUCKET".env()
         val storeKey = "STORE_KEY".env()
 
-        return S3CalendarStore(s3, storeBucket, storeKey)
+        return S3CalendarStore(amazonS3, storeBucket, storeKey)
     }
 
     private fun String.env() =

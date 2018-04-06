@@ -15,8 +15,8 @@ internal class S3CalendarStoreTest {
     private val bucketKeyPrefix = "calendar-extract"
     private val bucketKeySuffixFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
 
-    private val s3 = mock(AmazonS3::class.java)
-    private val s3CalendarStore = S3CalendarStore(s3, bucketName, bucketKeyPrefix)
+    private val amazonS3 = mock(AmazonS3::class.java)
+    private val s3CalendarStore = S3CalendarStore(amazonS3, bucketName, bucketKeyPrefix)
 
     @Test
     @DisplayName("bucket key should be bucket key prefix with calendar date formatted as 'yyyy-MM'")
@@ -31,7 +31,7 @@ internal class S3CalendarStoreTest {
         s3CalendarStore.store(extractDate, calendarDate, calendarEvents)
 
         // then
-        verify(s3).putObject(bucketName, calendarDate.expectedBucketKey(), "[]")
+        verify(amazonS3).putObject(bucketName, calendarDate.expectedBucketKey(), "[]")
     }
 
     @Test
@@ -54,7 +54,7 @@ internal class S3CalendarStoreTest {
             """{"summary":"summary1","description":"description1"},""" +
             """{"summary":"summary2","description":"description2"}""" +
             "]"
-        verify(s3).putObject(bucketName, calendarDate.expectedBucketKey(), expectedJSON)
+        verify(amazonS3).putObject(bucketName, calendarDate.expectedBucketKey(), expectedJSON)
     }
 
     private fun LocalDate.expectedBucketKey() = """$bucketKeyPrefix/${format(bucketKeySuffixFormatter)}.json"""

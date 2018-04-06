@@ -7,7 +7,7 @@ import fr.xebia.api.xke.calendar.store.CalendarStore
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class S3CalendarStore(private val s3: AmazonS3,
+class S3CalendarStore(private val amazonS3: AmazonS3,
                       private val bucketName: String,
                       private val key: String) : CalendarStore {
 
@@ -21,7 +21,7 @@ class S3CalendarStore(private val s3: AmazonS3,
 
         val keyForDate = "$key/${calendarDate.format(filePattern)}.json"
 
-        s3.putObject(bucketName, keyForDate, body)
+        amazonS3.putObject(bucketName, keyForDate, body)
     }
 
 }

@@ -8,7 +8,7 @@ import org.mockito.BDDMockito.given
 import org.mockito.Mockito.*
 import java.time.LocalDate
 
-class CalendarExtractTest {
+internal class CalendarExtractTest {
 
     private val calendarSource = mock(CalendarSource::class.java)
 

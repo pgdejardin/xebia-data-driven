@@ -2,6 +2,7 @@ package fr.xebia.api.xke.calendar.lambda
 
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestHandler
+import com.amazonaws.services.s3.AmazonS3ClientBuilder
 import fr.xebia.api.xke.calendar.CalendarExtract
 import fr.xebia.api.xke.calendar.source.CalendarSource
 import fr.xebia.api.xke.calendar.source.google.GoogleCalendarSource
@@ -12,6 +13,8 @@ import fr.xebia.api.xke.calendar.store.s3.S3CalendarStore
 import java.time.LocalDate
 
 class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
+
+    private val s3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
     override fun handleRequest(input: Any?, context: Context) {
 
@@ -47,7 +50,7 @@ class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
         val storeBucket = "STORE_BUCKET".env()
         val storeKey = "STORE_KEY".env()
 
-        return S3CalendarStore(storeBucket, storeKey)
+        return S3CalendarStore(s3, storeBucket, storeKey)
     }
 
     private fun String.env() =

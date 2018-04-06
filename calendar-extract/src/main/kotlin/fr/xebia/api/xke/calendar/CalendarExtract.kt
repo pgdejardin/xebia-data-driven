@@ -3,9 +3,13 @@ package fr.xebia.api.xke.calendar
 import fr.xebia.api.xke.calendar.source.CalendarSource
 import fr.xebia.api.xke.calendar.store.CalendarStore
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 
-data class CalendarEvent(val summary: String,
+data class CalendarEvent(val id: String,
+                         val startTime: LocalDateTime,
+                         val endTime: LocalDateTime,
+                         val summary: String,
                          val description: String)
 
 class CalendarExtract(private val calendarSource: CalendarSource,

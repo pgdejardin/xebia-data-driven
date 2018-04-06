@@ -16,16 +16,6 @@ internal class CalendarExtractTest {
 
     private val calendarExtract = CalendarExtract(calendarSource, calendarStore)
 
-    private val januaryEvents = listOf(
-        CalendarEvent("summary1", "description1"),
-        CalendarEvent("summary2", "description2")
-    )
-
-    private val februaryEvents = listOf(
-        CalendarEvent("summary3", "description3"),
-        CalendarEvent("summary4", "description4")
-    )
-
     @Test
     @DisplayName("extraction should be stored in one month only when begin and end dates are in the same month")
     fun extractionInOneMonth() {

@@ -5,14 +5,16 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.client.util.DateTime
-import com.google.api.client.util.DateTime.parseRfc3339
 import com.google.api.services.calendar.Calendar
 import com.google.api.services.calendar.CalendarScopes.CALENDAR_READONLY
 import fr.xebia.api.xke.calendar.CalendarEvent
-import fr.xebia.api.xke.calendar.source.google.credentials.GoogleCalendarCredential
 import fr.xebia.api.xke.calendar.source.CalendarSource
+import fr.xebia.api.xke.calendar.source.google.credentials.GoogleCalendarCredential
+import java.time.Instant.ofEpochMilli
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter.ofPattern
+import java.time.LocalDateTime.ofInstant
+import java.time.ZoneOffset.UTC
+import java.util.*
 
 class GoogleCalendarSource(private val calendarId: String,
                            private val googleCalendarCredential: GoogleCalendarCredential) : CalendarSource {
@@ -29,7 +31,15 @@ class GoogleCalendarSource(private val calendarId: String,
             .setOrderBy("startTime")
             .execute()
             .items
-            .map { CalendarEvent(it.summary ?: "", it.description ?: "") }
+            .map {
+                CalendarEvent(
+                    id = it.id ?: UUID.randomUUID().toString(),
+                    startTime = it.start?.dateTime?.toLocalDateTime() ?: LocalDateTime.MAX,
+                    endTime = it.end?.dateTime?.toLocalDateTime() ?: LocalDateTime.MAX,
+                    summary = it.summary ?: "",
+                    description = it.description ?: ""
+                )
+            }
     }
 
     private fun getCalendarService(): Calendar {
@@ -48,6 +58,8 @@ class GoogleCalendarSource(private val calendarId: String,
             .build()
     }
 
-    private fun LocalDateTime.toGoogleDateTime(): DateTime = parseRfc3339(format(ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
+    private fun LocalDateTime.toGoogleDateTime() = DateTime(toInstant(UTC).toEpochMilli())
+
+    private fun DateTime.toLocalDateTime(): LocalDateTime = ofInstant(ofEpochMilli(value), UTC)
 
 }

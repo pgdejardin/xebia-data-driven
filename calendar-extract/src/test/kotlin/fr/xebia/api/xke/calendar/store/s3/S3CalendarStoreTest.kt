@@ -1,7 +1,8 @@
 package fr.xebia.api.xke.calendar.store.s3
 
 import com.amazonaws.services.s3.AmazonS3
-import fr.xebia.api.xke.calendar.CalendarEvent
+import fr.xebia.api.xke.calendar.januaryEvents
+import fr.xebia.api.xke.calendar.noEvents
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
@@ -26,10 +27,9 @@ internal class S3CalendarStoreTest {
         // given
         val extractDate = LocalDate.of(2018, 1, 1)
         val calendarDate = LocalDate.of(2018, 4, 1)
-        val calendarEvents = emptyList<CalendarEvent>()
 
         // when
-        s3CalendarStore.store(extractDate, calendarDate, calendarEvents)
+        s3CalendarStore.store(extractDate, calendarDate, noEvents)
 
         // then
         verify(amazonS3).putObject(bucketName, expectedBucketKey(extractDate, calendarDate), "[]")
@@ -42,18 +42,14 @@ internal class S3CalendarStoreTest {
         // given
         val extractDate = LocalDate.of(2018, 1, 1)
         val calendarDate = LocalDate.of(2018, 4, 1)
-        val calendarEvents = listOf(
-            CalendarEvent("summary1", "description1"),
-            CalendarEvent("summary2", "description2")
-        )
 
         // when
-        s3CalendarStore.store(extractDate, calendarDate, calendarEvents)
+        s3CalendarStore.store(extractDate, calendarDate, januaryEvents)
 
         // then
         val expectedJSON = "[" +
-            """{"summary":"summary1","description":"description1"},""" +
-            """{"summary":"summary2","description":"description2"}""" +
+            """{"id":"id1","startTime":"2018-01-01T10:00:00","endTime":"2018-01-01T11:00:00","summary":"summary1","description":"description1"},""" +
+            """{"id":"id2","startTime":"2018-01-01T11:00:00","endTime":"2018-01-01T12:00:00","summary":"summary2","description":"description2"}""" +
             "]"
         verify(amazonS3).putObject(bucketName, expectedBucketKey(extractDate, calendarDate), expectedJSON)
     }

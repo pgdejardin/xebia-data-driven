@@ -13,13 +13,14 @@ internal class S3CalendarStoreTest {
 
     private val bucketName = "s3-bucket"
     private val bucketKeyPrefix = "calendar-extract"
-    private val bucketKeySuffixFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
+    private val bucketKeyExtractDateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+    private val bucketKeyCalendarDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
 
     private val amazonS3 = mock(AmazonS3::class.java)
     private val s3CalendarStore = S3CalendarStore(amazonS3, bucketName, bucketKeyPrefix)
 
     @Test
-    @DisplayName("bucket key should be bucket key prefix with calendar date formatted as 'yyyy-MM'")
+    @DisplayName("bucket key should contain bucket key prefix, extract date and calendar date")
     fun testBucketKey() {
 
         // given
@@ -31,11 +32,11 @@ internal class S3CalendarStoreTest {
         s3CalendarStore.store(extractDate, calendarDate, calendarEvents)
 
         // then
-        verify(amazonS3).putObject(bucketName, calendarDate.expectedBucketKey(), "[]")
+        verify(amazonS3).putObject(bucketName, expectedBucketKey(extractDate, calendarDate), "[]")
     }
 
     @Test
-    @DisplayName("bucket content should be calendar events serialized in JSON")
+    @DisplayName("bucket content should be calendar events serialized as JSON")
     fun testBucketObjectContent() {
 
         // given
@@ -54,8 +55,9 @@ internal class S3CalendarStoreTest {
             """{"summary":"summary1","description":"description1"},""" +
             """{"summary":"summary2","description":"description2"}""" +
             "]"
-        verify(amazonS3).putObject(bucketName, calendarDate.expectedBucketKey(), expectedJSON)
+        verify(amazonS3).putObject(bucketName, expectedBucketKey(extractDate, calendarDate), expectedJSON)
     }
 
-    private fun LocalDate.expectedBucketKey() = """$bucketKeyPrefix/${format(bucketKeySuffixFormatter)}.json"""
+    private fun expectedBucketKey(extractDate: LocalDate, calendarDate: LocalDate) =
+        """$bucketKeyPrefix/${extractDate.format(bucketKeyExtractDateFormatter)}/${calendarDate.format(bucketKeyCalendarDateFormatter)}.json"""
 }

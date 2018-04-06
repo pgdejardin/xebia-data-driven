@@ -12,16 +12,16 @@ class S3CalendarStore(private val amazonS3: AmazonS3,
                       private val key: String) : CalendarStore {
 
     private val objectMapper = ObjectMapper()
-
-    private val filePattern = DateTimeFormatter.ofPattern("yyyy-MM")
+    private val extractDateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+    private val calendarDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
 
     override fun store(extractDate: LocalDate, calendarDate: LocalDate, calendarEvents: List<CalendarEvent>) {
 
-        val body = objectMapper.writeValueAsString(calendarEvents)
+        val bucketKey = "$key/${extractDate.format(extractDateFormatter)}/${calendarDate.format(calendarDateFormatter)}.json"
 
-        val keyForDate = "$key/${calendarDate.format(filePattern)}.json"
+        val bucketContent = objectMapper.writeValueAsString(calendarEvents)
 
-        amazonS3.putObject(bucketName, keyForDate, body)
+        amazonS3.putObject(bucketName, bucketKey, bucketContent)
     }
 
 }

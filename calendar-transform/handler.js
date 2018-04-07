@@ -7,7 +7,7 @@ export const handler = async (event) => {
     const bucket = s3data.bucket.name;
     const inputFilename = decodeURIComponent(s3data.object.key);
 
-    const [, year, month] = inputFilename.match(/^xke-calendar\/(\d{4})-(\d{2})\.json/);
+    const [, year, month] = inputFilename.match(/^xke-calendar\/(\d{4})\/(\d{2})\/(\d{2})\/.*\.json/);
 
     const xkeFile = await getFileFromBucket(bucket, inputFilename);
 

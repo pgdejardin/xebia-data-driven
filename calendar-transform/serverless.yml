@@ -20,7 +20,7 @@ provider:
   environment:
     XKE_BUCKET_NAME: ${self:custom.stage}-xdd-datalake.xebia.fr
     XKE_TABLE: ${self:custom.stage}-xdd-xke-api
-    SLOTS_TO_EXCLUDE: 'XKE,Fondations,Déjeuner,New Comers,Notation Globale'
+    SLOTS_TO_EXCLUDE: 'XKE,Fondations,Déjeuner,New Comers,Notation Globale,Pitchs,Plénière'
   iamRoleStatements:
     - Effect: 'Allow'
       Action:

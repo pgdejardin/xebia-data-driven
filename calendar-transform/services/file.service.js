@@ -18,6 +18,8 @@ export function sanitizeFile(xkeFile) {
 function extractFields(slot) {
     const description = slot.description;
     const newSlot = {};
+    newSlot.summary = slot.summary;
+    newSlot.description = slot.description;
     newSlot.pitch = extractDataForField(description, 'Pitch**','**');
     newSlot.level = extractDataForField(description, 'Niveau**', '**');
     newSlot.requirement = extractDataForField(description, 'Pré-requis**', '**');
@@ -28,6 +30,9 @@ function extractFields(slot) {
 
 function extractDataForField(description, startMatch, endMatch) {
     const startIndex = description.indexOf(startMatch);
+    if(startIndex == -1){
+        return null;
+    }
     let endIndex = description.length;
     if(endMatch) {
         endIndex = description.indexOf('**', startIndex + startMatch.length);

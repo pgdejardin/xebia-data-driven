@@ -20,7 +20,7 @@ function extractFields(slot) {
     const newSlot = {};
     newSlot.pitch = extractDataForField(description, 'Pitch**','**');
     newSlot.level = extractDataForField(description, 'Niveau**', '**');
-    newSlot.requiement = extractDataForField(description, 'Pré-requis**', '**');
+    newSlot.requirement = extractDataForField(description, 'Pré-requis**', '**');
     newSlot.logistics = extractDataForField(description, 'Logistique**');
 
     return newSlot;

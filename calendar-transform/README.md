@@ -8,11 +8,19 @@ $ serverless -v
 1.26.1
 ```
 
-## Note
+## Installation
+Install the Node packages
+
+``` bash
+$ npm install
+```
+
+## Deploy
+### Note
+
     Due to the limitation of cloudformation to attach existing resource in a cloudformation template
     we use *serverless-plugin-existing-s3* plugin
 
-## Deploy
 we suppose you have export your AWS_PROFILE in terminal
 ```bash
 serverless deploy

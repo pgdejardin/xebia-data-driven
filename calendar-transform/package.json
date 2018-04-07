@@ -23,8 +23,10 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "@aws/dynamodb-data-marshaller": "^0.4.0",
     "aws-sdk": "^2.216.1",
     "babel-runtime": "^6.26.0",
+    "dynamodb": "^1.1.1",
     "serverless-plugin-existing-s3": "^2.1.0",
     "source-map-support": "^0.4.18"
   }

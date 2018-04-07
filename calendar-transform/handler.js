@@ -1,11 +1,7 @@
-import AWS from "aws-sdk";
 import {sanitizeFile, getFileFromBucket} from './services/file.service';
-
-const dynamodb = new AWS.DynamoDB();
-
+import {pushXkeInDB} from './services/xke.repository';
 
 export const handler = async (event) => {
-    console.log(event);
     const record = event.Records[0];
     const s3data = record.s3;
     const bucket = s3data.bucket.name;
@@ -19,22 +15,8 @@ export const handler = async (event) => {
 
     const xke = {year, month, slots};
 
-    console.log('xke :', xke);
-    await createXke(xke);
+    await pushXkeInDB(xke);
 };
-
-async function createXke(xke) {
-    const params = {
-        TableName: process.env.XKE_TABLE,
-        Item: {
-            "year": {S: xke.year},
-            "month": {S: xke.month},
-            "slots": {S: JSON.stringify(xke.slots)}
-        }
-    };
-
-    await dynamodb.putItem(params).promise();
-}
 
 
 

@@ -16,6 +16,7 @@ terragrunt = {
             commands = [
                 "plan",
                 "apply",
+                "import",
                 "destroy",
             ]
             optional_var_files = [

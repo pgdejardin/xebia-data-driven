@@ -21,7 +21,7 @@ class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
         val calendarSource = calendarSource()
         val calendarStore = calendarStore()
 
-        val from = "EXTRACT_BEGIN".env(LocalDate::parse) { LocalDate.now().withDayOfMonth(1) }
+        val from = "EXTRACT_BEGIN".env(LocalDate::parse) { LocalDate.now().withDayOfMonth(1).minusMonths(1) }
         val end = "EXTRACT_END".env(LocalDate::parse) { LocalDate.now().withDayOfMonth(1).plusMonths(1) }
 
         val calendarExtract = CalendarExtract(calendarSource, calendarStore)

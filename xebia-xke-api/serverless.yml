@@ -1,0 +1,64 @@
+# NOTE: update this with your service name
+service: xdd-api-xke
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: eu-west-1
+#  deploymentBucket: ${self:custom.perEnv.bucket}
+  environment:
+    XKE_TABLE: ${self:custom.stage}-xdd-xke-api
+    ENDPOINT_URL:
+      "Fn::Join":
+        - ""
+        -
+          - "https://"
+          - "${self:custom.perEnv.domainName}"
+  iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:GetItem'
+          - 'dynamodb:BatchGetItem'
+        Resource:
+          - 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.XKE_TABLE}'
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  region: ${opt:region, self:provider.region}
+  stage: ${opt:stage, self:provider.stage, env:USER}
+  perEnv: ${file(serverless-config-environment.yml):${self:custom.stage}, file(serverless-config-environment.yml):dev}
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+  # Configure the plugin serverless-domain-manager
+  customDomain:
+    basePath: "${self:custom.perEnv.basePath}"
+    domainName: "${self:custom.perEnv.domainName}"
+    stage: "${self:custom.stage}"
+    createRoute53Record: true
+
+functions:
+  # Event
+    xke-find-one-event:
+      name: xke-api-find-one-${self:custom.stage}
+      handler: handler.findXke
+      warmup: true
+      events:
+        - http:
+            path: /xke/{year}
+            method: GET
+            cors: true
+        - http:
+            path: /xke/{year}/month/{month}
+            method: GET
+            cors: true

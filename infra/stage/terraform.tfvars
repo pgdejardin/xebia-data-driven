@@ -17,6 +17,7 @@ terragrunt = {
                 "plan",
                 "apply",
                 "state",
+                "output",
                 "import",
                 "destroy",
             ]

@@ -4,4 +4,6 @@ project_tags = {
     Project = "xdd"
 }
 
+region = "eu-west-1"
+
 bucket_name_suffix = "xebia.fr"

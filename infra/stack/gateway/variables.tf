@@ -19,4 +19,7 @@ locals {
 
 variable "region" {}
 
+variable "state_bucket" {}
+variable "zone_prefix" {}
+
 variable "gateway_xke_uri" {}

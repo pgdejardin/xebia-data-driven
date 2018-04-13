@@ -1,3 +1,7 @@
+data "aws_cloudformation_stack" "xke_api" {
+    name = "xdd-api-xke-${var.stage}"
+}
+
 resource "aws_api_gateway_resource" "gateway_xke" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
     parent_id = "${aws_api_gateway_rest_api.gateway.root_resource_id}"
@@ -27,7 +31,7 @@ resource "aws_api_gateway_integration" "gateway_xke_proxy" {
     type = "HTTP_PROXY"
     integration_http_method = "ANY"
     passthrough_behavior = "WHEN_NO_MATCH"
-    uri = "${var.gateway_xke_uri}/{proxy}"
+    uri = "${data.aws_cloudformation_stack.xke_api.outputs.ServiceEndpoint}/{proxy}"
     request_parameters {
         "integration.request.path.proxy" = "method.request.path.proxy"
     }

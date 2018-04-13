@@ -22,7 +22,7 @@ resource "aws_api_gateway_rest_api" "gateway" {
 resource "aws_api_gateway_deployment" "gateway" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
     stage_name = "${var.stage}"
-    stage_description = "Deployment for ${var.stage}"
+    stage_description = "${sha1(file("./main.tf"))}"
     depends_on = [
         # one method must exist before deployment, otherwise unsuccessful
         "aws_api_gateway_method.gateway_xke_proxy"

@@ -5,5 +5,6 @@ project_tags = {
 }
 
 region = "eu-west-1"
+region_acm = "us-east-1"
 
 bucket_name_suffix = "xebia.fr"

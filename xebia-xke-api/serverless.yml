@@ -55,10 +55,10 @@ functions:
       warmup: true
       events:
         - http:
-            path: /xke/{year}
+            path: /{year}
             method: GET
             cors: true
         - http:
-            path: /xke/{year}/month/{month}
+            path: /{year}/{month}
             method: GET
             cors: true

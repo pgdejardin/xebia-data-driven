@@ -25,7 +25,7 @@ resource "aws_api_gateway_deployment" "gateway" {
     stage_description = "${sha1(file("./main.tf"))}"
     depends_on = [
         # one method must exist before deployment, otherwise unsuccessful
-        "aws_api_gateway_method.gateway_xke_proxy"
+        "aws_api_gateway_method.xke_proxy"
     ]
     lifecycle {
         create_before_destroy = true

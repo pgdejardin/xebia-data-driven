@@ -19,5 +19,4 @@ locals {
 
 variable "region" {}
 
-variable "gateway_auto_deploy" {}
 variable "gateway_xke_uri" {}

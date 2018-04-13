@@ -7,18 +7,20 @@ provider "aws" {
 }
 
 resource "aws_api_gateway_rest_api" "gateway" {
-    name = "gateway-${var.stage}.${var.project}"
+    name = "${local.name}"
 }
 
 resource "aws_api_gateway_deployment" "gateway" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
     stage_name = "${var.stage}"
-    # use timestamp to force re-deployment when enabled
-    stage_description = "${var.gateway_auto_deploy == "true" ? timestamp() : var.stage}"
+    stage_description = "Deployment for ${var.stage}"
     depends_on = [
         # one method must exist before deployment, otherwise unsuccessful
         "aws_api_gateway_method.gateway_xke_proxy"
     ]
+    lifecycle {
+        create_before_destroy = true
+    }
 }
 
 #

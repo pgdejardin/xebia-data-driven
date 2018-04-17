@@ -1,5 +1,5 @@
 data "aws_cloudformation_stack" "xke_api" {
-    name = "xdd-api-xke-${var.stage}"
+    name = "xdd-xke-api-${var.stage}"
 }
 
 resource "aws_api_gateway_resource" "xke" {

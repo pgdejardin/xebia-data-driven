@@ -1,5 +1,5 @@
 # NOTE: update this with your service name
-service: xdd-api-xke
+service: xdd-xke-api
 
 provider:
   name: aws

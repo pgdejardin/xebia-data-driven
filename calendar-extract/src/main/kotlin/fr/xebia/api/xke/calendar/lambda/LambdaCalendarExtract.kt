@@ -6,8 +6,8 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder
 import fr.xebia.api.xke.calendar.CalendarExtract
 import fr.xebia.api.xke.calendar.source.CalendarSource
 import fr.xebia.api.xke.calendar.source.google.GoogleCalendarSource
-import fr.xebia.api.xke.calendar.source.google.credentials.GoogleCalendarCredential
-import fr.xebia.api.xke.calendar.source.google.credentials.s3.S3GoogleCalendarCredential
+import fr.xebia.api.xke.calendar.source.google.credentials.GoogleCredentialSource
+import fr.xebia.api.xke.calendar.source.google.credentials.s3.S3GoogleCredentialSource
 import fr.xebia.api.xke.calendar.store.CalendarStore
 import fr.xebia.api.xke.calendar.store.s3.S3CalendarStore
 import java.time.LocalDate
@@ -37,12 +37,12 @@ class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
         return GoogleCalendarSource(calendarId, calendarCredentials)
     }
 
-    private fun googleCalendarCredential(): GoogleCalendarCredential {
+    private fun googleCalendarCredential(): GoogleCredentialSource {
 
         val credentialBucket = "CREDENTIAL_BUCKET".env()
         val credentialKey = "CREDENTIAL_KEY".env()
 
-        return S3GoogleCalendarCredential(amazonS3, credentialBucket, credentialKey)
+        return S3GoogleCredentialSource(amazonS3, credentialBucket, credentialKey)
     }
 
     private fun calendarStore(): CalendarStore {

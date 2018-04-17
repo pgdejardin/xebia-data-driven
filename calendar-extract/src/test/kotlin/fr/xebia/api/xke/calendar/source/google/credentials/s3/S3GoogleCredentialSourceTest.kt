@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito.mock
 
-internal class S3GoogleCalendarCredentialTest {
+internal class S3GoogleCredentialSourceTest {
 
     private val bucketName = "s3-bucket"
     private val bucketKey = "calendar-extract"
 
     private val amazonS3 = mock(AmazonS3::class.java)
-    private val s3GoogleCalendarCredential = S3GoogleCalendarCredential(amazonS3, bucketName, bucketKey)
+    private val s3GoogleCalendarCredential = S3GoogleCredentialSource(amazonS3, bucketName, bucketKey)
 
     @Test
     @DisplayName("object content should match stream returned for given bucket and key")

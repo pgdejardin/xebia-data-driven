@@ -2,7 +2,7 @@ package fr.xebia.api.xke.calendar.source.google.credentials
 
 import java.io.InputStream
 
-interface GoogleCalendarCredential {
+interface GoogleCredentialSource {
 
     fun find(): InputStream
 

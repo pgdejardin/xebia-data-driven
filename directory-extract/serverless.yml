@@ -1,5 +1,5 @@
 service:
-  name: xdd-calendar-extract
+  name: xdd-directory-extract
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -29,16 +29,16 @@ provider:
         - "${self:custom.secrets.CREDENTIAL_KMS_KEY_ARN}"
 
 package:
-  artifact: build/libs/calendar-extract-all.jar
+  artifact: build/libs/directory-extract-all.jar
 
 functions:
-  calendar-extract:
-    handler: fr.xebia.api.xke.calendar.lambda.LambdaUsersExtract
+  directory-extract:
+    handler: fr.xebia.api.directory.users.lambda.LambdaUsersExtract
     timeout: 60
     events:
       - schedule: cron(0 8 * * ? *)
     environment:
-      CALENDAR_ID: ${self:custom.secrets.CALENDAR_ID}
+      DOMAIN: ${self:custom.secrets.DOMAIN}
       CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
       CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
       STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}

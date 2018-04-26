@@ -1,9 +1,0 @@
-dev:
-  domainName: "api-xke.techx.fr"
-  basePath: ${self:custom.stage}
-  bucket: dev-xdd-api-xke.xebia.fr
-
-prod:
-  domainName: "api.xke.xebia.fr"
-  basePath: ""
-  bucket: prod-xdd-api-xke.xebia.fr

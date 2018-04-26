@@ -13,12 +13,6 @@ custom:
     webpackConfig: ./webpack.config.js
     includeModules: true
 
-  customDomain:
-    basePath: "${self:custom.perEnv.basePath}"
-    domainName: "${self:custom.perEnv.domainName}"
-    stage: "${self:custom.stage}"
-    createRoute53Record: true
-
 provider:
   name: aws
   runtime: nodejs6.10
@@ -28,12 +22,6 @@ provider:
     XKE_BUCKET_NAME: ${self:custom.stage}-xdd-datalake.xebia.fr
     XKE_TABLE: ${self:custom.stage}-xdd-xke-api
     SLOTS_TO_EXCLUDE: 'XKE,Fondations,Déjeuner,New Comers,Notation Globale,Pitchs,Plénière'
-    ENDPOINT_URL:
-      "Fn::Join":
-        - ""
-        -
-          - "https://"
-          - "${self:custom.perEnv.domainName}"
   iamRoleStatements:
     - Effect: 'Allow'
       Action:

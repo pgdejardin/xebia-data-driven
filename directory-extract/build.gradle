@@ -32,9 +32,9 @@ dependencyManagement {
 }
 
 dependencies {
-    compile('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
-    compile group: 'com.google.apis', name: 'google-api-services-admin-directory', version: 'directory_v1-rev53-1.20.0'
+    compile 'com.google.apis:google-api-services-admin-directory:directory_v1-rev93-1.23.0'
 
     compile 'com.amazonaws:aws-java-sdk-s3'
 

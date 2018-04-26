@@ -1,4 +1,4 @@
-import { sanitizeFile } from '../services/file.service';
+import { sanitizeFile } from '../service/file.service';
 import xkeFile from './slots';
 import pmock from 'pmock';
 // import slots from './slots.txt';

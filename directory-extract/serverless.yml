@@ -29,7 +29,7 @@ provider:
         - "${self:custom.secrets.CREDENTIAL_KMS_KEY_ARN}"
 
 package:
-  artifact: build/libs/directory-extract-all.jar
+  artifact: build/distributions/directory-extract.zip
 
 functions:
   directory-extract:

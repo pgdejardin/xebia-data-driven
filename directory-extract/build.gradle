@@ -1,20 +1,7 @@
-buildscript {
-    repositories { mavenCentral() }
-    dependencies {
-        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
-    }
-}
-
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.31'
     id 'io.spring.dependency-management' version '1.0.4.RELEASE'
 }
-
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'org.junit.platform.gradle.plugin'
-
-group = 'fr.xebia.api'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -48,7 +35,15 @@ dependencies {
     testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
 
-task deploy(type: Exec, dependsOn: 'shadowJar', group: 'serverless') {
+task buildLambda(type: Zip, dependsOn: 'build', group: 'serverless') {
+    from compileKotlin as Object
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+task deploy(type: Exec, dependsOn: 'buildLambda', group: 'serverless') {
     environment AWS_PROFILE: System.getenv('AWS_PROFILE')
     commandLine 'serverless', 'deploy'
 }

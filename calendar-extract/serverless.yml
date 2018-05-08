@@ -29,7 +29,7 @@ provider:
         - "${self:custom.secrets.CREDENTIAL_KMS_KEY_ARN}"
 
 package:
-  artifact: build/libs/calendar-extract-all.jar
+  artifact: build/distributions/calendar-extract.zip
 
 functions:
   calendar-extract:

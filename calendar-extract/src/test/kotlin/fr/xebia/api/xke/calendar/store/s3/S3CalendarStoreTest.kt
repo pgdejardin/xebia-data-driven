@@ -48,8 +48,8 @@ internal class S3CalendarStoreTest {
 
         // then
         val expectedJSON = "[" +
-            """{"id":"id1","startTime":"2018-01-01T10:00:00","endTime":"2018-01-01T11:00:00","summary":"summary1","description":"description1"},""" +
-            """{"id":"id2","startTime":"2018-01-01T11:00:00","endTime":"2018-01-01T12:00:00","summary":"summary2","description":"description2"}""" +
+            """{"id":"id1","startTime":"2018-01-01T10:00:00","endTime":"2018-01-01T11:00:00","summary":"summary1","description":"description1","attendees":["mail1@test.com","mail2@test.com"]},""" +
+            """{"id":"id2","startTime":"2018-01-01T11:00:00","endTime":"2018-01-01T12:00:00","summary":"summary2","description":"description2","attendees":["mail3@test.com","mail4@test.com"]}""" +
             "]"
         verify(amazonS3).putObject(bucketName, expectedBucketKey(extractDate, calendarDate), expectedJSON)
     }

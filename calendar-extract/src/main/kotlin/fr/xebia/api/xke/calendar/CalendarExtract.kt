@@ -6,11 +6,14 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 
+typealias Email = String
+
 data class CalendarEvent(val id: String,
                          val startTime: LocalDateTime,
                          val endTime: LocalDateTime,
                          val summary: String,
-                         val description: String)
+                         val description: String,
+                         val attendees: List<Email>)
 
 class CalendarExtract(private val calendarSource: CalendarSource,
                       private val calendarStore: CalendarStore) {

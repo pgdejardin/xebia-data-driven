@@ -37,7 +37,8 @@ class GoogleCalendarSource(private val calendarId: String,
                     startTime = it.start?.dateTime?.toLocalDateTime() ?: LocalDateTime.MAX,
                     endTime = it.end?.dateTime?.toLocalDateTime() ?: LocalDateTime.MAX,
                     summary = it.summary ?: "",
-                    description = it.description ?: ""
+                    description = it.description ?: "",
+                    attendees = it.attendees?.map { it.email } ?: emptyList()
                 )
             }
     }

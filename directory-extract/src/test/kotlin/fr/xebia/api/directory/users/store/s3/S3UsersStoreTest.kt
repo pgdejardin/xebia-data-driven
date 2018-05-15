@@ -36,8 +36,8 @@ internal class S3UsersStoreTest {
 
         // then
         val expectedJSON = "[" +
-            """{"email":"email1@xebia.fr","familyName":"family 1","fullName":"full 1"},""" +
-            """{"email":"email2@xebia.fr","familyName":"family 2","fullName":"full 2"}""" +
+            """{"id":"1","email":"email1@xebia.fr","givenName":"first name 1","familyName":"family 1","fullName":"full 1","photoUrl":"url 1"},""" +
+            """{"id":"2","email":"email2@xebia.fr","givenName":"first name 2","familyName":"family 2","fullName":"full 2","photoUrl":"url 2"}""".trimMargin() +
             "]"
         verify(amazonS3).putObject(bucketName, expectedBucketKey(), expectedJSON)
     }

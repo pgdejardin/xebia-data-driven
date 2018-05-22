@@ -3,4 +3,4 @@ stage_tags = {
     Stage = "dev"
 }
 
-state_bucket = "xdd-terraform-state.xebia.fr"
+state_bucket = "xdd-terraform-state-dev.xebia.fr"

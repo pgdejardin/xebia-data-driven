@@ -6,8 +6,8 @@ terragrunt = {
             encrypt = true
             region = "eu-west-1"
             key = "${path_relative_to_include()}"
-            bucket = "xdd-terraform-state.xebia.fr"
-            dynamodb_table = "xdd-terraform-state-lock"
+            bucket = "xdd-terraform-state-dev.xebia.fr"
+            dynamodb_table = "xdd-terraform-state-lock-dev"
         }
     }
 

@@ -20,4 +20,3 @@ locals {
 variable "region" {}
 
 variable "state_bucket" {}
-variable "zone_prefix" {}

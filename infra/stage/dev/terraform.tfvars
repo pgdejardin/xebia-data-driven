@@ -5,8 +5,8 @@ terragrunt = {
         config {
             encrypt = true
             region = "eu-west-1"
-            bucket = "xdd-terraform-state.xebia.fr"
             key = "${path_relative_to_include()}"
+            bucket = "xdd-terraform-state.xebia.fr"
             dynamodb_table = "xdd-terraform-state-lock"
         }
     }
@@ -14,12 +14,7 @@ terragrunt = {
     terraform {
         extra_arguments "custom_vars" {
             commands = [
-                "plan",
-                "apply",
-                "state",
-                "output",
-                "import",
-                "destroy",
+                "${get_terraform_commands_that_need_vars()}"
             ]
             optional_var_files = [
                 "${get_tfvars_dir()}/../../variables.tfvars",

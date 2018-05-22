@@ -3,4 +3,6 @@ stage_tags = {
     Stage = "dev"
 }
 
+state_bucket = "xdd-terraform-state.xebia.fr"
+
 zone_prefix = "dev."

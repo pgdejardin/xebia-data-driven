@@ -11,7 +11,7 @@ data "terraform_remote_state" "zone" {
     config {
         region = "${var.region}"
         bucket = "${var.state_bucket}"
-        key = "all/zone"
+        key = "zone"
     }
 }
 

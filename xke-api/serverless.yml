@@ -19,8 +19,8 @@ provider:
   stage: dev
   region: eu-west-1
   environment:
-    XKE_BUCKET_NAME: ${self:custom.stage}-xdd-datalake.xebia.fr
-    XKE_TABLE: ${self:custom.stage}-xdd-xke-api
+    XKE_BUCKET_NAME: xdd-datalake-${self:custom.stage}.xebia.fr
+    XKE_TABLE: xdd-xke-api-${self:custom.stage}
     SLOTS_TO_EXCLUDE: 'XKE,Fondations,Déjeuner,New Comers,Notation Globale,Pitchs,Plénière'
   iamRoleStatements:
     - Effect: 'Allow'

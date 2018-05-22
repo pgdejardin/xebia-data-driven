@@ -18,5 +18,6 @@ locals {
 }
 
 variable "region" {}
+variable "region_acm" {}
 
-variable "zone_name" {}
+variable "state_bucket" {}

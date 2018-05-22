@@ -15,6 +15,15 @@ data "terraform_remote_state" "zone" {
     }
 }
 
+data "terraform_remote_state" "zone_certificate" {
+    backend = "s3"
+    config {
+        region = "${var.region}"
+        bucket = "${var.state_bucket}"
+        key = "zone_certificate"
+    }
+}
+
 resource "aws_api_gateway_rest_api" "gateway" {
     name = "${local.name}"
 }
@@ -34,7 +43,7 @@ resource "aws_api_gateway_deployment" "gateway" {
 
 resource "aws_api_gateway_domain_name" "gateway" {
     domain_name = "${var.zone_prefix}${data.terraform_remote_state.zone.zone_name}"
-    certificate_arn = "${data.terraform_remote_state.zone.certificate_arn}"
+    certificate_arn = "${data.terraform_remote_state.zone_certificate.certificate_arn}"
 }
 
 resource "aws_api_gateway_base_path_mapping" "gateway" {

@@ -13,7 +13,7 @@ variable "stack" {
 }
 
 locals {
-    name = "${var.stage}-${var.project}-${var.stack}"
+    name = "${var.project}-${var.stack}-${var.stage}"
     tags = "${merge(var.stage_tags, var.project_tags, map("Name", "${local.name}"))}"
 }
 

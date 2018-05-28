@@ -1,0 +1,19 @@
+service: xdd-api-authorizer
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  secrets: ${file(serverless-secrets.yml):${self:custom.stage}}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+  environment:
+    AUDIENCE: ${self:custom.secrets.AUDIENCE}
+    JWKS_URI: ${self:custom.secrets.JWKS_URI}
+    TOKEN_ISSUER: ${self:custom.secrets.TOKEN_ISSUER}
+
+functions:
+  authorizer:
+    handler: handler.authenticate

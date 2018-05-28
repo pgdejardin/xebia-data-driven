@@ -1,0 +1,16 @@
+{
+  "name": "api-auth",
+  "version": "0.0.1",
+  "description": "Lambda function for API Gateway authorizer",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "serverless deploy"
+  },
+  "dependencies": {
+    "jsonwebtoken": "7.4.1",
+    "jwks-rsa": "1.1.1"
+  },
+  "devDependencies": {
+    "serverless": "1.27.3"
+  }
+}

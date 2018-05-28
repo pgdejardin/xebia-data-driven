@@ -19,15 +19,28 @@ provider:
   stage: dev
   region: eu-west-1
   environment:
-    XKE_BUCKET_NAME: xdd-datalake-${self:custom.stage}.xebia.fr
+    XKE_BUCKET_DATA: xdd-datalake-${self:custom.stage}.xebia.fr
     XKE_TABLE: xdd-xke-api-${self:custom.stage}
+    XKE_BUCKET_API: xdd-xke-api-${self:custom.stage}.xebia.fr
     SLOTS_TO_EXCLUDE: 'XKE,Fondations,Déjeuner,New Comers,Notation Globale,Pitchs,Plénière'
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
         - 's3:GetObject'
       Resource:
-        - 'arn:aws:s3:::${self:provider.environment.XKE_BUCKET_NAME}/*'
+        - 'arn:aws:s3:::${self:provider.environment.XKE_BUCKET_DATA}/*'
+    - Effect: 'Allow'
+      Action:
+        - 's3:GetObject'
+        - 's3:PutObject'
+        - 's3:ListBucket'
+      Resource:
+        - 'arn:aws:s3:::${self:provider.environment.XKE_BUCKET_API}/*'
+    - Effect: 'Allow'
+      Action:
+        - 's3:ListBucket'
+      Resource:
+        - 'arn:aws:s3:::*'
     - Effect: "Allow"
       Action:
         - 'dynamodb:Query'
@@ -42,28 +55,29 @@ provider:
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.XKE_TABLE}'
 
 functions:
-  find-one:
-    handler: handler.findXke
-    warmup: true
-    events:
-      - http:
-          path: /{year}
-          method: GET
-          cors: true
-      - http:
-          path: /{year}/{month}
-          method: GET
-          cors: true
   calendar-transform:
     handler: handler.transform
     events:
       - existingS3:
-          bucket: ${self:provider.environment.XKE_BUCKET_NAME}
+          bucket: ${self:provider.environment.XKE_BUCKET_DATA}
           events:
             - s3:ObjectCreated:*
           rules:
             - prefix: xke-calendar/
             - suffix: .json
+  find-one:
+    handler: handler.findXke
+    warmup: true
+    timeout: 30
+    events:
+#      - http:
+#          path: /{year}
+#          method: GET
+#          cors: true
+      - http:
+          path: /{year}/{month}
+          method: GET
+          cors: true
 
 resources:
   Resources:
@@ -84,4 +98,13 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-
+    XkeBucketApi:
+      Type: 'AWS::S3::Bucket'
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: ${self:provider.environment.XKE_BUCKET_API}
+        AccessControl: Private
+        Tags:
+          -
+            Key: Project
+            Value: xdd

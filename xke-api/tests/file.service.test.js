@@ -1,7 +1,7 @@
 import { sanitizeFile } from '../service/file.service';
-import xkeFile from './slots';
+import xkeFile from './slots.json';
 import pmock from 'pmock';
-// import slots from './slots.txt';
+// import slots from './slots.json';
 
 beforeEach(() => {
     try {
@@ -14,6 +14,11 @@ beforeEach(() => {
 test('sanitizeFile: should remove first useless lines and keep only 18 cols', () => {
     //todo
     // when
-    const sanitizedFile = sanitizeFile(xkeFile);
+
+    // console.log('0: ', xkeFile.Body);
+    // console.log('1: ', xkeFile.Body.toString());
+    // console.log('2: ', JSON.parse(xkeFile.Body.toString()));
+    // const sanitizedFile = sanitizeFile(xkeFile);
+
 
 });

@@ -8,55 +8,8 @@ XKE is Xebia API allowing users to make search about xke events
 
 Resources related to xke in the API.
 
-## find Xke By year [/xke/{year}]
-### List All Xke of one year [GET]
-
-+ Parameters
-    + year: 2018 (string, required) - year of the xke
-
-+ Response 200 (application/json)
-    + Body
-
-            [
-              {
-                  "year": "2018",
-                  "month": "02",
-                  "slots": [
-                     {
-                           "summary":"Apache Kafka et sa librairie de *stream processing*",
-                           "description": "Apache Kafka et sa librairie de *stream processing*",
-                           "level": "Intermédiaire",
-                           "logistics": "Slot filmé si possible",
-                           "pitch": "Apache Kafka et sa librairie de *stream processing*",
-                           "requirement": "Pouvoir lire du code Java (attention aux allergiques)"
-                     }, {
-                           "summary":"Javaccript",
-                           "description": "Tout le monde a entendu parler d'HTTP2, mais qu'est-ce qu'il se cache derrière cet acronyme ?\nDécouvrez ce qu'apporte ce nouveau protocole au travers d'exemples d'implémentation en NodeJS.",
-                           "level": "Intermédiaire",
-                           "logistics": "RAS",
-                           "pitch": "Tout le monde a entendu parler d'HTTP2, mais qu'est-ce qu'il se cache derrière cet acronyme ?\nDécouvrez ce qu'apporte ce nouveau protocole au travers d'exemples d'implémentation en NodeJS.",
-                           "requirement": "Javascript"
-                      }
-                  ]
-              },
-              {
-                  "year": "2018",
-                  "month": "01",
-                  "slots": [
-                     {
-                        "summary":"Débutant AWS",
-                        "description": "Comment avoir un mini AWS sur son ordi et ainsi pouvoir développer en local et lancer des tests d'intégration. \nNous vous présenterons la solution localstack et comment nous avons commencé à l'utiliser pour un test d'intégration sur le projet DRSA.",
-                        "level": "Débutant",
-                        "logistics": "Rien de particulier",
-                        "pitch": "Comment avoir un mini AWS sur son ordi et ainsi pouvoir développer en local et lancer des tests d'intégration. \nNous vous présenterons la solution localstack et comment nous avons commencé à l'utiliser pour un test d'intégration sur le projet DRSA.",
-                        "requirement": "Connaissance AWS de base"
-                     }
-                  ]
-              }
-            ]
-
-## find one Xke  [/xke/{year}-{month}]
-### List All Xke of one year [GET]
+## find one Xke  [/xke/{year}/{month}]
+### List All Presentation of this specific xke [GET]
 
 + Parameters
     + year: 2018 (string, required) - year of the xke
@@ -65,20 +18,20 @@ Resources related to xke in the API.
 + Response 200 (application/json)
     + Body
 
-            {
-              "year": "2018",
-              "month": "02",
-              "slots": [
-                 {
-                       "level": "Intermédiaire",
-                       "logistics": "Slot filmé si possible",
-                       "pitch": "Apache Kafka et sa librairie de *stream processing*",
-                       "requirement": "Pouvoir lire du code Java (attention aux allergiques)"
-                 }, {
-                       "level": "Intermédiaire",
-                       "logistics": "RAS",
-                       "pitch": "Tout le monde a entendu parler d'HTTP2, mais qu'est-ce qu'il se cache derrière cet acronyme ?\nDécouvrez ce qu'apporte ce nouveau protocole au travers d'exemples d'implémentation en NodeJS.",
-                       "requirement": "Javascript"
-                  }
-              ]
-            }
+            [
+               {
+                     "year": "2018",
+                     "month": "02",
+                     "level": "Intermédiaire",
+                     "logistics": "Slot filmé si possible",
+                     "pitch": "Apache Kafka et sa librairie de *stream processing*",
+                     "requirement": "Pouvoir lire du code Java (attention aux allergiques)"
+               }, {
+                     "year": "2018",
+                     "month": "02",
+                     "level": "Intermédiaire",
+                     "logistics": "RAS",
+                     "pitch": "Tout le monde a entendu parler d'HTTP2, mais qu'est-ce qu'il se cache derrière cet acronyme ?\nDécouvrez ce qu'apporte ce nouveau protocole au travers d'exemples d'implémentation en NodeJS.",
+                     "requirement": "Javascript"
+                }
+            ]

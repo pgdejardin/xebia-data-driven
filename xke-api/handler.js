@@ -1,6 +1,6 @@
 import {pushXkeInDB, findByKey, findXkeByYear} from './service/xke.repository';
 
-import {sanitizeFile, getFileFromBucket} from './service/file.service';
+import {sanitizeFile, getFileFromBucket, saveXkeInBucket, getFilename} from './service/file.service';
 
 export const transform = async (event) => {
     const record = event.Records[0];
@@ -10,11 +10,13 @@ export const transform = async (event) => {
 
     const [, year, month] = inputFilename.match(/^xke-calendar\/.*\/(\d{4})-(\d{2})\.json/);
 
-    const xkeFile = await getFileFromBucket(bucket, inputFilename);
+    const xkeFile = await getFileFromBucket(bucket, inputFilename, true);
 
-    const slots = sanitizeFile(xkeFile);
+    const slots = sanitizeFile(xkeFile, year, month);
 
     const xke = {year, month, slots};
+
+    await saveXkeInBucket(process.env.XKE_BUCKET_API, xke);
 
     await pushXkeInDB(xke);
 };
@@ -22,17 +24,13 @@ export const transform = async (event) => {
 export const findXke = async (event, context, callback) => {
     const year = event.pathParameters.year;
     const month = event.pathParameters.month;
-    let result;
-    if (month) {
-        result = await findByKey(year, month);
-    } else {
-        result = await findXkeByYear(year);
-    }
+    const xkeFilename = getFilename(year, month);
+    const file = await getFileFromBucket(process.env.XKE_BUCKET_API, xkeFilename);
 
-    if (result) {
+    if (file) {
         callback(null, {
             statusCode: 200,
-            body: JSON.stringify(result),
+            body: file.Body.toString(),
         });
     } else {
         callback(null, {

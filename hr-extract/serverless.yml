@@ -1,0 +1,46 @@
+service:
+  name: xdd-hr-extract
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  secrets: ${file(serverless-secrets.yml):${self:custom.stage}}
+
+provider:
+  name: aws
+  runtime: java8
+  region: eu-west-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource:
+        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}"
+        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}/*"
+        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}"
+        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}/*"
+    - Effect: "Allow"
+      Action:
+        - "kms:Encrypt"
+        - "kms:Decrypt"
+        - "kms:ReEncrypt*"
+        - "kms:GenerateDataKey*"
+        - "kms:DescribeKey"
+      Resource:
+        - "${self:custom.secrets.CREDENTIAL_KMS_KEY_ARN}"
+
+package:
+  artifact: build/distributions/hr-extract.zip
+
+functions:
+  hr-extract:
+    handler: fr.xebia.hr.extract.lambda.LambdaHRExtract
+    timeout: 60
+    events:
+      - schedule: cron(0 8 * * ? *)
+    environment:
+      SHEET_ID: ${self:custom.secrets.SHEET_ID}
+      SHEET_RANGE: ${self:custom.secrets.SHEET_RANGE}
+      CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
+      CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
+      STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
+      STORE_KEY: ${self:custom.secrets.STORE_KEY}

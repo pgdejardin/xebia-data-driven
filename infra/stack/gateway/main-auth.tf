@@ -45,6 +45,6 @@ resource "aws_iam_role_policy" "auth" {
 resource "aws_api_gateway_authorizer" "auth" {
     name = "${local.name}"
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
-    authorizer_uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${data.aws_caller_identity.caller.account_id}:function:${local.authorizer}/invocations"
+    authorizer_uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${data.aws_caller_identity.caller.account_id}:function:${local.authorizer}-authorizer/invocations"
     authorizer_credentials = "${aws_iam_role.auth.arn}"
 }

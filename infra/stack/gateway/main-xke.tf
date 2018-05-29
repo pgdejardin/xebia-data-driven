@@ -18,7 +18,8 @@ resource "aws_api_gateway_method" "xke_proxy" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
     resource_id = "${aws_api_gateway_resource.xke_proxy.id}"
     http_method = "ANY"
-    authorization = "NONE"
+    authorization = "CUSTOM"
+    authorizer_id = "${aws_api_gateway_authorizer.auth.id}"
     request_parameters {
         "method.request.path.proxy" = true
     }

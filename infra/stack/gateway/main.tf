@@ -6,22 +6,18 @@ provider "aws" {
     region = "${var.region}"
 }
 
-data "terraform_remote_state" "zone" {
-    backend = "s3"
-    config {
-        region = "${var.region}"
-        bucket = "${var.state_bucket}"
-        key = "zone"
-    }
+provider "aws" {
+    alias = "acm"
+    region = "${var.region_acm}"
 }
 
-data "terraform_remote_state" "zone_certificate" {
-    backend = "s3"
-    config {
-        region = "${var.region}"
-        bucket = "${var.state_bucket}"
-        key = "zone_certificate"
-    }
+data "aws_route53_zone" "zone" {
+    name = "${var.zone_name}"
+}
+
+data "aws_acm_certificate" "certificate" {
+    provider = "aws.acm"
+    domain = "${var.zone_name}"
 }
 
 resource "aws_api_gateway_rest_api" "gateway" {
@@ -42,8 +38,8 @@ resource "aws_api_gateway_deployment" "gateway" {
 }
 
 resource "aws_api_gateway_domain_name" "gateway" {
-    domain_name = "${data.terraform_remote_state.zone.zone_name}"
-    certificate_arn = "${data.terraform_remote_state.zone_certificate.certificate_arn}"
+    domain_name = "${var.zone_name}"
+    certificate_arn = "${data.aws_acm_certificate.certificate.arn}"
 }
 
 resource "aws_api_gateway_base_path_mapping" "gateway" {
@@ -53,8 +49,8 @@ resource "aws_api_gateway_base_path_mapping" "gateway" {
 }
 
 resource "aws_route53_record" "gateway" {
-    zone_id = "${data.terraform_remote_state.zone.zone_id}"
-    name = "${data.terraform_remote_state.zone.zone_name}"
+    zone_id = "${data.aws_route53_zone.zone.id}"
+    name = "${var.zone_name}"
     type = "A"
     alias {
         zone_id = "${aws_api_gateway_domain_name.gateway.cloudfront_zone_id}"

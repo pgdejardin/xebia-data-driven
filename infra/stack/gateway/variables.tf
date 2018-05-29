@@ -15,8 +15,10 @@ variable "stack" {
 locals {
     name = "${var.project}-${var.stack}-${var.stage}"
     tags = "${merge(var.stage_tags, var.project_tags, map("Name", "${local.name}"))}"
+    authorizer = "xdd-api-authorizer-${var.stage}-authorizer"
 }
 
 variable "region" {}
+variable "region_acm" {}
 
-variable "state_bucket" {}
+variable "zone_name" {}

@@ -27,14 +27,21 @@ export const findXke = async (event, context, callback) => {
     const xkeFilename = getFilename(year, month);
     const file = await getFileFromBucket(process.env.XKE_BUCKET_API, xkeFilename);
 
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+    };
+
     if (file) {
         callback(null, {
             statusCode: 200,
+            headers: headers,
             body: file.Body.toString(),
         });
     } else {
         callback(null, {
             statusCode: 404,
+            headers: headers,
             body: "Xke not found"
         });
     }

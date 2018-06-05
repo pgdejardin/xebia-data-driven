@@ -22,7 +22,9 @@ fun main(args: Array<String>) {
         args[6]
     )
 
-    val usersSource = GoogleUsersSource(googleDirectoryCredential)
+    val maxResults = 20
+
+    val usersSource = GoogleUsersSource(googleDirectoryCredential, maxResults)
 
     val usersStore = ConsoleUsersStore()
 

@@ -8,7 +8,10 @@ import fr.xebia.api.directory.users.DirectoryUser
 import fr.xebia.api.directory.users.source.UsersSource
 import fr.xebia.api.directory.users.source.google.credentials.GoogleCredentialSource
 
-class GoogleUsersSource(private val googleCredentialSource: GoogleCredentialSource) : UsersSource {
+class GoogleUsersSource(private val googleCredentialSource: GoogleCredentialSource,
+                        private val maxResults : Int) : UsersSource {
+
+    private val directory by lazy {
 
         val httpTransport: NetHttpTransport = GoogleNetHttpTransport.newTrustedTransport()
 
@@ -25,6 +28,7 @@ class GoogleUsersSource(private val googleCredentialSource: GoogleCredentialSour
             .list()
             .setDomain(domain)
             .setOrderBy("email")
+            .setMaxResults(maxResults)
             .execute()
             .users
             .map {

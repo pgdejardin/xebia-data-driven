@@ -29,9 +29,11 @@ class LambdaUsersExtract : RequestHandler<Any?, Unit> {
 
     private fun usersSource(): UsersSource {
 
+        val maxResults = "MAX_RESULTS".env().toInt()
+
         val credentials = googleDirectoryCredential()
 
-        return GoogleUsersSource(credentials)
+        return GoogleUsersSource(credentials, maxResults)
     }
 
     private fun googleDirectoryCredential(): GoogleCredentialSource {

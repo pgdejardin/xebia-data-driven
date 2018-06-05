@@ -45,5 +45,6 @@ functions:
       SERVICE_ACCOUNT_USER: ${self:custom.secrets.SERVICE_ACCOUNT_USER}
       SERVICE_ACCOUNT_KEY_ALIAS: ${self:custom.secrets.SERVICE_ACCOUNT_KEY_ALIAS}
       SERVICE_ACCOUNT_KEY_PASSWORD: ${self:custom.secrets.SERVICE_ACCOUNT_KEY_PASSWORD}
+      MAX_RESULTS: "200"
       STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
       STORE_KEY: ${self:custom.secrets.STORE_KEY}

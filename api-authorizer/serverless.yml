@@ -17,3 +17,7 @@ provider:
 functions:
   authorizer:
     handler: handler.authenticate
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}

@@ -65,6 +65,10 @@ functions:
           rules:
             - prefix: xke-calendar/
             - suffix: .json
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}
   find-one:
     handler: handler.findXke
     warmup: true
@@ -78,6 +82,10 @@ functions:
           path: /{year}/{month}
           method: GET
           cors: true
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}
 
 resources:
   Resources:

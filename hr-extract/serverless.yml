@@ -44,3 +44,7 @@ functions:
       CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
       STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
       STORE_KEY: ${self:custom.secrets.STORE_KEY}
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}

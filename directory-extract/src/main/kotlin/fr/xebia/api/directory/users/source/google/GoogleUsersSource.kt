@@ -55,7 +55,7 @@ class GoogleUsersSource(private val googleCredentialSource: GoogleCredentialSour
             .build()
 
         return Directory.Builder(httpTransport, jacksonFactory, credential)
-            .setApplicationName("xdd-directory-api")
+            .setApplicationName("directory-extract")
             .build()
     }
 }

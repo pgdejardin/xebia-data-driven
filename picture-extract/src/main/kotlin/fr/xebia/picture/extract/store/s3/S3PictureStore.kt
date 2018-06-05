@@ -1,0 +1,25 @@
+package fr.xebia.picture.extract.store.s3
+
+import com.amazonaws.services.s3.AmazonS3
+import com.amazonaws.services.s3.model.ObjectMetadata
+import fr.xebia.picture.extract.Picture
+import fr.xebia.picture.extract.store.PictureStore
+import java.io.ByteArrayInputStream
+
+class S3PictureStore(private val mimeType: String,
+                     private val amazonS3: AmazonS3,
+                     private val bucketName: String,
+                     private val bucketKey: String) : PictureStore {
+
+    override fun store(hrs: Picture) {
+
+        val bucketKey = "$bucketKey/${hrs.fileName}"
+
+        val objectMetadata = ObjectMetadata()
+        objectMetadata.contentType = mimeType
+        objectMetadata.contentLength = hrs.content.size.toLong()
+
+        amazonS3.putObject(bucketName, bucketKey, ByteArrayInputStream(hrs.content), objectMetadata)
+    }
+
+}

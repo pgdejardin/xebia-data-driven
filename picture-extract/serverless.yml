@@ -1,0 +1,82 @@
+service:
+  name: xdd-picture-extract
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  secrets: ${file(serverless-secrets.yml):${self:custom.stage}}
+
+provider:
+  name: aws
+  runtime: java8
+  region: eu-west-1
+  environment:
+    TOPIC: xdd-picture-extract-${self:custom.stage}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource:
+        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}"
+        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}/*"
+        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}"
+        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}/*"
+    - Effect: "Allow"
+      Action:
+        - "sns:*"
+      Resource:
+        - { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:provider.environment.TOPIC}" ] ]  }
+    - Effect: "Allow"
+      Action:
+        - "kms:Encrypt"
+        - "kms:Decrypt"
+        - "kms:ReEncrypt*"
+        - "kms:GenerateDataKey*"
+        - "kms:DescribeKey"
+      Resource:
+        - "${self:custom.secrets.CREDENTIAL_KMS_KEY_ARN}"
+
+package:
+  artifact: build/distributions/picture-extract.zip
+
+functions:
+  picture-extract:
+    handler: fr.xebia.picture.extract.lambda.LambdaPictureExtract
+    timeout: 240
+    events:
+      - schedule: cron(0 8 * * ? *)
+    environment:
+      TOPIC_ARN: { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:provider.environment.TOPIC}" ] ]  }
+      CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
+      CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
+      PARENT_FOLDER_ID: ${self:custom.secrets.PARENT_FOLDER_ID}
+      MIME_TYPE: "image/jpeg"
+      PAGE_SIZE: "200"
+      STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
+      STORE_KEY: ${self:custom.secrets.STORE_KEY}
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}
+  picture-storage:
+    handler: fr.xebia.picture.extract.lambda.LambdaPictureListener
+    timeout: 240
+    events:
+      - sns:
+          topicName: ${self:provider.environment.TOPIC}
+          displayName: "Topic for picture extraction"
+          tags:
+            Project: xdd
+            Manager: Serverless
+            Stage: ${self:custom.stage}
+    environment:
+      CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
+      CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
+      PARENT_FOLDER_ID: ${self:custom.secrets.PARENT_FOLDER_ID}
+      MIME_TYPE: "image/jpeg"
+      PAGE_SIZE: "200"
+      STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
+      STORE_KEY: ${self:custom.secrets.STORE_KEY}
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}

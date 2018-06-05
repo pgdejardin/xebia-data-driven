@@ -2,6 +2,7 @@ package fr.xebia.api.directory.users
 
 import fr.xebia.api.directory.users.source.UsersSource
 import fr.xebia.api.directory.users.store.UsersStore
+import java.time.LocalDate
 
 data class DirectoryUser(val id: String,
                          val email: String,
@@ -14,8 +15,10 @@ class UsersExtract(private val usersSource: UsersSource,
                    private val usersStore: UsersStore) {
 
     fun extract(domain: String) {
+
         val directoryUsers = usersSource.find(domain)
-        usersStore.store(directoryUsers)
+
+        usersStore.store(LocalDate.now(), directoryUsers)
     }
 
 }

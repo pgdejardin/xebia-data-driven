@@ -7,6 +7,7 @@ import fr.xebia.api.directory.users.UsersExtract
 import fr.xebia.api.directory.users.source.google.GoogleUsersSource
 import fr.xebia.api.directory.users.source.google.credentials.s3.S3GoogleCredentialSource
 import fr.xebia.api.directory.users.store.UsersStore
+import java.time.LocalDate
 
 val amazonS3: AmazonS3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
@@ -35,7 +36,7 @@ fun main(args: Array<String>) {
 
 class ConsoleUsersStore : UsersStore {
 
-    override fun store(directoryUsers: List<DirectoryUser>) {
+    override fun store(extractDate: LocalDate, directoryUsers: List<DirectoryUser>) {
         directoryUsers.forEach(::println)
     }
 

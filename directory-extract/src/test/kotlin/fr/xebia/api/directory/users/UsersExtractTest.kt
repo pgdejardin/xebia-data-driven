@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito.*
+import java.time.LocalDate
 
 internal class UsersExtractTest {
 
@@ -19,11 +20,15 @@ internal class UsersExtractTest {
     @DisplayName("extraction should be stored in one month only when begin and end dates are in the same month")
     fun extraction() {
 
+        // given
+        val today = LocalDate.now()
         given(usersSource.find("xebia.fr")).willReturn(users)
 
+        // when
         usersExtract.extract("xebia.fr")
 
-        verify(usersStore).store(users)
+        // then
+        verify(usersStore).store(today, users)
         verifyNoMoreInteractions(usersStore)
     }
 

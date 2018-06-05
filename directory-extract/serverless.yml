@@ -41,5 +41,9 @@ functions:
       DOMAIN: ${self:custom.secrets.DOMAIN}
       CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
       CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
+      SERVICE_ACCOUNT_ID: ${self:custom.secrets.SERVICE_ACCOUNT_ID}
+      SERVICE_ACCOUNT_USER: ${self:custom.secrets.SERVICE_ACCOUNT_USER}
+      SERVICE_ACCOUNT_KEY_ALIAS: ${self:custom.secrets.SERVICE_ACCOUNT_KEY_ALIAS}
+      SERVICE_ACCOUNT_KEY_PASSWORD: ${self:custom.secrets.SERVICE_ACCOUNT_KEY_PASSWORD}
       STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
       STORE_KEY: ${self:custom.secrets.STORE_KEY}

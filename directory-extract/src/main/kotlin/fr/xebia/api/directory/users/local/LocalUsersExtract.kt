@@ -12,7 +12,16 @@ val amazonS3: AmazonS3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
 fun main(args: Array<String>) {
 
-    val googleDirectoryCredential = S3GoogleCredentialSource(amazonS3, args[0], args[1])
+    val googleDirectoryCredential = S3GoogleCredentialSource(
+        amazonS3,
+        args[1],
+        args[2],
+        args[3],
+        args[4],
+        args[5],
+        args[6]
+    )
+
     val usersSource = GoogleUsersSource(googleDirectoryCredential)
 
     val usersStore = ConsoleUsersStore()

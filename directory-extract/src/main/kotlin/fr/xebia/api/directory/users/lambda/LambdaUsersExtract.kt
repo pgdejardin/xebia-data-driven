@@ -39,7 +39,20 @@ class LambdaUsersExtract : RequestHandler<Any?, Unit> {
         val credentialBucket = "CREDENTIAL_BUCKET".env()
         val credentialKey = "CREDENTIAL_KEY".env()
 
-        return S3GoogleCredentialSource(amazonS3, credentialBucket, credentialKey)
+        val serviceAccountId = "SERVICE_ACCOUNT_ID".env()
+        val serviceAccountUser = "SERVICE_ACCOUNT_USER".env()
+        val serviceAccountKeyAlias = "SERVICE_ACCOUNT_KEY_ALIAS".env()
+        val serviceAccountKeyPassword = "SERVICE_ACCOUNT_KEY_PASSWORD".env()
+
+        return S3GoogleCredentialSource(
+            amazonS3,
+            credentialBucket,
+            credentialKey,
+            serviceAccountId,
+            serviceAccountUser,
+            serviceAccountKeyAlias,
+            serviceAccountKeyPassword
+        )
     }
 
     private fun usersStore(): UsersStore {
@@ -52,7 +65,5 @@ class LambdaUsersExtract : RequestHandler<Any?, Unit> {
 
     private fun String.env() =
         System.getenv(this) ?: throw IllegalArgumentException("$this environment variable is not specified")
-
-    private fun <T> String.env(convert: String.() -> T, default: () -> T) = System.getenv(this)?.convert() ?: default()
 
 }

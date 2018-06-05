@@ -1,9 +1,9 @@
 package fr.xebia.api.directory.users.source.google.credentials
 
-import java.io.InputStream
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
 
 interface GoogleCredentialSource {
 
-    fun find(): InputStream
+    fun find(): GoogleCredential
 
 }

@@ -25,10 +25,18 @@ default: &default
 
 dev:
   <<: *default
+  CREDENTIAL_KMS_KEY_ARN: "..."
   CREDENTIAL_BUCKET: "..."
   CREDENTIAL_KEY: "..."
+  SERVICE_ACCOUNT_ID: "..."
+  SERVICE_ACCOUNT_USER: "..."
+  SERVICE_ACCOUNT_KEY_ALIAS: "..."
+  SERVICE_ACCOUNT_KEY_PASSWORD: "..."
   STORE_BUCKET: "..."
   STORE_KEY: "..."
+default: &default
+  <<: *default
+  DOMAIN: "..."
 ```
 
 Build and deploy function:

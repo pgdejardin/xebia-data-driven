@@ -25,6 +25,7 @@ default: &default
 
 dev:
   <<: *default
+  CREDENTIAL_KMS_KEY_ARN: "..."
   CREDENTIAL_BUCKET: "..."
   CREDENTIAL_KEY: "..."
   STORE_BUCKET: "..."

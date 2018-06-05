@@ -15,7 +15,7 @@ class GoogleUsersSource(private val googleCredentialSource: GoogleCredentialSour
 
     private val directory by lazy(::getDirectoryService)
 
-    override fun find(domain : String): List<DirectoryUser> {
+    override fun find(domain: String): List<DirectoryUser> {
 
         return directory.users()
             .list()
@@ -25,12 +25,12 @@ class GoogleUsersSource(private val googleCredentialSource: GoogleCredentialSour
             .users
             .map {
                 DirectoryUser(
-                        id = it.id,
-                        email = it.primaryEmail,
-                        givenName = it.name.givenName,
-                        familyName = it.name.familyName,
-                        fullName = it.name.fullName,
-                        photoUrl = it.thumbnailPhotoUrl
+                    id = it.id,
+                    email = it.primaryEmail,
+                    givenName = it.name.givenName,
+                    familyName = it.name.familyName,
+                    fullName = it.name.fullName,
+                    photoUrl = it.thumbnailPhotoUrl
                 )
             }
     }
@@ -42,17 +42,17 @@ class GoogleUsersSource(private val googleCredentialSource: GoogleCredentialSour
         val jacksonFactory: JacksonFactory = JacksonFactory.getDefaultInstance()
 
         val privateKey = SecurityUtils.loadPrivateKeyFromKeyStore(
-                SecurityUtils.getPkcs12KeyStore(),
-                googleCredentialSource.find(), "notasecret", "privatekey", "notasecret")
+            SecurityUtils.getPkcs12KeyStore(),
+            googleCredentialSource.find(), "notasecret", "privatekey", "notasecret")
 
         val credential = GoogleCredential.Builder()
-                .setTransport(httpTransport)
-                .setJsonFactory(jacksonFactory)
-                .setServiceAccountId("xdd-directory-api@xdd-directory-api.iam.gserviceaccount.com")
-                .setServiceAccountScopes(listOf(DirectoryScopes.ADMIN_DIRECTORY_USER_READONLY))
-                .setServiceAccountUser("akinsella@xebia.fr")
-                .setServiceAccountPrivateKey(privateKey)
-                .build()
+            .setTransport(httpTransport)
+            .setJsonFactory(jacksonFactory)
+            .setServiceAccountId("xdd-directory-api@xdd-directory-api.iam.gserviceaccount.com")
+            .setServiceAccountScopes(listOf(DirectoryScopes.ADMIN_DIRECTORY_USER_READONLY))
+            .setServiceAccountUser("akinsella@xebia.fr")
+            .setServiceAccountPrivateKey(privateKey)
+            .build()
 
         return Directory.Builder(httpTransport, jacksonFactory, credential)
             .setApplicationName("xdd-directory-api")

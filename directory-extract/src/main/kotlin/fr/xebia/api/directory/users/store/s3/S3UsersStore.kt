@@ -8,13 +8,12 @@ import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import fr.xebia.api.directory.users.DirectoryUser
 import fr.xebia.api.directory.users.store.UsersStore
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter.ISO_DATE_TIME
 
 class S3UsersStore(private val amazonS3: AmazonS3,
-                      private val bucketName: String,
-                      private val key: String) : UsersStore {
+                   private val bucketName: String,
+                   private val key: String) : UsersStore {
 
     private val objectMapper = ObjectMapper()
         .registerModule(JavaTimeModule()

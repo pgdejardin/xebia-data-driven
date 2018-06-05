@@ -1,0 +1,54 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.2.41'
+    id 'io.spring.dependency-management' version '1.0.4.RELEASE'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileKotlin { kotlinOptions.jvmTarget = '1.8' }
+
+compileTestKotlin { kotlinOptions.jvmTarget = '1.8' }
+
+repositories { mavenCentral() }
+
+test {
+    useJUnitPlatform()
+    testLogging { events "passed", "skipped", "failed" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.228'
+    }
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+
+    compile 'com.google.apis:google-api-services-drive:v3-rev119-1.23.0'
+
+    compile 'com.amazonaws:aws-java-sdk-s3'
+    compile 'com.amazonaws:aws-java-sdk-sns'
+
+    compile 'com.amazonaws:aws-lambda-java-core:1.1.0'
+    compile 'com.amazonaws:aws-lambda-java-events:2.0.1'
+
+    testCompile 'org.mockito:mockito-core:2.17.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+}
+
+task buildLambda(type: Zip, dependsOn: 'build', group: 'serverless') {
+    from compileKotlin as Object
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+task deploy(type: Exec, dependsOn: 'buildLambda', group: 'serverless') {
+    environment AWS_PROFILE: System.getenv('AWS_PROFILE')
+    commandLine 'serverless', 'deploy'
+}

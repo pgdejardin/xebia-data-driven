@@ -32,12 +32,12 @@ class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
     private fun calendarSource(): CalendarSource {
 
         val calendarId = "CALENDAR_ID".env()
-        val calendarCredentials = googleCalendarCredential()
+        val calendarCredentials = googleCredentialSource()
 
         return GoogleCalendarSource(calendarId, calendarCredentials)
     }
 
-    private fun googleCalendarCredential(): GoogleCredentialSource {
+    private fun googleCredentialSource(): GoogleCredentialSource {
 
         val credentialBucket = "CREDENTIAL_BUCKET".env()
         val credentialKey = "CREDENTIAL_KEY".env()

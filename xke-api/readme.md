@@ -42,5 +42,5 @@ we use serverless-plugin-existing-s3 plugin
 
 Folowing command is required for first deployment only
 ```bash
-./node_modules/.bin/sls s3deploy --function calendar-transform
+npm run deployS3
 ```

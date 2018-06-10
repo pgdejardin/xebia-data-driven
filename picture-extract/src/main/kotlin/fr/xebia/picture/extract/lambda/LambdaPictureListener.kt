@@ -6,6 +6,7 @@ import com.amazonaws.services.lambda.runtime.events.SNSEvent
 import com.amazonaws.services.s3.AmazonS3ClientBuilder
 import fr.xebia.picture.extract.PictureRef
 import fr.xebia.picture.extract.PictureStorage
+import fr.xebia.picture.extract.source.PictureSource
 import fr.xebia.picture.extract.source.google.GoogleDrivePictureSource
 import fr.xebia.picture.extract.source.google.credentials.GoogleCredentialSource
 import fr.xebia.picture.extract.source.google.credentials.s3.S3GoogleCredentialSource
@@ -44,7 +45,7 @@ class LambdaPictureListener : RequestHandler<SNSEvent, Any> {
         return S3GoogleCredentialSource(amazonS3, credentialBucket, credentialKey)
     }
 
-    private fun pictureSource(): GoogleDrivePictureSource {
+    private fun pictureSource(): PictureSource {
 
         val parentFolderId = "PARENT_FOLDER_ID".env()
         val mimeType = "MIME_TYPE".env()

@@ -8,7 +8,8 @@ data class HR(
     val lastName: String,
     val firstName: String,
     val xebiaStartDate: LocalDate,
-    val careerStartDate: LocalDate
+    val careerStartDate: LocalDate,
+    val email: String
 )
 
 class HRExtract(private val hrSource: HRSource,

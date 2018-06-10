@@ -41,7 +41,8 @@ class GoogleSheetHRSource(private val googleSheetId: String,
         this[0].toString(),
         this[1].toString(),
         this[2].toString().toLocalDate(),
-        this[3].toString().toLocalDate()
+        this[3].toString().toLocalDate(),
+        this[4].toString()
     )
 
     private fun String.toLocalDate() = LocalDate.parse(this, dateTimeFormatter)

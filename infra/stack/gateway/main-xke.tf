@@ -8,9 +8,15 @@ resource "aws_api_gateway_resource" "xke" {
     path_part = "xke"
 }
 
-resource "aws_api_gateway_resource" "xke_proxy" {
+resource "aws_api_gateway_resource" "xke_v1" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
     parent_id = "${aws_api_gateway_resource.xke.id}"
+    path_part = "v1"
+}
+
+resource "aws_api_gateway_resource" "xke_proxy" {
+    rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
+    parent_id = "${aws_api_gateway_resource.xke_v1.id}"
     path_part = "{proxy+}"
 }
 

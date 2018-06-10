@@ -68,6 +68,7 @@ functions:
             Project: xdd
             Manager: Serverless
             Stage: ${self:custom.stage}
+    reservedConcurrency: 5
     environment:
       CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
       CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}

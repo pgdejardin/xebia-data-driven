@@ -4,6 +4,6 @@ import fr.xebia.picture.extract.Picture
 
 interface PictureStore {
 
-    fun store(hrs: Picture)
+    fun store(picture: Picture)
 
 }

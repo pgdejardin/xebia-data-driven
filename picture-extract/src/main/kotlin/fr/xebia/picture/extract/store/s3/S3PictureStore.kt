@@ -11,15 +11,15 @@ class S3PictureStore(private val mimeType: String,
                      private val bucketName: String,
                      private val bucketKey: String) : PictureStore {
 
-    override fun store(hrs: Picture) {
+    override fun store(picture: Picture) {
 
-        val bucketKey = "$bucketKey/${hrs.fileName}"
+        val bucketKey = "$bucketKey/${picture.fileName}"
 
         val objectMetadata = ObjectMetadata()
         objectMetadata.contentType = mimeType
-        objectMetadata.contentLength = hrs.content.size.toLong()
+        objectMetadata.contentLength = picture.content.size.toLong()
 
-        amazonS3.putObject(bucketName, bucketKey, ByteArrayInputStream(hrs.content), objectMetadata)
+        amazonS3.putObject(bucketName, bucketKey, ByteArrayInputStream(picture.content), objectMetadata)
     }
 
 }

@@ -8,16 +8,14 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 internal class S3UsersStoreTest {
 
     private val bucketName = "s3-bucket"
-    private val bucketKeyPrefix = "directory-extract"
-    private val bucketKeyExtractDateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+    private val bucketKey = "directory-extract"
 
     private val amazonS3 = mock(AmazonS3::class.java)
-    private val s3UsersStore = S3UsersStore(amazonS3, bucketName, bucketKeyPrefix)
+    private val s3UsersStore = S3UsersStore(amazonS3, bucketName, bucketKey)
 
     @Test
     @DisplayName("bucket key should contain bucket key prefix, users")
@@ -30,7 +28,7 @@ internal class S3UsersStoreTest {
         s3UsersStore.store(extractDate, noEvents)
 
         // then
-        verify(amazonS3).putObject(bucketName, expectedBucketKey(extractDate), "[]")
+        verify(amazonS3).putObject(bucketName, "$bucketKey/2018/01/01/users.json", "[]")
     }
 
     @Test
@@ -48,9 +46,7 @@ internal class S3UsersStoreTest {
             """{"id":"1","email":"email1@xebia.fr","givenName":"first name 1","familyName":"family 1","fullName":"full 1","photoUrl":"url 1"},""" +
             """{"id":"2","email":"email2@xebia.fr","givenName":"first name 2","familyName":"family 2","fullName":"full 2","photoUrl":"url 2"}""".trimMargin() +
             "]"
-        verify(amazonS3).putObject(bucketName, expectedBucketKey(extractDate), expectedJSON)
+        verify(amazonS3).putObject(bucketName, "$bucketKey/2018/01/01/users.json", expectedJSON)
     }
 
-    private fun expectedBucketKey(extractDate: LocalDate) =
-        """$bucketKeyPrefix/${extractDate.format(bucketKeyExtractDateFormatter)}/users.json"""
 }

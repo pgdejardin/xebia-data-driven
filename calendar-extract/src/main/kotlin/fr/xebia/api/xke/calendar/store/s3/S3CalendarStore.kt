@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter.ofPattern
 
 class S3CalendarStore(private val amazonS3: AmazonS3,
                       private val bucketName: String,
-                      private val key: String) : CalendarStore {
+                      private val bucketKey: String) : CalendarStore {
 
     private val objectMapper = ObjectMapper()
         .registerModule(JavaTimeModule()
@@ -26,11 +26,12 @@ class S3CalendarStore(private val amazonS3: AmazonS3,
 
     override fun store(extractDate: LocalDate, calendarDate: LocalDate, calendarEvents: List<CalendarEvent>) {
 
-        val bucketKey = "$key/${extractDate.format(extractDateFormatter)}/${calendarDate.format(calendarDateFormatter)}.json"
+        val extractFormat = extractDate.format(extractDateFormatter)
+        val calendarFormat = calendarDate.format(calendarDateFormatter)
 
         val bucketContent = objectMapper.writeValueAsString(calendarEvents)
 
-        amazonS3.putObject(bucketName, bucketKey, bucketContent)
+        amazonS3.putObject(bucketName, "$bucketKey/$extractFormat/$calendarFormat.json", bucketContent)
     }
 
 }

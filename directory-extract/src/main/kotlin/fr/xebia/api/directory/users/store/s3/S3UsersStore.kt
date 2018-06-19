@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter.ISO_DATE_TIME
 
 class S3UsersStore(private val amazonS3: AmazonS3,
                    private val bucketName: String,
-                   private val key: String) : UsersStore {
+                   private val bucketKey: String) : UsersStore {
 
     private val extractDateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
 
@@ -25,11 +25,11 @@ class S3UsersStore(private val amazonS3: AmazonS3,
 
     override fun store(extractDate: LocalDate, directoryUsers: List<DirectoryUser>) {
 
-        val bucketKey = "$key/${extractDateFormatter.format(extractDate)}/users.json"
+        val extractFormat = extractDate.format(extractDateFormatter)
 
         val bucketContent = objectMapper.writeValueAsString(directoryUsers)
 
-        amazonS3.putObject(bucketName, bucketKey, bucketContent)
+        amazonS3.putObject(bucketName, "$bucketKey/$extractFormat/users.json", bucketContent)
     }
 
 }

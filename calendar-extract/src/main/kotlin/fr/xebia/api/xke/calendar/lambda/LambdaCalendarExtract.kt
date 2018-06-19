@@ -3,26 +3,32 @@ package fr.xebia.api.xke.calendar.lambda
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestHandler
 import com.amazonaws.services.s3.AmazonS3ClientBuilder
+import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder
+import com.amazonaws.services.secretsmanager.model.GetSecretValueRequest
+import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder
+import com.amazonaws.services.simplesystemsmanagement.model.GetParameterRequest
 import fr.xebia.api.xke.calendar.CalendarExtract
 import fr.xebia.api.xke.calendar.source.CalendarSource
 import fr.xebia.api.xke.calendar.source.google.GoogleCalendarSource
-import fr.xebia.api.xke.calendar.source.google.credentials.GoogleCredentialSource
-import fr.xebia.api.xke.calendar.source.google.credentials.s3.S3GoogleCredentialSource
 import fr.xebia.api.xke.calendar.store.CalendarStore
 import fr.xebia.api.xke.calendar.store.s3.S3CalendarStore
 import java.time.LocalDate
 
-class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
+class LambdaCalendarExtract : RequestHandler<Map<String, String>?, Unit> {
 
     private val amazonS3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
-    override fun handleRequest(input: Any?, context: Context) {
+    private val amazonSSM by lazy(AWSSimpleSystemsManagementClientBuilder::defaultClient)
+
+    private val amazonSecretManager by lazy(AWSSecretsManagerClientBuilder::defaultClient)
+
+    override fun handleRequest(input: Map<String, String>?, context: Context) {
 
         val calendarSource = calendarSource()
         val calendarStore = calendarStore()
 
-        val from = "EXTRACT_BEGIN".env(LocalDate::parse) { LocalDate.now().withDayOfMonth(1).minusMonths(1) }
-        val end = "EXTRACT_END".env(LocalDate::parse) { LocalDate.now().withDayOfMonth(1).plusMonths(1) }
+        val from = input?.get("extractBegin")?.let(LocalDate::parse) ?: LocalDate.now().withDayOfMonth(1).minusMonths(1)
+        val end = input?.get("extractEnd")?.let(LocalDate::parse) ?: LocalDate.now().withDayOfMonth(1).plusMonths(1)
 
         val calendarExtract = CalendarExtract(calendarSource, calendarStore)
 
@@ -31,31 +37,26 @@ class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
 
     private fun calendarSource(): CalendarSource {
 
-        val calendarId = "CALENDAR_ID".env()
-        val calendarCredentials = googleCredentialSource()
+        val calendarIdKey = "CALENDAR_ID_KEY".env()
+        val calendarIdRequest = GetParameterRequest().withName(calendarIdKey)
+        val calendarId = amazonSSM.getParameter(calendarIdRequest).parameter.value
 
-        return GoogleCalendarSource(calendarId, calendarCredentials)
-    }
-
-    private fun googleCredentialSource(): GoogleCredentialSource {
-
-        val credentialBucket = "CREDENTIAL_BUCKET".env()
         val credentialKey = "CREDENTIAL_KEY".env()
+        val credentialRequest = GetSecretValueRequest().withSecretId(credentialKey)
+        val credential = amazonSecretManager.getSecretValue(credentialRequest).secretString
 
-        return S3GoogleCredentialSource(amazonS3, credentialBucket, credentialKey)
+        return GoogleCalendarSource(calendarId, credential)
     }
 
     private fun calendarStore(): CalendarStore {
 
-        val storeBucket = "STORE_BUCKET".env()
-        val storeKey = "STORE_KEY".env()
+        val storeBucket = "STORE_BUCKET_NAME".env()
+        val storeKey = "STORE_BUCKET_KEY".env()
 
         return S3CalendarStore(amazonS3, storeBucket, storeKey)
     }
 
     private fun String.env() =
         System.getenv(this) ?: throw IllegalArgumentException("$this environment variable is not specified")
-
-    private fun <T> String.env(convert: String.() -> T, default: () -> T) = System.getenv(this)?.convert() ?: default()
 
 }

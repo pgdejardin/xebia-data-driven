@@ -1,5 +1,6 @@
 package fr.xebia.api.xke.calendar.source.google
 
+import com.amazonaws.util.StringInputStream
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.http.javanet.NetHttpTransport
@@ -9,7 +10,6 @@ import com.google.api.services.calendar.Calendar
 import com.google.api.services.calendar.CalendarScopes.CALENDAR_READONLY
 import fr.xebia.api.xke.calendar.CalendarEvent
 import fr.xebia.api.xke.calendar.source.CalendarSource
-import fr.xebia.api.xke.calendar.source.google.credentials.GoogleCredentialSource
 import java.time.Instant.ofEpochMilli
 import java.time.LocalDateTime
 import java.time.LocalDateTime.ofInstant
@@ -17,7 +17,7 @@ import java.time.ZoneOffset.UTC
 import java.util.*
 
 class GoogleCalendarSource(private val calendarId: String,
-                           private val googleCredentialSource: GoogleCredentialSource) : CalendarSource {
+                           private val credential: String) : CalendarSource {
 
     private val calendar by lazy(::getCalendarService)
 
@@ -45,9 +45,7 @@ class GoogleCalendarSource(private val calendarId: String,
 
     private fun getCalendarService(): Calendar {
 
-        val inputStream = googleCredentialSource.find()
-
-        val credential = GoogleCredential.fromStream(inputStream)
+        val credential = GoogleCredential.fromStream(StringInputStream(credential))
             .createScoped(listOf(CALENDAR_READONLY))
 
         val httpTransport: NetHttpTransport = GoogleNetHttpTransport.newTrustedTransport()

@@ -1,6 +1,7 @@
 package fr.xebia.api.xke.calendar.store.s3
 
 import com.amazonaws.services.s3.AmazonS3
+import com.amazonaws.services.s3.model.PutObjectRequest
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.JsonSerializer
 import com.fasterxml.jackson.databind.ObjectMapper

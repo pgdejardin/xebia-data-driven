@@ -23,11 +23,11 @@ class S3HRStore(private val amazonS3: AmazonS3,
 
     override fun store(extractDate: LocalDate, hrs: List<HR>) {
 
-        val bucketKey = "$bucketKey/${extractDate.format(extractDateFormatter)}/hr.json"
+        val extractFormat = extractDate.format(extractDateFormatter)
 
         val bucketContent = objectMapper.writeValueAsString(hrs)
 
-        amazonS3.putObject(bucketName, bucketKey, bucketContent)
+        amazonS3.putObject(bucketName, "$bucketKey/$extractFormat/hr.json", bucketContent)
     }
 
 }

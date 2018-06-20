@@ -23,12 +23,19 @@ resource "aws_s3_bucket" "security" {
         rule {
             apply_server_side_encryption_by_default {
                 sse_algorithm = "aws:kms"
-                kms_master_key_id = "${aws_kms_key.security.id}"
+                kms_master_key_id = "${aws_kms_key.security.arn}"
             }
         }
     }
     versioning {
         enabled = true
     }
+    tags = "${local.tags}"
+}
+
+resource "aws_ssm_parameter" "security" {
+    type = "String"
+    name = "/${var.project}/${var.stack}/kms-key-arn"
+    value = "${aws_kms_key.security.arn}"
     tags = "${local.tags}"
 }

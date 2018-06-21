@@ -1,5 +1,6 @@
 package fr.xebia.hr.extract.source.google
 
+import com.amazonaws.util.StringInputStream
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
@@ -12,23 +13,11 @@ import java.time.format.DateTimeFormatter
 
 class GoogleSheetHRSource(private val googleSheetId: String,
                           private val googleSheetRange: String,
-                          private val googleCredential: GoogleCredential) : HRSource {
+                          private val serviceAccount: String) : HRSource {
 
     private val dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
-    private val sheets by lazy {
-
-        val jacksonFactory = JacksonFactory.getDefaultInstance()
-
-        val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
-
-        val credential = googleCredential
-            .createScoped(listOf(SheetsScopes.SPREADSHEETS_READONLY))
-
-        Sheets.Builder(httpTransport, jacksonFactory, credential)
-            .setApplicationName("hr-extract@xdd.xebia.fr")
-            .build()
-    }
+    private val sheets by lazy(this::buildSheets)
 
     override fun find() = sheets.spreadsheets()
         .values()
@@ -46,5 +35,19 @@ class GoogleSheetHRSource(private val googleSheetId: String,
     )
 
     private fun String.toLocalDate() = LocalDate.parse(this, dateTimeFormatter)
+
+    private fun buildSheets(): Sheets {
+
+        val jacksonFactory = JacksonFactory.getDefaultInstance()
+
+        val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
+
+        val credential = GoogleCredential.fromStream(StringInputStream(serviceAccount))
+            .createScoped(listOf(SheetsScopes.SPREADSHEETS_READONLY))
+
+        return Sheets.Builder(httpTransport, jacksonFactory, credential)
+            .setApplicationName("hr-sheet-extract")
+            .build()
+    }
 
 }

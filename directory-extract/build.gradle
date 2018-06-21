@@ -19,16 +19,18 @@ test {
 
 dependencyManagement {
     imports {
-        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.228'
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.350'
     }
 }
 
 dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
-    compile 'com.google.apis:google-api-services-admin-directory:directory_v1-rev93-1.23.0'
+    compile 'com.google.apis:google-api-services-admin-directory:directory_v1-rev100-1.23.0'
 
     compile 'com.amazonaws:aws-java-sdk-s3'
+    compile 'com.amazonaws:aws-java-sdk-ssm'
+    compile 'com.amazonaws:aws-java-sdk-secretsmanager'
 
     compile 'com.amazonaws:aws-lambda-java-core:1.1.0'
     compile 'com.amazonaws:aws-lambda-java-events:2.0.1'

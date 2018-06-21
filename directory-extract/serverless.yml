@@ -3,7 +3,11 @@ service:
 
 custom:
   stage: ${opt:stage, self:provider.stage}
-  secrets: ${file(serverless-secrets.yml):${self:custom.stage}}
+  kmsKeyArn: ${ssm:/xdd/security/kms-key-arn}
+  storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
+  storeBucketKey: user-directory
+  serviceAccountKey: /xdd/user-directory/google-service-account
+  serviceAccountUserKey: /xdd/user-directory/google-service-account-user
 
 provider:
   name: aws
@@ -14,19 +18,34 @@ provider:
       Action:
         - "s3:*"
       Resource:
-        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}"
-        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}/*"
-        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}"
-        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}/*"
+        - "arn:aws:s3:::${self:custom.storeBucketName}/${self:custom.storeBucketKey}/*"
     - Effect: "Allow"
       Action:
-        - "kms:Encrypt"
         - "kms:Decrypt"
-        - "kms:ReEncrypt*"
-        - "kms:GenerateDataKey*"
-        - "kms:DescribeKey"
       Resource:
-        - "${self:custom.secrets.CREDENTIAL_KMS_KEY_ARN}"
+        - "${self:custom.kmsKeyArn}"
+    - Effect: "Allow"
+      Action:
+        - "ssm:GetParameter"
+      Resource:
+        - 'Fn::Join':
+          - ':'
+          -
+            - 'arn:aws:ssm'
+            - Ref: 'AWS::Region'
+            - Ref: 'AWS::AccountId'
+            - 'parameter${self:custom.serviceAccountUserKey}'
+    - Effect: "Allow"
+      Action:
+        - "secretsmanager:GetSecretValue"
+      Resource:
+        - 'Fn::Join':
+          - ':'
+          -
+            - 'arn:aws:secretsmanager'
+            - Ref: 'AWS::Region'
+            - Ref: 'AWS::AccountId'
+            - 'secret:${self:custom.serviceAccountKey}*'
 
 package:
   artifact: build/distributions/directory-extract.zip
@@ -38,16 +57,12 @@ functions:
     events:
       - schedule: cron(0 8 * * ? *)
     environment:
-      DOMAIN: ${self:custom.secrets.DOMAIN}
-      CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
-      CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
-      SERVICE_ACCOUNT_ID: ${self:custom.secrets.SERVICE_ACCOUNT_ID}
-      SERVICE_ACCOUNT_USER: ${self:custom.secrets.SERVICE_ACCOUNT_USER}
-      SERVICE_ACCOUNT_KEY_ALIAS: ${self:custom.secrets.SERVICE_ACCOUNT_KEY_ALIAS}
-      SERVICE_ACCOUNT_KEY_PASSWORD: ${self:custom.secrets.SERVICE_ACCOUNT_KEY_PASSWORD}
-      MAX_RESULTS: "200"
-      STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
-      STORE_KEY: ${self:custom.secrets.STORE_KEY}
+      DOMAIN: xebia.fr
+      MAX_RESULTS: 200
+      SERVICE_ACCOUNT_KEY: ${self:custom.serviceAccountKey}
+      SERVICE_ACCOUNT_USER_KEY: ${self:custom.serviceAccountUserKey}
+      STORE_BUCKET_NAME: ${self:custom.storeBucketName}
+      STORE_BUCKET_KEY: ${self:custom.storeBucketKey}
     tags:
       Project: xdd
       Manager: Serverless

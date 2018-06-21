@@ -22,7 +22,6 @@ provider:
     - Effect: "Allow"
       Action:
         - "kms:Decrypt"
-        - "kms:DescribeKey"
       Resource:
         - "${self:custom.kmsKeyArn}"
     - Effect: "Allow"

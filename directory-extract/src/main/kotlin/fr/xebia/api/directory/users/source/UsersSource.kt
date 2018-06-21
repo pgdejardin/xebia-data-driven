@@ -4,6 +4,6 @@ import fr.xebia.api.directory.users.DirectoryUser
 
 interface UsersSource {
 
-    fun find(domain: String): List<DirectoryUser>
+    fun find(): List<DirectoryUser>
 
 }

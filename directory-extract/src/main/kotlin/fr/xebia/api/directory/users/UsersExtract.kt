@@ -14,9 +14,9 @@ data class DirectoryUser(val id: String,
 class UsersExtract(private val usersSource: UsersSource,
                    private val usersStore: UsersStore) {
 
-    fun extract(domain: String) {
+    fun extract() {
 
-        val directoryUsers = usersSource.find(domain)
+        val directoryUsers = usersSource.find()
 
         usersStore.store(LocalDate.now(), directoryUsers)
     }

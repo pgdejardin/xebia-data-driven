@@ -22,10 +22,10 @@ internal class UsersExtractTest {
 
         // given
         val today = LocalDate.now()
-        given(usersSource.find("xebia.fr")).willReturn(users)
+        given(usersSource.find()).willReturn(users)
 
         // when
-        usersExtract.extract("xebia.fr")
+        usersExtract.extract()
 
         // then
         verify(usersStore).store(today, users)

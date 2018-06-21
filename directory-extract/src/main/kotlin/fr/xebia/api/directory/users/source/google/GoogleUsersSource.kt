@@ -15,11 +15,12 @@ import java.security.spec.PKCS8EncodedKeySpec
 
 class GoogleUsersSource(private val serviceAccount: String,
                         private val serviceAccountUser: String,
+                        private val domain: String,
                         private val maxResults: Int) : UsersSource {
 
     private val directory by lazy(::buildDirectory)
 
-    override fun find(domain: String): List<DirectoryUser> {
+    override fun find(): List<DirectoryUser> {
 
         return directory.users()
             .list()

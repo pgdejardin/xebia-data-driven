@@ -26,11 +26,9 @@ class LambdaUsersExtract : RequestHandler<Any?, Unit> {
         val usersSource = usersSource()
         val usersStore = usersStore()
 
-        val domain = "DOMAIN".env()
-
         val usersExtract = UsersExtract(usersSource, usersStore)
 
-        usersExtract.extract(domain)
+        usersExtract.extract()
     }
 
     private fun usersSource(): UsersSource {
@@ -43,9 +41,10 @@ class LambdaUsersExtract : RequestHandler<Any?, Unit> {
         val serviceAccountUserRequest = GetParameterRequest().withName(serviceAccountUserKey)
         val serviceAccountUser = amazonSSM.getParameter(serviceAccountUserRequest).parameter.value
 
+        val domain = "DOMAIN".env()
         val maxResults = "MAX_RESULTS".env().toInt()
 
-        return GoogleUsersSource(serviceAccount, serviceAccountUser, maxResults)
+        return GoogleUsersSource(serviceAccount, serviceAccountUser, domain, maxResults)
     }
 
     private fun usersStore(): UsersStore {

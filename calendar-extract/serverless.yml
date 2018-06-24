@@ -41,7 +41,7 @@ package:
 
 functions:
   calendar-extract:
-    handler: fr.xebia.xke.calendar.lambda.LambdaCalendarExtract
+    handler: fr.xebia.xke.extract.lambda.LambdaCalendarExtract
     timeout: 60
     events:
       - schedule: cron(0 8 * * ? *)

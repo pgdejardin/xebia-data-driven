@@ -17,7 +17,7 @@ import java.time.ZoneOffset.UTC
 import java.util.*
 
 class GoogleCalendarSource(private val calendarId: String,
-                           private val credential: String) : CalendarSource {
+                           private val serviceAccount: String) : CalendarSource {
 
     private val calendar by lazy(::getCalendarService)
 
@@ -45,7 +45,7 @@ class GoogleCalendarSource(private val calendarId: String,
 
     private fun getCalendarService(): Calendar {
 
-        val credential = GoogleCredential.fromStream(StringInputStream(credential))
+        val credential = GoogleCredential.fromStream(StringInputStream(serviceAccount))
             .createScoped(listOf(CALENDAR_READONLY))
 
         val httpTransport: NetHttpTransport = GoogleNetHttpTransport.newTrustedTransport()

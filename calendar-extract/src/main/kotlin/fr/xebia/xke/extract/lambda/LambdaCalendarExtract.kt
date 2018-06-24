@@ -41,11 +41,11 @@ class LambdaCalendarExtract : RequestHandler<Map<String, String>?, Unit> {
         val calendarIdRequest = GetParameterRequest().withName(calendarIdKey)
         val calendarId = amazonSSM.getParameter(calendarIdRequest).parameter.value
 
-        val credentialKey = "CREDENTIAL_KEY".env()
-        val credentialRequest = GetSecretValueRequest().withSecretId(credentialKey)
-        val credential = amazonSecretManager.getSecretValue(credentialRequest).secretString
+        val serviceAccountKey = "SERVICE_ACCOUNT_KEY".env()
+        val serviceAccountRequest = GetSecretValueRequest().withSecretId(serviceAccountKey)
+        val serviceAccount = amazonSecretManager.getSecretValue(serviceAccountRequest).secretString
 
-        return GoogleCalendarSource(calendarId, credential)
+        return GoogleCalendarSource(calendarId, serviceAccount)
     }
 
     private fun calendarStore(): CalendarStore {

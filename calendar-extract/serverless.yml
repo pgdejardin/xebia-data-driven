@@ -4,10 +4,10 @@ service:
 custom:
   stage: ${opt:stage, self:provider.stage}
   kmsKeyArn: ${ssm:/xdd/security/kms-key-arn}
+  serviceAccountKey: /xdd/security/google-service-account
+  calendarIdKey: /xdd/calendar-extract/calendar-id
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
   storeBucketKey: xke-calendar
-  credentialKey: /xdd/security/google-service-account
-  calendarIdKey: /xdd/calendar-extract/calendar-id
 
 provider:
   name: aws
@@ -29,24 +29,12 @@ provider:
       Action:
         - "ssm:GetParameter"
       Resource:
-        - 'Fn::Join':
-          - ':'
-          -
-            - 'arn:aws:ssm'
-            - Ref: 'AWS::Region'
-            - Ref: 'AWS::AccountId'
-            - 'parameter${self:custom.calendarIdKey}'
+        - { "Fn::Join" : [":", [ "arn:aws:ssm", { "Ref" : "AWS::Region" }, { "Ref" : "AWS::AccountId" }, "parameter${self:custom.calendarIdKey}" ] ] }
     - Effect: "Allow"
       Action:
         - "secretsmanager:GetSecretValue"
       Resource:
-        - 'Fn::Join':
-          - ':'
-          -
-            - 'arn:aws:secretsmanager'
-            - Ref: 'AWS::Region'
-            - Ref: 'AWS::AccountId'
-            - 'secret:${self:custom.credentialKey}*'
+        - { "Fn::Join" : [":", [ "arn:aws:secretsmanager", { "Ref" : "AWS::Region" }, { "Ref" : "AWS::AccountId" }, "secret:${self:custom.serviceAccountKey}*" ] ] }
 
 package:
   artifact: build/distributions/calendar-extract.zip
@@ -59,7 +47,7 @@ functions:
       - schedule: cron(0 8 * * ? *)
     environment:
       CALENDAR_ID_KEY: ${self:custom.calendarIdKey}
-      CREDENTIAL_KEY: ${self:custom.credentialKey}
+      SERVICE_ACCOUNT_KEY: ${self:custom.serviceAccountKey}
       STORE_BUCKET_NAME: ${self:custom.storeBucketName}
       STORE_BUCKET_KEY: ${self:custom.storeBucketKey}
     tags:

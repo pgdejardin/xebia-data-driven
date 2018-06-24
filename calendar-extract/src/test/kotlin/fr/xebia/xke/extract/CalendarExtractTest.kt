@@ -1,7 +1,7 @@
-package fr.xebia.api.xke.calendar
+package fr.xebia.xke.extract
 
-import fr.xebia.api.xke.calendar.source.CalendarSource
-import fr.xebia.api.xke.calendar.store.CalendarStore
+import fr.xebia.xke.extract.source.CalendarSource
+import fr.xebia.xke.extract.store.CalendarStore
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given

@@ -1,6 +1,6 @@
-package fr.xebia.api.xke.calendar.source
+package fr.xebia.xke.extract.source
 
-import fr.xebia.api.xke.calendar.CalendarEvent
+import fr.xebia.xke.extract.CalendarEvent
 import java.time.LocalDateTime
 
 interface CalendarSource {

@@ -1,14 +1,13 @@
-package fr.xebia.api.xke.calendar.store.s3
+package fr.xebia.xke.extract.store.s3
 
 import com.amazonaws.services.s3.AmazonS3
-import com.amazonaws.services.s3.model.PutObjectRequest
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.JsonSerializer
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import fr.xebia.api.xke.calendar.CalendarEvent
-import fr.xebia.api.xke.calendar.store.CalendarStore
+import fr.xebia.xke.extract.CalendarEvent
+import fr.xebia.xke.extract.store.CalendarStore
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter.ISO_DATE_TIME

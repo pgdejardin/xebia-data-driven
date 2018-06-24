@@ -1,8 +1,8 @@
-package fr.xebia.api.xke.calendar.store.s3
+package fr.xebia.xke.extract.store.s3
 
 import com.amazonaws.services.s3.AmazonS3
-import fr.xebia.api.xke.calendar.januaryEvents
-import fr.xebia.api.xke.calendar.noEvents
+import fr.xebia.xke.extract.januaryEvents
+import fr.xebia.xke.extract.noEvents
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock

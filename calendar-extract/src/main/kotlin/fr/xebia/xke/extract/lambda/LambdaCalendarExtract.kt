@@ -1,4 +1,4 @@
-package fr.xebia.api.xke.calendar.lambda
+package fr.xebia.xke.extract.lambda
 
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestHandler
@@ -7,11 +7,11 @@ import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder
 import com.amazonaws.services.secretsmanager.model.GetSecretValueRequest
 import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder
 import com.amazonaws.services.simplesystemsmanagement.model.GetParameterRequest
-import fr.xebia.api.xke.calendar.CalendarExtract
-import fr.xebia.api.xke.calendar.source.CalendarSource
-import fr.xebia.api.xke.calendar.source.google.GoogleCalendarSource
-import fr.xebia.api.xke.calendar.store.CalendarStore
-import fr.xebia.api.xke.calendar.store.s3.S3CalendarStore
+import fr.xebia.xke.extract.CalendarExtract
+import fr.xebia.xke.extract.source.CalendarSource
+import fr.xebia.xke.extract.source.google.GoogleCalendarSource
+import fr.xebia.xke.extract.store.CalendarStore
+import fr.xebia.xke.extract.store.s3.S3CalendarStore
 import java.time.LocalDate
 
 class LambdaCalendarExtract : RequestHandler<Map<String, String>?, Unit> {

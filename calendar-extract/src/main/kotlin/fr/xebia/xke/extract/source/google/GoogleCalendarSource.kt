@@ -1,4 +1,4 @@
-package fr.xebia.api.xke.calendar.source.google
+package fr.xebia.xke.extract.source.google
 
 import com.amazonaws.util.StringInputStream
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
@@ -8,8 +8,8 @@ import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.client.util.DateTime
 import com.google.api.services.calendar.Calendar
 import com.google.api.services.calendar.CalendarScopes.CALENDAR_READONLY
-import fr.xebia.api.xke.calendar.CalendarEvent
-import fr.xebia.api.xke.calendar.source.CalendarSource
+import fr.xebia.xke.extract.CalendarEvent
+import fr.xebia.xke.extract.source.CalendarSource
 import java.time.Instant.ofEpochMilli
 import java.time.LocalDateTime
 import java.time.LocalDateTime.ofInstant

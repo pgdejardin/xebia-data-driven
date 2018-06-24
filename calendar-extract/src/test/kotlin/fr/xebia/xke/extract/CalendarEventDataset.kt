@@ -1,4 +1,4 @@
-package fr.xebia.api.xke.calendar
+package fr.xebia.xke.extract
 
 import java.time.LocalDateTime
 

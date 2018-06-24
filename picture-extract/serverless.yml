@@ -14,6 +14,7 @@ provider:
   name: aws
   runtime: java8
   region: eu-west-1
+  logRetentionInDays: 14
   environment:
     SERVICE_ACCOUNT_KEY: /xdd/security/google-service-account
     PARENT_FOLDER_ID_KEY: ${self:custom.parentFolderIdKey}

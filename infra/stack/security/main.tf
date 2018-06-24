@@ -17,22 +17,6 @@ resource "aws_kms_alias" "security" {
     target_key_id = "${aws_kms_key.security.key_id}"
 }
 
-resource "aws_s3_bucket" "security" {
-    bucket = "${local.name}.${var.bucket_name_suffix}"
-    server_side_encryption_configuration {
-        rule {
-            apply_server_side_encryption_by_default {
-                sse_algorithm = "aws:kms"
-                kms_master_key_id = "${aws_kms_key.security.arn}"
-            }
-        }
-    }
-    versioning {
-        enabled = true
-    }
-    tags = "${local.tags}"
-}
-
 resource "aws_ssm_parameter" "security" {
     type = "String"
     name = "/${var.project}/${var.stack}/kms-key-arn"

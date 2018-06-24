@@ -8,7 +8,6 @@ plugins:
 custom:
   region: ${opt:region, self:provider.region}
   stage: ${opt:stage, self:provider.stage}
-  perEnv: ${file(serverless-config-environment.yml):${self:custom.stage}, file(serverless-config-environment.yml):dev}
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true

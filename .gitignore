@@ -6,7 +6,6 @@
 build
 
 # serverless
-serverless-secrets.yml
 .webpack
 .serverless
 

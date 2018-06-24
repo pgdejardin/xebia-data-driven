@@ -2,22 +2,23 @@ service: xdd-api-authorizer
 
 custom:
   stage: ${opt:stage, self:provider.stage}
-  secrets: ${file(serverless-secrets.yml):${self:custom.stage}}
+  audience:
+    dev: https://api.techx.fr
+    prod: https://api.xebia.fr
 
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: dev
   region: eu-west-1
   logRetentionInDays: 14
-  environment:
-    AUDIENCE: ${self:custom.secrets.AUDIENCE}
-    JWKS_URI: ${self:custom.secrets.JWKS_URI}
-    TOKEN_ISSUER: ${self:custom.secrets.TOKEN_ISSUER}
 
 functions:
   authorizer:
     handler: handler.authenticate
+    environment:
+      AUDIENCE: ${self:custom.audience.${self:custom.stage}}
+      JWKS_URI: https://xdd.eu.auth0.com/.well-known/jwks.json
+      TOKEN_ISSUER: https://xdd.eu.auth0.com/
     tags:
       Project: xdd
       Manager: Serverless

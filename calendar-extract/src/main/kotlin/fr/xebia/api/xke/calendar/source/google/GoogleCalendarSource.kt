@@ -53,7 +53,7 @@ class GoogleCalendarSource(private val calendarId: String,
         val jacksonFactory: JacksonFactory = JacksonFactory.getDefaultInstance()
 
         return Calendar.Builder(httpTransport, jacksonFactory, credential)
-            .setApplicationName("xdd@$calendarId")
+            .setApplicationName("xke-calendar-extract")
             .build()
     }
 

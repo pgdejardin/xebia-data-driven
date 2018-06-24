@@ -1,5 +1,6 @@
 package fr.xebia.picture.extract.source.google
 
+import com.amazonaws.util.StringInputStream
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
@@ -13,7 +14,7 @@ import java.io.ByteArrayOutputStream
 class GoogleDrivePictureSource(private val parentFolderId: String,
                                private val mimeType: String,
                                private val pageSize: Int,
-                               private val googleCredential: GoogleCredential) : PictureSource {
+                               private val serviceAccount: String) : PictureSource {
 
     private val drive by lazy {
 
@@ -21,11 +22,11 @@ class GoogleDrivePictureSource(private val parentFolderId: String,
 
         val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
 
-        val credential = googleCredential
+        val credential = GoogleCredential.fromStream(StringInputStream(serviceAccount))
             .createScoped(listOf(DriveScopes.DRIVE_READONLY))
 
         Drive.Builder(httpTransport, jacksonFactory, credential)
-            .setApplicationName("picture-extract@xdd.xebia.fr")
+            .setApplicationName("picture-drive-extract")
             .build()
     }
 

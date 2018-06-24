@@ -3,37 +3,50 @@ service:
 
 custom:
   stage: ${opt:stage, self:provider.stage}
-  secrets: ${file(serverless-secrets.yml):${self:custom.stage}}
+  kmsKeyArn: ${ssm:/xdd/security/kms-key-arn}
+  serviceAccountKey: /xdd/security/google-service-account
+  parentFolderIdKey: /xdd/picture-drive/parent-folder-id
+  topicName: xdd-picture-extract-${self:custom.stage}
+  storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
+  storeBucketKey: picture-drive
 
 provider:
   name: aws
   runtime: java8
   region: eu-west-1
   environment:
-    TOPIC: xdd-picture-extract-${self:custom.stage}
+    SERVICE_ACCOUNT_KEY: /xdd/security/google-service-account
+    PARENT_FOLDER_ID_KEY: ${self:custom.parentFolderIdKey}
+    MIME_TYPE: "image/jpeg"
+    PAGE_SIZE: "200"
+    STORE_BUCKET_NAME: ${self:custom.storeBucketName}
+    STORE_BUCKET_KEY: ${self:custom.storeBucketKey}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
         - "s3:*"
       Resource:
-        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}"
-        - "arn:aws:s3:::${self:custom.secrets.STORE_BUCKET}/*"
-        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}"
-        - "arn:aws:s3:::${self:custom.secrets.CREDENTIAL_BUCKET}/*"
+        - "arn:aws:s3:::${self:custom.storeBucketName}/${self:custom.storeBucketKey}/*"
+    - Effect: "Allow"
+      Action:
+        - "kms:Decrypt"
+      Resource:
+        - "${self:custom.kmsKeyArn}"
     - Effect: "Allow"
       Action:
         - "sns:*"
       Resource:
-        - { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:provider.environment.TOPIC}" ] ]  }
+        - { "Fn::Join" : [":", ["arn:aws:sns", { "Ref" : "AWS::Region" }, { "Ref" : "AWS::AccountId" }, "${self:custom.topicName}" ] ] }
     - Effect: "Allow"
       Action:
-        - "kms:Encrypt"
-        - "kms:Decrypt"
-        - "kms:ReEncrypt*"
-        - "kms:GenerateDataKey*"
-        - "kms:DescribeKey"
+        - "ssm:GetParameter"
       Resource:
-        - "${self:custom.secrets.CREDENTIAL_KMS_KEY_ARN}"
+        - { "Fn::Join" : [":", [ "arn:aws:ssm", { "Ref" : "AWS::Region" }, { "Ref" : "AWS::AccountId" }, "parameter${self:custom.parentFolderIdKey}" ] ] }
+    - Effect: "Allow"
+      Action:
+        - "secretsmanager:GetSecretValue"
+      Resource:
+        - { "Fn::Join" : [":", [ "arn:aws:secretsmanager", { "Ref" : "AWS::Region" }, { "Ref" : "AWS::AccountId" }, "secret:${self:custom.serviceAccountKey}*" ] ] }
 
 package:
   artifact: build/distributions/picture-extract.zip
@@ -45,14 +58,7 @@ functions:
     events:
       - schedule: cron(0 8 * * ? *)
     environment:
-      TOPIC_ARN: { "Fn::Join" : ["", ["arn:aws:sns:${self:provider.region}:", { "Ref" : "AWS::AccountId" }, ":${self:provider.environment.TOPIC}" ] ]  }
-      CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
-      CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
-      PARENT_FOLDER_ID: ${self:custom.secrets.PARENT_FOLDER_ID}
-      MIME_TYPE: "image/jpeg"
-      PAGE_SIZE: "200"
-      STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
-      STORE_KEY: ${self:custom.secrets.STORE_KEY}
+      TOPIC_ARN: { "Fn::Join" : [":", ["arn:aws:sns", { "Ref" : "AWS::Region" }, { "Ref" : "AWS::AccountId" }, "${self:custom.topicName}" ] ] }
     tags:
       Project: xdd
       Manager: Serverless
@@ -62,21 +68,13 @@ functions:
     timeout: 240
     events:
       - sns:
-          topicName: ${self:provider.environment.TOPIC}
+          topicName: ${self:custom.topicName}
           displayName: "Topic for picture extraction"
           tags:
             Project: xdd
             Manager: Serverless
             Stage: ${self:custom.stage}
     reservedConcurrency: 5
-    environment:
-      CREDENTIAL_BUCKET: ${self:custom.secrets.CREDENTIAL_BUCKET}
-      CREDENTIAL_KEY: ${self:custom.secrets.CREDENTIAL_KEY}
-      PARENT_FOLDER_ID: ${self:custom.secrets.PARENT_FOLDER_ID}
-      MIME_TYPE: "image/jpeg"
-      PAGE_SIZE: "200"
-      STORE_BUCKET: ${self:custom.secrets.STORE_BUCKET}
-      STORE_KEY: ${self:custom.secrets.STORE_KEY}
     tags:
       Project: xdd
       Manager: Serverless

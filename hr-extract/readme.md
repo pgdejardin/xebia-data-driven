@@ -14,23 +14,7 @@ Configure a profile named `xebia`:
 aws configure --profile xebia
 ```
 
-## Provision
-
-Fill secrets in `serverless-secrets.yml` using following syntax
-
-```yaml
-default: &default
-  <<: *default
-  SHEET_ID: "..."
-  SHEET_RANGE: "..."
-
-dev:
-  <<: *default
-  CREDENTIAL_BUCKET: "..."
-  CREDENTIAL_KEY: "..."
-  STORE_BUCKET: "..."
-  STORE_KEY: "..."
-```
+## Deploy
 
 Build and deploy function:
 ```bash

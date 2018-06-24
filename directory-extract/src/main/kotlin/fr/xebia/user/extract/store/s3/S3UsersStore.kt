@@ -1,4 +1,4 @@
-package fr.xebia.api.directory.users.store.s3
+package fr.xebia.user.extract.store.s3
 
 import com.amazonaws.services.s3.AmazonS3
 import com.fasterxml.jackson.core.JsonGenerator
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.JsonSerializer
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import fr.xebia.api.directory.users.DirectoryUser
-import fr.xebia.api.directory.users.store.UsersStore
+import fr.xebia.user.extract.DirectoryUser
+import fr.xebia.user.extract.store.UsersStore
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

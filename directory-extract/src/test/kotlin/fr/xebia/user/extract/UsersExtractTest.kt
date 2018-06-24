@@ -1,7 +1,7 @@
-package fr.xebia.api.directory.users
+package fr.xebia.user.extract
 
-import fr.xebia.api.directory.users.source.UsersSource
-import fr.xebia.api.directory.users.store.UsersStore
+import fr.xebia.user.extract.source.UsersSource
+import fr.xebia.user.extract.store.UsersStore
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given

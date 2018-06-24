@@ -1,6 +1,6 @@
-package fr.xebia.api.directory.users.store
+package fr.xebia.user.extract.store
 
-import fr.xebia.api.directory.users.DirectoryUser
+import fr.xebia.user.extract.DirectoryUser
 import java.time.LocalDate
 
 interface UsersStore {

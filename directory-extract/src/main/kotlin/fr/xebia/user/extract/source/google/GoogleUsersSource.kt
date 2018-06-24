@@ -1,4 +1,4 @@
-package fr.xebia.api.directory.users.source.google
+package fr.xebia.user.extract.source.google
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
@@ -8,8 +8,8 @@ import com.google.api.client.util.PemReader
 import com.google.api.client.util.SecurityUtils
 import com.google.api.services.admin.directory.Directory
 import com.google.api.services.admin.directory.DirectoryScopes
-import fr.xebia.api.directory.users.DirectoryUser
-import fr.xebia.api.directory.users.source.UsersSource
+import fr.xebia.user.extract.DirectoryUser
+import fr.xebia.user.extract.source.UsersSource
 import java.io.StringReader
 import java.security.spec.PKCS8EncodedKeySpec
 

@@ -1,4 +1,4 @@
-package fr.xebia.api.directory.users.lambda
+package fr.xebia.user.extract.lambda
 
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestHandler
@@ -7,11 +7,11 @@ import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder
 import com.amazonaws.services.secretsmanager.model.GetSecretValueRequest
 import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder
 import com.amazonaws.services.simplesystemsmanagement.model.GetParameterRequest
-import fr.xebia.api.directory.users.UsersExtract
-import fr.xebia.api.directory.users.source.UsersSource
-import fr.xebia.api.directory.users.source.google.GoogleUsersSource
-import fr.xebia.api.directory.users.store.UsersStore
-import fr.xebia.api.directory.users.store.s3.S3UsersStore
+import fr.xebia.user.extract.UsersExtract
+import fr.xebia.user.extract.source.UsersSource
+import fr.xebia.user.extract.source.google.GoogleUsersSource
+import fr.xebia.user.extract.store.UsersStore
+import fr.xebia.user.extract.store.s3.S3UsersStore
 
 class LambdaUsersExtract : RequestHandler<Any?, Unit> {
 

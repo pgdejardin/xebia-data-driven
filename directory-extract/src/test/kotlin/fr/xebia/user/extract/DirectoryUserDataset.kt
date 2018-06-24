@@ -1,4 +1,4 @@
-package fr.xebia.api.directory.users
+package fr.xebia.user.extract
 
 val noEvents = emptyList<DirectoryUser>()
 

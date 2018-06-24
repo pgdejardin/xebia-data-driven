@@ -1,8 +1,8 @@
-package fr.xebia.api.directory.users.store.s3
+package fr.xebia.user.extract.store.s3
 
 import com.amazonaws.services.s3.AmazonS3
-import fr.xebia.api.directory.users.noEvents
-import fr.xebia.api.directory.users.users
+import fr.xebia.user.extract.noEvents
+import fr.xebia.user.extract.users
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock

@@ -28,19 +28,28 @@ npm install
 
 ## Deploy
 
-To run documentation
-
+Deploy to dev
 ``` bash
+export AWS_PROFILE=dev-profile
 npm run deploy
 ```
 
-### Note
-```
-Due to a limitation of cloudformation to attach existing resource in a cloudformation template
-we use serverless-plugin-existing-s3 plugin
+Deploy to prod
+``` bash
+export AWS_PROFILE=prod-profile
+npm run deployProd
 ```
 
-Folowing command is required for first deployment only
+### Note
+
+Due to a limitation of cloudformation to attach existing resource in a cloudformation template
+we use serverless-plugin-existing-s3 plugin.
+
+Following command is required for first deployment only.
 ```bash
+# for dev
 npm run deployS3
+
+# for prod
+npm run deployS3Prod
 ```

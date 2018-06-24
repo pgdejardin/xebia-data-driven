@@ -4,7 +4,8 @@
   "description": "Lambda function for API Gateway authorizer",
   "main": "index.js",
   "scripts": {
-    "deploy": "serverless deploy"
+    "deployDev": "serverless deploy",
+    "deployProd": "serverless deploy --stage prod"
   },
   "dependencies": {
     "jsonwebtoken": "7.4.1",

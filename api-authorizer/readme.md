@@ -7,15 +7,16 @@ $ serverless -v
 1.27.3
 ```
 
-## Configure AWS Profile
-
-Configure a profile named `xebia`:
-```bash
-aws configure --profile xebia
-```
-
 ## Deploy
 
+Deploy to dev
 ```bash
-AWS_PROFILE=xebia npm run deploy
+export AWS_PROFILE=dev-profile
+npm run deploy
+```
+
+Deploy to prod
+```bash
+export AWS_PROFILE=prod-profile
+npm run deployProd
 ```

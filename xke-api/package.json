@@ -7,7 +7,9 @@
     "doc": "jest",
     "test": "jest",
     "deploy": "serverless deploy",
-    "deployS3": "serverless s3deploy --function process"
+    "deployProd": "serverless deploy --stage prod",
+    "deployS3": "serverless s3deploy --function process",
+    "deployS3Prod": "serverless s3deploy --function process --stage prod"
   },
   "author": "",
   "license": "MIT",

@@ -54,7 +54,7 @@ class GoogleUsersSource(private val serviceAccount: String,
         val bytes = PemReader.readFirstSectionAndClose(StringReader(privateKey), "PRIVATE KEY").base64DecodedBytes
         val serviceAccountPrivateKey = SecurityUtils.getRsaKeyFactory().generatePrivate(PKCS8EncodedKeySpec(bytes))
 
-        val googleCredential = GoogleCredential.Builder()
+        val credential = GoogleCredential.Builder()
             .setTransport(httpTransport)
             .setJsonFactory(jacksonFactory)
             .setServiceAccountId(serviceAccountId)
@@ -63,7 +63,7 @@ class GoogleUsersSource(private val serviceAccount: String,
             .setServiceAccountScopes(listOf(DirectoryScopes.ADMIN_DIRECTORY_USER_READONLY))
             .build()
 
-        return Directory.Builder(httpTransport, jacksonFactory, googleCredential)
+        return Directory.Builder(httpTransport, jacksonFactory, credential)
             .setApplicationName("user-directory-extract")
             .build()
     }

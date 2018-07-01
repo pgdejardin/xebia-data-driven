@@ -20,6 +20,11 @@ data "aws_acm_certificate" "certificate" {
     domain = "${var.zone_name}"
 }
 
+resource "aws_cloudwatch_log_group" "gateway" {
+    name = "API-Gateway-Execution-Logs_${aws_api_gateway_rest_api.gateway.id}/${var.stage}"
+    retention_in_days = "14"
+}
+
 resource "aws_api_gateway_rest_api" "gateway" {
     name = "${local.name}"
 }
@@ -46,6 +51,15 @@ resource "aws_api_gateway_base_path_mapping" "gateway" {
     api_id = "${aws_api_gateway_rest_api.gateway.id}"
     stage_name = "${aws_api_gateway_deployment.gateway.stage_name}"
     domain_name = "${aws_api_gateway_domain_name.gateway.domain_name}"
+}
+
+resource "aws_api_gateway_method_settings" "gateway" {
+    rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
+    stage_name  = "${aws_api_gateway_deployment.gateway.stage_name}"
+    method_path = "*/*"
+    settings {
+        logging_level   = "ERROR"
+    }
 }
 
 resource "aws_route53_record" "gateway" {

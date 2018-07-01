@@ -76,7 +76,8 @@ export async function saveXkeInBucket(bucket, xke) {
     const params = {
         Body: JSON.stringify(xke.slots),
         Bucket: bucket,
-        Key: getFilename(xke.year, xke.month)
+        Key: getFilename(xke.year, xke.month),
+        ContentType: 'application/json'
     };
     return await s3.putObject(params).promise();
 }

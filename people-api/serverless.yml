@@ -1,0 +1,72 @@
+service: xdd-people-api
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-1
+  logRetentionInDays: 14
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 's3:GetObject'
+      Resource:
+        - 'arn:aws:s3:::${self:provider.environment.DATALAKE_BUCKET_NAME}/${self:provider.environment.USER_DIRECTORY_PREFIX}/*'
+        - 'arn:aws:s3:::${self:provider.environment.DATALAKE_BUCKET_NAME}/${self:provider.environment.HR_SHEET_PREFIX}/*'
+    - Effect: 'Allow'
+      Action:
+        - 's3:*'
+      Resource:
+        - 'arn:aws:s3:::${self:provider.environment.PEOPLE_API_BUCKET_NAME}/*'
+  environment:
+    DATALAKE_BUCKET_NAME: xdd-datalake-${self:custom.stage}.xebia.fr
+    USER_DIRECTORY_PREFIX: user-directory
+    USER_DIRECTORY_SUFFIX: users.json
+    HR_SHEET_PREFIX: hr-sheet
+    HR_SHEET_SUFFIX: hr.json
+    PEOPLE_API_BUCKET_NAME: xdd-people-api-${self:custom.stage}.xebia.fr
+    PEOPLE_API_BUCKET_KEY: people.json
+
+functions:
+
+  list:
+    handler: src/handler.listPeople
+    events:
+      - http:
+          path: /
+          method: get
+          authorizer:
+            arn: ${cf:xdd-api-authorizer-${self:custom.stage}.AuthorizerLambdaFunctionQualifiedArn}
+            resultTtlInSeconds: 0
+            identitySource: method.request.header.X-Authorization
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}
+
+  import:
+    handler: src/handler.importPeople
+    events:
+      - schedule: cron(0 9 * * ? *)
+    tags:
+      Project: xdd
+      Manager: Serverless
+      Stage: ${self:custom.stage}
+
+resources:
+  Resources:
+    PeopleBucketApi:
+      Type: 'AWS::S3::Bucket'
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: ${self:provider.environment.PEOPLE_API_BUCKET_NAME}
+        AccessControl: Private
+        Tags:
+          - Key: Project
+            Value: xdd
+          - Key: Manager
+            Value: Serverless
+          - Key: Stage
+            Value: ${self:custom.stage}

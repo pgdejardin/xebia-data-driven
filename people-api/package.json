@@ -1,0 +1,17 @@
+{
+  "name": "people-api",
+  "version": "1.0.0",
+  "description": "people api",
+  "scripts": {
+    "deploy": "sls deploy",
+    "deployProd": "sls deploy --stage prod"
+  },
+  "main": "handler.js",
+  "dependencies": {
+    "aws-sdk": "2.263.1",
+    "moment": "2.22.2"
+  },
+  "devDependencies": {
+    "serverless": "1.27.3"
+  }
+}

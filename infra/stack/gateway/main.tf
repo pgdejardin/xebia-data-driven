@@ -27,6 +27,10 @@ resource "aws_cloudwatch_log_group" "gateway" {
 
 resource "aws_api_gateway_rest_api" "gateway" {
     name = "${local.name}"
+    binary_media_types = [
+        "application/octet-stream",
+        "image/jpeg",
+    ]
 }
 
 resource "aws_api_gateway_deployment" "gateway" {

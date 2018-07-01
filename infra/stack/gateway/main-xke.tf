@@ -43,3 +43,9 @@ resource "aws_api_gateway_integration" "xke_v1_proxy" {
         "integration.request.path.proxy" = "method.request.path.proxy"
     }
 }
+
+module "xke_v1_proxy_options" {
+    source = "cors"
+    api_id = "${aws_api_gateway_rest_api.gateway.id}"
+    resource_id = "${aws_api_gateway_resource.xke_v1_proxy.id}"
+}

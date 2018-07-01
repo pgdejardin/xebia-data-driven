@@ -14,15 +14,15 @@ resource "aws_api_gateway_resource" "xke_v1" {
     path_part = "v1"
 }
 
-resource "aws_api_gateway_resource" "xke_proxy" {
+resource "aws_api_gateway_resource" "xke_v1_proxy" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
     parent_id = "${aws_api_gateway_resource.xke_v1.id}"
     path_part = "{proxy+}"
 }
 
-resource "aws_api_gateway_method" "xke_proxy" {
+resource "aws_api_gateway_method" "xke_v1_proxy" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
-    resource_id = "${aws_api_gateway_resource.xke_proxy.id}"
+    resource_id = "${aws_api_gateway_resource.xke_v1_proxy.id}"
     http_method = "ANY"
     authorization = "CUSTOM"
     authorizer_id = "${aws_api_gateway_authorizer.auth.id}"
@@ -31,10 +31,10 @@ resource "aws_api_gateway_method" "xke_proxy" {
     }
 }
 
-resource "aws_api_gateway_integration" "xke_proxy" {
+resource "aws_api_gateway_integration" "xke_v1_proxy" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
-    resource_id = "${aws_api_gateway_resource.xke_proxy.id}"
-    http_method = "${aws_api_gateway_method.xke_proxy.http_method}"
+    resource_id = "${aws_api_gateway_resource.xke_v1_proxy.id}"
+    http_method = "${aws_api_gateway_method.xke_v1_proxy.http_method}"
     type = "HTTP_PROXY"
     integration_http_method = "ANY"
     passthrough_behavior = "WHEN_NO_MATCH"

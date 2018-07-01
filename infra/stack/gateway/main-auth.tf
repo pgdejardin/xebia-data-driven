@@ -1,5 +1,3 @@
-data "aws_caller_identity" "caller" {}
-
 data "aws_cloudformation_stack" "auth" {
     name = "${local.authorizer}"
 }
@@ -19,6 +17,12 @@ data "aws_iam_policy_document" "auth_role" {
     }
 }
 
+data "null_data_source" "auth" {
+    inputs {
+        lambda_arn = "${replace(data.aws_cloudformation_stack.auth.outputs.AuthorizerLambdaFunctionQualifiedArn, "/:[0-9]+$/", "")}"
+    }
+}
+
 data "aws_iam_policy_document" "auth_policy" {
     statement {
         effect = "Allow"
@@ -26,7 +30,7 @@ data "aws_iam_policy_document" "auth_policy" {
             "lambda:InvokeFunction"
         ]
         resources = [
-            "${replace(data.aws_cloudformation_stack.auth.outputs.AuthorizerLambdaFunctionQualifiedArn, "/:[0-9]+$/", "")}"
+            "${data.null_data_source.auth.outputs.lambda_arn}"
         ]
     }
 }
@@ -45,6 +49,6 @@ resource "aws_iam_role_policy" "auth" {
 resource "aws_api_gateway_authorizer" "auth" {
     name = "${local.name}"
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
-    authorizer_uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${data.aws_caller_identity.caller.account_id}:function:${local.authorizer}-authorizer/invocations"
+    authorizer_uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${data.null_data_source.auth.outputs.lambda_arn}/invocations"
     authorizer_credentials = "${aws_iam_role.auth.arn}"
 }

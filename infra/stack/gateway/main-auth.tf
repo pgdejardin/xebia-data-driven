@@ -51,4 +51,5 @@ resource "aws_api_gateway_authorizer" "auth" {
     rest_api_id = "${aws_api_gateway_rest_api.gateway.id}"
     authorizer_uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${data.null_data_source.auth.outputs.lambda_arn}/invocations"
     authorizer_credentials = "${aws_iam_role.auth.arn}"
+    identity_source = "method.request.header.X-Authorization"
 }

@@ -4,6 +4,8 @@ project_tags = {
     Project = "xdd"
 }
 
+aws_provider_version = "1.26.0"
+
 region = "eu-west-1"
 region_acm = "us-east-1"
 

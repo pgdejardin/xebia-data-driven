@@ -3,11 +3,13 @@ terraform {
 }
 
 provider "aws" {
+    version = "${var.aws_provider_version}"
     region = "${var.region}"
 }
 
 provider "aws" {
     alias = "acm"
+    version = "${var.aws_provider_version}"
     region = "${var.region_acm}"
 }
 

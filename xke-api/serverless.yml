@@ -77,6 +77,10 @@ functions:
           path: /{year}/{month}
           method: GET
           cors: true
+          authorizer:
+            arn: ${cf:xdd-api-authorizer-${self:custom.stage}.AuthorizerLambdaFunctionQualifiedArn}
+            resultTtlInSeconds: 0
+            identitySource: method.request.header.X-Authorization
     tags:
       Project: xdd
       Manager: Serverless

@@ -14,7 +14,7 @@ import fr.xebia.xke.extract.store.CalendarStore
 import fr.xebia.xke.extract.store.s3.S3CalendarStore
 import java.time.LocalDate
 
-class LambdaCalendarExtract : RequestHandler<Map<String, String>?, Unit> {
+class LambdaCalendarExtract : RequestHandler<Any?, Unit> {
 
     private val amazonS3 by lazy(AmazonS3ClientBuilder::defaultClient)
 
@@ -22,17 +22,21 @@ class LambdaCalendarExtract : RequestHandler<Map<String, String>?, Unit> {
 
     private val amazonSecretManager by lazy(AWSSecretsManagerClientBuilder::defaultClient)
 
-    override fun handleRequest(input: Map<String, String>?, context: Context) {
+    override fun handleRequest(input: Any?, context: Context) {
+
+        println("Starting xke calendar extraction with $input")
 
         val calendarSource = calendarSource()
         val calendarStore = calendarStore()
 
-        val from = input?.get("extractBegin")?.let(LocalDate::parse) ?: LocalDate.now().withDayOfMonth(1).minusMonths(1)
-        val end = input?.get("extractEnd")?.let(LocalDate::parse) ?: LocalDate.now().withDayOfMonth(1).plusMonths(1)
+        val from = LocalDate.now().withDayOfMonth(1).minusMonths(1)
+        val end = LocalDate.now().withDayOfMonth(1).plusMonths(1)
 
         val calendarExtract = CalendarExtract(calendarSource, calendarStore)
 
         calendarExtract.extract(from, end)
+
+        println("Finished xke calendar extraction")
     }
 
     private fun calendarSource(): CalendarSource {

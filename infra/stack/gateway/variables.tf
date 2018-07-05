@@ -18,7 +18,6 @@ locals {
     authorizer = "xdd-api-authorizer-${var.stage}"
 }
 
-variable "aws_provider_version" {}
 variable "region" {}
 variable "region_acm" {}
 

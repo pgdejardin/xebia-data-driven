@@ -22,9 +22,9 @@ provider:
         - 'arn:aws:s3:::${self:provider.environment.PEOPLE_API_BUCKET_NAME}/*'
   environment:
     DATALAKE_BUCKET_NAME: xdd-datalake-${self:custom.stage}.xebia.fr
-    USER_DIRECTORY_PREFIX: user-directory
+    USER_DIRECTORY_PREFIX: raw/user-directory
     USER_DIRECTORY_SUFFIX: users.json
-    HR_SHEET_PREFIX: hr-sheet
+    HR_SHEET_PREFIX: raw/hr-sheet
     HR_SHEET_SUFFIX: hr.json
     PEOPLE_API_BUCKET_NAME: xdd-people-api-${self:custom.stage}.xebia.fr
     PEOPLE_API_BUCKET_KEY: people.json

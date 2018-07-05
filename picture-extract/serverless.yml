@@ -8,7 +8,7 @@ custom:
   parentFolderIdKey: /xdd/picture-drive/parent-folder-id
   topicName: xdd-picture-extract-${self:custom.stage}
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
-  storeBucketKey: picture-drive
+  storeBucketKey: raw/picture-drive
 
 provider:
   name: aws

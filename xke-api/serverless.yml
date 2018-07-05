@@ -50,7 +50,7 @@ functions:
           events:
             - s3:ObjectCreated:*
           rules:
-            - prefix: xke-calendar/
+            - prefix: raw/xke-calendar/
             - suffix: .json
     tags:
       Project: xdd

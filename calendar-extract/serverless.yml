@@ -7,7 +7,7 @@ custom:
   serviceAccountKey: /xdd/security/google-service-account
   calendarIdKey: /xdd/calendar-extract/calendar-id
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
-  storeBucketKey: xke-calendar
+  storeBucketKey: raw/xke-calendar
 
 provider:
   name: aws

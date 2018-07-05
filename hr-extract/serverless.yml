@@ -8,7 +8,7 @@ custom:
   sheetIdKey: /xdd/hr-sheet/sheet-id
   sheetRangeKey: /xdd/hr-sheet/sheet-range
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
-  storeBucketKey: hr-sheet
+  storeBucketKey: raw/hr-sheet
 
 provider:
   name: aws

@@ -31,7 +31,7 @@ resource "aws_api_gateway_integration" "people_v1_id_photo" {
     http_method = "${aws_api_gateway_method.people_v1_id_photo.http_method}"
     type = "AWS"
     integration_http_method = "GET"
-    uri = "arn:aws:apigateway:${var.region}:s3:path/${data.aws_s3_bucket.datalake.bucket}/picture-drive/{email}.jpg"
+    uri = "arn:aws:apigateway:${var.region}:s3:path/${data.aws_s3_bucket.datalake.bucket}/raw/picture-drive/{email}.jpg"
     credentials = "${aws_iam_role.people_photo_role.arn}"
     request_parameters {
         "integration.request.path.email" = "method.request.path.email"
@@ -86,7 +86,7 @@ data "aws_iam_policy_document" "people_photo_policy" {
             "s3:GetObject"
         ]
         resources = [
-            "${data.aws_s3_bucket.datalake.arn}/picture-drive/*"
+            "${data.aws_s3_bucket.datalake.arn}/raw/picture-drive/*"
         ]
     }
 }

@@ -47,7 +47,7 @@ functions:
       - schedule: cron(0 8 * * ? *)
     environment:
       DOMAIN: xebia.fr
-      MAX_RESULTS: 200
+      MAX_RESULTS: "200"
       SERVICE_ACCOUNT_KEY: ${self:custom.serviceAccountKey}
       SERVICE_ACCOUNT_USER_KEY: ${self:custom.serviceAccountUserKey}
       STORE_BUCKET_NAME: ${self:custom.storeBucketName}

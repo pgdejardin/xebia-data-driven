@@ -28,7 +28,7 @@ async function listPeople(event, context, callback) {
 
     } catch (error) {
 
-        console.log('People list has failed', error);
+        console.error('People list has failed', error);
 
         callback(null, {
             statusCode: 404,

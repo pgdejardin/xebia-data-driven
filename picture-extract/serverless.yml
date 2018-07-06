@@ -71,10 +71,6 @@ functions:
       - sns:
           topicName: ${self:custom.topicName}
           displayName: "Topic for picture extraction"
-          tags:
-            Project: xdd
-            Manager: Serverless
-            Stage: ${self:custom.stage}
     reservedConcurrency: 5
     tags:
       Project: xdd

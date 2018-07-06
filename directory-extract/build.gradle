@@ -50,8 +50,3 @@ task buildLambda(type: Zip, dependsOn: 'build', group: 'serverless') {
         from configurations.runtime
     }
 }
-
-task deploy(type: Exec, dependsOn: 'buildLambda', group: 'serverless') {
-    environment AWS_PROFILE: System.getenv('AWS_PROFILE')
-    commandLine 'serverless', 'deploy'
-}

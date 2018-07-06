@@ -14,7 +14,7 @@ aws configure --profile xebia
 aws configure --profile xebia-prod
 ```
 
-## Build & deploy
+## Build
 ```bash
 ./gradlew buildLambda
 ```

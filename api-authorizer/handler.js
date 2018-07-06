@@ -17,16 +17,18 @@ const client = jwksClient({
 
 module.exports.authenticate = (event, context, callback) => {
 
-    console.log(event);
+    console.log("Received event", event);
 
     let tokenMatch = event.authorizationToken.match(/^Bearer (.*)$/);
     if (!tokenMatch || tokenMatch.length < 2) {
+        console.error("Token has no bearer prefix");
         return callback("Unauthorized");
     }
 
     const [, token] = tokenMatch;
     const decoded = jwt.decode(token, {complete: true});
     if (!decoded || !decoded.header || !decoded.header.kid) {
+        console.error("Token not properly formatted", token);
         return callback("Unauthorized");
     }
 
@@ -35,6 +37,7 @@ module.exports.authenticate = (event, context, callback) => {
     client.getSigningKey(kid, (err, key) => {
 
         if (err) {
+            console.error("Signing key not found", err);
             return callback("Unauthorized");
         }
 
@@ -43,6 +46,7 @@ module.exports.authenticate = (event, context, callback) => {
         jwt.verify(token, signingKey, signature, (err, decoded) => {
 
             if (err) {
+                console.error("Token verification failed", err);
                 return callback("Unauthorized");
             }
 

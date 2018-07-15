@@ -12,6 +12,18 @@ npm -v
 5.8.0
 ```
 
+## Test
+
+Launch tests
+``` bash
+npm test
+```
+
+Launch tests in TDD mode
+``` bash
+npm run tdd
+```
+
 ## Deploy
 
 Deploy to dev

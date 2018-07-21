@@ -48,9 +48,9 @@ class GoogleCalendarSource(private val calendarId: String,
         val credential = GoogleCredential.fromStream(StringInputStream(serviceAccount))
             .createScoped(listOf(CALENDAR_READONLY))
 
-        val httpTransport: NetHttpTransport = GoogleNetHttpTransport.newTrustedTransport()
+        val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
 
-        val jacksonFactory: JacksonFactory = JacksonFactory.getDefaultInstance()
+        val jacksonFactory = JacksonFactory.getDefaultInstance()
 
         return Calendar.Builder(httpTransport, jacksonFactory, credential)
             .setApplicationName("xke-calendar-extract")

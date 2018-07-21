@@ -1,6 +1,8 @@
 package fr.xebia.xke.extract.store.s3
 
 import com.amazonaws.services.s3.AmazonS3
+import com.amazonaws.services.s3.model.ObjectMetadata
+import com.amazonaws.util.StringInputStream
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.JsonSerializer
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -31,7 +33,11 @@ class S3CalendarStore(private val amazonS3: AmazonS3,
 
         val bucketContent = objectMapper.writeValueAsString(calendarEvents)
 
-        amazonS3.putObject(bucketName, "$bucketKey/$extractFormat/$calendarFormat.json", bucketContent)
+        val objectMetadata = ObjectMetadata()
+        objectMetadata.contentType = "application/json"
+        objectMetadata.contentEncoding = Charsets.UTF_8.name()
+
+        amazonS3.putObject(bucketName, "$bucketKey/$extractFormat/$calendarFormat.json", StringInputStream(bucketContent), objectMetadata)
     }
 
 }

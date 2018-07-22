@@ -11,12 +11,6 @@
     "deployS3": "serverless s3deploy --function process",
     "deployS3Prod": "serverless s3deploy --function process --stage prod"
   },
-  "author": "",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
-  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",

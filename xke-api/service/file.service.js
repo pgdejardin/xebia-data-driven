@@ -25,7 +25,6 @@ function extractFields(slot) {
     newSlot.level = extractDataForField(description, 'Niveau**', '**');
     newSlot.requirement = extractDataForField(description, 'Pré-requis**', '**');
     newSlot.logistics = extractDataForField(description, 'Logistique**');
-
     return newSlot;
 }
 

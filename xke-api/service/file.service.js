@@ -39,7 +39,7 @@ function enrich(year, month) {
 
 function extractDataForField(description, startMatch, endMatch) {
     const startIndex = description.indexOf(startMatch);
-    if (startIndex == -1) {
+    if (startIndex === -1) {
         return null;
     }
     let endIndex = description.length;

@@ -1,5 +1,3 @@
-import {pushXkeInDB, findByKey, findXkeByYear} from './service/xke.repository';
-
 import {sanitizeFile, getFileFromBucket, saveXkeInBucket, getFilename} from './service/file.service';
 
 export const transform = async (event) => {
@@ -17,8 +15,6 @@ export const transform = async (event) => {
     const xke = {year, month, slots};
 
     await saveXkeInBucket(process.env.XKE_BUCKET_API, xke);
-
-    await pushXkeInDB(xke);
 };
 
 export const findXke = async (event, context, callback) => {

@@ -1,12 +1,12 @@
 service:
-  name: xdd-picture-extract
+  name: xdd-picture-drive
 
 custom:
   stage: ${opt:stage, self:provider.stage}
   kmsKeyArn: ${ssm:/xdd/security/kms-key-arn}
   serviceAccountKey: /xdd/security/google-service-account
   parentFolderIdKey: /xdd/picture-drive/parent-folder-id
-  topicName: xdd-picture-extract-${self:custom.stage}
+  topicName: ${self:service.name}-${self:custom.stage}
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
   storeBucketKey: raw/picture-drive
 
@@ -53,7 +53,7 @@ package:
   artifact: build/distributions/picture-extract.zip
 
 functions:
-  picture-extract:
+  extract:
     handler: fr.xebia.picture.extract.lambda.LambdaPictureExtract
     timeout: 240
     events:
@@ -64,7 +64,7 @@ functions:
       Project: xdd
       Manager: Serverless
       Stage: ${self:custom.stage}
-  picture-storage:
+  store:
     handler: fr.xebia.picture.extract.lambda.LambdaPictureListener
     timeout: 240
     events:

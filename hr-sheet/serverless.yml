@@ -1,13 +1,14 @@
 service:
-  name: xdd-calendar-extract
+  name: xdd-hr-sheet
 
 custom:
   stage: ${opt:stage, self:provider.stage}
   kmsKeyArn: ${ssm:/xdd/security/kms-key-arn}
   serviceAccountKey: /xdd/security/google-service-account
-  calendarIdKey: /xdd/calendar-extract/calendar-id
+  sheetIdKey: /xdd/hr-sheet/sheet-id
+  sheetRangeKey: /xdd/hr-sheet/sheet-range
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
-  storeBucketKey: raw/xke-calendar
+  storeBucketKey: raw/hr-sheet
 
 provider:
   name: aws
@@ -29,7 +30,8 @@ provider:
       Action:
         - "ssm:GetParameter"
       Resource:
-        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.calendarIdKey}" ] ]
+        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.sheetIdKey}" ] ]
+        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.sheetRangeKey}" ] ]
     - Effect: "Allow"
       Action:
         - "secretsmanager:GetSecretValue"
@@ -37,17 +39,18 @@ provider:
         - Fn::Join: [ ":", [ "arn:aws:secretsmanager", Ref: "AWS::Region", Ref: "AWS::AccountId", "secret:${self:custom.serviceAccountKey}*" ] ]
 
 package:
-  artifact: build/distributions/calendar-extract.zip
+  artifact: build/distributions/hr-extract.zip
 
 functions:
-  calendar-extract:
-    handler: fr.xebia.xke.extract.lambda.LambdaCalendarExtract
+  extract:
+    handler: fr.xebia.hr.extract.lambda.LambdaHRExtract
     timeout: 60
     events:
       - schedule: cron(0 8 * * ? *)
     environment:
-      CALENDAR_ID_KEY: ${self:custom.calendarIdKey}
       SERVICE_ACCOUNT_KEY: ${self:custom.serviceAccountKey}
+      SHEET_ID_KEY: ${self:custom.sheetIdKey}
+      SHEET_RANGE_KEY: ${self:custom.sheetRangeKey}
       STORE_BUCKET_NAME: ${self:custom.storeBucketName}
       STORE_BUCKET_KEY: ${self:custom.storeBucketKey}
     tags:

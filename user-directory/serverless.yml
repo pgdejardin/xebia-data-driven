@@ -1,14 +1,13 @@
 service:
-  name: xdd-hr-extract
+  name: xdd-user-directory
 
 custom:
   stage: ${opt:stage, self:provider.stage}
   kmsKeyArn: ${ssm:/xdd/security/kms-key-arn}
-  serviceAccountKey: /xdd/security/google-service-account
-  sheetIdKey: /xdd/hr-sheet/sheet-id
-  sheetRangeKey: /xdd/hr-sheet/sheet-range
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
-  storeBucketKey: raw/hr-sheet
+  storeBucketKey: raw/user-directory
+  serviceAccountKey: /xdd/user-directory/google-service-account
+  serviceAccountUserKey: /xdd/user-directory/google-service-account-user
 
 provider:
   name: aws
@@ -30,8 +29,7 @@ provider:
       Action:
         - "ssm:GetParameter"
       Resource:
-        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.sheetIdKey}" ] ]
-        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.sheetRangeKey}" ] ]
+        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.serviceAccountUserKey}" ] ]
     - Effect: "Allow"
       Action:
         - "secretsmanager:GetSecretValue"
@@ -39,18 +37,19 @@ provider:
         - Fn::Join: [ ":", [ "arn:aws:secretsmanager", Ref: "AWS::Region", Ref: "AWS::AccountId", "secret:${self:custom.serviceAccountKey}*" ] ]
 
 package:
-  artifact: build/distributions/hr-extract.zip
+  artifact: build/distributions/directory-extract.zip
 
 functions:
-  hr-extract:
-    handler: fr.xebia.hr.extract.lambda.LambdaHRExtract
+  extract:
+    handler: fr.xebia.user.extract.lambda.LambdaUsersExtract
     timeout: 60
     events:
       - schedule: cron(0 8 * * ? *)
     environment:
+      DOMAIN: xebia.fr
+      MAX_RESULTS: "200"
       SERVICE_ACCOUNT_KEY: ${self:custom.serviceAccountKey}
-      SHEET_ID_KEY: ${self:custom.sheetIdKey}
-      SHEET_RANGE_KEY: ${self:custom.sheetRangeKey}
+      SERVICE_ACCOUNT_USER_KEY: ${self:custom.serviceAccountUserKey}
       STORE_BUCKET_NAME: ${self:custom.storeBucketName}
       STORE_BUCKET_KEY: ${self:custom.storeBucketKey}
     tags:

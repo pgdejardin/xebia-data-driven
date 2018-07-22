@@ -1,13 +1,13 @@
 service:
-  name: xdd-directory-extract
+  name: xdd-xke-calendar
 
 custom:
   stage: ${opt:stage, self:provider.stage}
   kmsKeyArn: ${ssm:/xdd/security/kms-key-arn}
+  serviceAccountKey: /xdd/security/google-service-account
+  calendarIdKey: /xdd/calendar-extract/calendar-id
   storeBucketName: xdd-datalake-${self:custom.stage}.xebia.fr
-  storeBucketKey: raw/user-directory
-  serviceAccountKey: /xdd/user-directory/google-service-account
-  serviceAccountUserKey: /xdd/user-directory/google-service-account-user
+  storeBucketKey: raw/xke-calendar
 
 provider:
   name: aws
@@ -29,7 +29,7 @@ provider:
       Action:
         - "ssm:GetParameter"
       Resource:
-        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.serviceAccountUserKey}" ] ]
+        - Fn::Join: [ ":", [ "arn:aws:ssm", Ref: "AWS::Region", Ref: "AWS::AccountId", "parameter${self:custom.calendarIdKey}" ] ]
     - Effect: "Allow"
       Action:
         - "secretsmanager:GetSecretValue"
@@ -37,19 +37,17 @@ provider:
         - Fn::Join: [ ":", [ "arn:aws:secretsmanager", Ref: "AWS::Region", Ref: "AWS::AccountId", "secret:${self:custom.serviceAccountKey}*" ] ]
 
 package:
-  artifact: build/distributions/directory-extract.zip
+  artifact: build/distributions/calendar-extract.zip
 
 functions:
-  directory-extract:
-    handler: fr.xebia.user.extract.lambda.LambdaUsersExtract
+  extract:
+    handler: fr.xebia.xke.extract.lambda.LambdaCalendarExtract
     timeout: 60
     events:
       - schedule: cron(0 8 * * ? *)
     environment:
-      DOMAIN: xebia.fr
-      MAX_RESULTS: "200"
+      CALENDAR_ID_KEY: ${self:custom.calendarIdKey}
       SERVICE_ACCOUNT_KEY: ${self:custom.serviceAccountKey}
-      SERVICE_ACCOUNT_USER_KEY: ${self:custom.serviceAccountUserKey}
       STORE_BUCKET_NAME: ${self:custom.storeBucketName}
       STORE_BUCKET_KEY: ${self:custom.storeBucketKey}
     tags:

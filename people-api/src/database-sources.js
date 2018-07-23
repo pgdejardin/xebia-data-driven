@@ -30,36 +30,11 @@ async function findHrInfoExport() {
 
 async function findExport(keyPrefix, keySuffix) {
 
-    const beginDate = moment();
-    const endDate = beginDate.clone().add(-4, 'd');
+    const date = moment();
 
-    return await findRecentExport(keyPrefix, keySuffix, beginDate, endDate);
-}
+    let key = keyPrefix + '/' + date.format("YYYY/MM/DD") + '/' + keySuffix;
 
-async function findRecentExport(keyPrefix, keySuffix, beginDate, endDate) {
+    const data = await s3.getObject({Bucket: datalakeBucket, Key: key}).promise();
 
-    let key = keyPrefix + '/' + beginDate.format("YYYY/MM/DD") + '/' + keySuffix;
-
-    try {
-
-        console.log('Searching content at', key);
-
-        const data = await s3.getObject({Bucket: datalakeBucket, Key: key}).promise();
-
-        console.log('Found content at', key);
-
-        return JSON.parse(data.Body.toString());
-
-    } catch (error) {
-
-        if (beginDate.isBefore(endDate)) {
-            console.log('No content found at', key);
-            throw error;
-        }
-
-        const nextBeginDate = beginDate.clone().add(-1, 'd');
-
-        return await findRecentExport(keyPrefix, keySuffix, nextBeginDate, endDate);
-    }
-
+    return JSON.parse(data.Body.toString());
 }

@@ -45,8 +45,6 @@ functions:
   extract:
     handler: fr.xebia.hr.extract.lambda.LambdaHRExtract
     timeout: 60
-    events:
-      - schedule: cron(0 8 * * ? *)
     environment:
       SERVICE_ACCOUNT_KEY: ${self:custom.serviceAccountKey}
       SHEET_ID_KEY: ${self:custom.sheetIdKey}

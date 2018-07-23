@@ -48,8 +48,6 @@ functions:
 
   import:
     handler: src/handler.importPeople
-    events:
-      - schedule: cron(0 9 * * ? *)
     tags:
       Project: xdd
       Manager: Serverless

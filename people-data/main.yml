@@ -1,0 +1,112 @@
+---
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "People extracts consolidation"
+
+Parameters:
+  Stage:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+
+Resources:
+
+  PeopleDataStateMachineTrigger:
+    Type: "AWS::Events::Rule"
+    Properties:
+      State: ENABLED
+      ScheduleExpression: cron(0 8 * * ? *)
+      Targets:
+        - Id: 1
+          Arn: !Ref PeopleDataStateMachine
+          RoleArn: !GetAtt [ PeopleDataStateMachineTriggerExecutionRole, Arn ]
+
+  PeopleDataStateMachineTriggerExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - !Sub events.amazonaws.com
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: StatesExecutionPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "states:*"
+                Resource: !Ref PeopleDataStateMachine
+
+  PeopleDataStateMachineExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - !Sub states.${AWS::Region}.amazonaws.com
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: StatesExecutionPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "lambda:InvokeFunction"
+                Resource: "*"
+
+  PeopleDataStateMachine:
+    Type: "AWS::StepFunctions::StateMachine"
+    Properties:
+      DefinitionString:
+        Fn::Sub: >
+          {
+            "Comment": "People Data Workflow",
+            "StartAt": "PeopleExtracts",
+            "States": {
+              "PeopleExtracts": {
+                "Type": "Parallel",
+                "Branches": [
+                  {
+                    "StartAt": "UserDirectoryExtract",
+                    "States": {
+                      "UserDirectoryExtract": {
+                        "Type": "Task",
+                        "Resource": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:xdd-user-directory-${Stage}-extract",
+                        "End": true
+                      }
+                    }
+                  },
+                  {
+                    "StartAt": "HrSheetExtract",
+                    "States": {
+                      "HrSheetExtract": {
+                        "Type": "Task",
+                        "Resource": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:xdd-hr-sheet-${Stage}-extract",
+                        "End": true
+                     }
+                    }
+                  }
+                ],
+                "Next": "PeopleExtractsMerge"
+              },
+              "PeopleExtractsMerge": {
+                "Type": "Task",
+                "Resource": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:xdd-people-api-${Stage}-import",
+                "End": true
+              }
+            }
+          }
+      RoleArn: !GetAtt [ PeopleDataStateMachineExecutionRole, Arn ]

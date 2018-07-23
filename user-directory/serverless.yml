@@ -43,8 +43,6 @@ functions:
   extract:
     handler: fr.xebia.user.extract.lambda.LambdaUsersExtract
     timeout: 60
-    events:
-      - schedule: cron(0 8 * * ? *)
     environment:
       DOMAIN: xebia.fr
       MAX_RESULTS: "200"

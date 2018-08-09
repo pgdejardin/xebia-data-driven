@@ -59,4 +59,6 @@ Session.vim
 env.yml
 .env
 
+# others
+.DS_Store
 

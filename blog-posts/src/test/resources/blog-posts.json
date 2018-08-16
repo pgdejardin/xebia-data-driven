@@ -1,0 +1,417 @@
+[
+  {
+    "ID": 35961,
+    "title": "Revue de presse",
+    "status": "publish",
+    "type": "post",
+    "author": {
+      "ID": 12,
+      "username": "XebiaFrance",
+      "name": "Xebia France",
+      "first_name": "Xebia",
+      "last_name": "France",
+      "nickname": "Xebia France",
+      "slug": "xebiafrance",
+      "URL": "http:\/\/www.xebia.fr",
+      "avatar": "https:\/\/secure.gravatar.com\/avatar\/fd4df8067d57ff096523f2c2f2981a52?s=96",
+      "description": "Xebia est un cabinet de conseil international sp\u00e9cialis\u00e9 dans les technologies Big Data, Web, les architectures Java et la mobilit\u00e9 dans des environnements agiles. Depuis plus de 11 ans nous avons la volont\u00e9 de partager notre expertise et nos actualit\u00e9s \u00e0 travers notre blog technique.",
+      "registered": "2007-05-28T06:51:44+00:00",
+      "meta": {
+        "links": {
+          "self": "https:\/\/blog.xebia.fr\/wp-json\/users\/12",
+          "archives": "https:\/\/blog.xebia.fr\/wp-json\/users\/12\/posts"
+        }
+      }
+    },
+    "content": "<p><a href=\"http:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png\"><img class=\"size-medium wp-image-34462 alignright\" src=\"http:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png\" alt=\"Revue-de-presse.png\" width=\"300\" height=\"300\" srcset=\"https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png 300w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-150x150.png 150w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-768x768.png 768w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-1024x1024.png 1024w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-32x32.png 32w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-50x50.png 50w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-64x64.png 64w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-96x96.png 96w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-128x128.png 128w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png 1600w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n<p><em>La revue de presse hebdomadaire des technologies Big Data, DevOps et Web, architectures Java et mobilit\u00e9 dans des environnements agiles, propos\u00e9e par Xebia.<\/em><\/p><div class=\"c2w-toc\"><ul><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#\"><\/a><\/div><ul><\/ul><\/li><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#agilite\">Agilit\u00e9<\/a><\/div><ul><li class=\"c2w-toc-item c2w-toc-level3\"><div><a class=\"c2w-toc-label c2w-toc-level3\" href=\"#agile-coach-must-die\">Agile Coach must die<\/a><\/div><\/li><\/ul><\/li><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#craftsmanship\">Craftsmanship<\/a><\/div><ul><li class=\"c2w-toc-item c2w-toc-level3\"><div><a class=\"c2w-toc-label c2w-toc-level3\" href=\"#state-of-mutation-testing-at-google\">State of mutation testing at Google<\/a><\/div><\/li><\/ul><\/li><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#data\">Data<\/a><\/div><ul><li class=\"c2w-toc-item c2w-toc-level3\"><div><a class=\"c2w-toc-label c2w-toc-level3\" href=\"#les-nouvelles-sur-lia-de-google-cloud-next-18\">Les nouvelles sur l'IA de Google Cloud Next '18<\/a><\/div><\/li><\/ul><\/li><\/ul><\/div>\n<h2><\/h2>\n<h2 id=\"DRAFT-Revuedepresse-Agilit\u00e9\">Agilit\u00e9<\/h2>\n<h3 id=\"DRAFT-Revuedepresse-AgileCoachmustdie-Agilit\u00e9\">Agile Coach must die<\/h3>\n<div class=\"c2w-author\"><div class=\"c2w-author-icons\"><a class='c2w-author-icon' href='http:\/\/blog.xebia.fr\/author\/dlim' target='_blank'><img title='http:\/\/blog.xebia.fr\/author\/dlim' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-xebia.png' alt='http:\/\/blog.xebia.fr\/author\/dlim' width='24' height='24' \/><\/a><\/div><span class='c2w-author-name'>Par <a href='http:\/\/blog.xebia.fr\/author\/dlim' target='_blank'>Dara Lim<\/a><\/span><\/div>\n<p>Derri\u00e8re un titre volontairement provocateur, Mike MacIsaac nous annonce <a class=\"external-link\" href=\"https:\/\/www.linkedin.com\/pulse\/rip-agile-coach-why-coaches-dying-breed-mike-macisaac\/\" rel=\"nofollow\">la mort du coach agile<\/a> dans les organisations. Apr\u00e8s plus de 10 ans de pratique, les r\u00f4les de scrum master et de coach agile ont sensiblement chang\u00e9s. Les premiers sont face \u00e0 des \u00e9quipes plus matures dont l&rsquo;accompagnement doit \u00eatre plus subtile tandis que les seconds s&rsquo;attaquent \u00e0 des nouveaux challenges comme l&rsquo;agilit\u00e9 \u00e0 l&rsquo;\u00e9chelle. Nous n&rsquo;avons donc pas fini d&rsquo;entendre parler des coachs !<\/p>\n<h2 id=\"DRAFT-Revuedepresse-Craftsmanship\">Craftsmanship<\/h2>\n<h3 id=\"DRAFT-Revuedepresse-StateofmutationtestingatGoogle-Craftsmanship\">State of mutation testing at Google<\/h3>\n<div class=\"c2w-author\"><div class=\"c2w-author-icons\"><a class='c2w-author-icon' href='http:\/\/blog.xebia.fr\/author\/sbuisson' target='_blank'><img title='http:\/\/blog.xebia.fr\/author\/sbuisson' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-xebia.png' alt='http:\/\/blog.xebia.fr\/author\/sbuisson' width='24' height='24' \/><\/a><\/div><span class='c2w-author-name'>Par <a href='http:\/\/blog.xebia.fr\/author\/sbuisson' target='_blank'>Sarah Buisson<\/a><\/span><\/div>\n<p>Les tests par mutations sont un outil connu et reconnu pour valider la qualit\u00e9 d&rsquo;un jeu de test. Ils consistent \u00e0, \u00e0 l&rsquo;aide d&rsquo;un plugin, ajouter des anomalies dans le code source d&rsquo;un projet existant ( les fameuses mutations) afin de verifier que le jeu de test en place est capable de d\u00e9tecter ces changement de comportement en \u00e9chouant.<\/p>\n<p>Cette technologie est utilis\u00e9 par google, qui, dans un de leur dernier<a class=\"external-link\" href=\"https:\/\/ai.google\/research\/pubs\/pub46584\" rel=\"nofollow\"> papier de recherche<\/a>, nous d\u00e9crivent dans quels contexts ils ont mis en place les tests de mutations, et avec quels outils.<\/p>\n<h2 id=\"DRAFT-Revuedepresse-Data\">Data<\/h2>\n<h3 id=\"DRAFT-Revuedepresse-Lesnouvellessurl'IAdeGoogleCloudNext'18-Data\">Les nouvelles sur l&rsquo;IA de Google Cloud Next &rsquo;18<\/h3>\n<div class=\"c2w-author\"><div class=\"c2w-author-icons\"><a class='c2w-author-icon' href='http:\/\/blog.xebia.fr\/author\/gbianchi' target='_blank'><img title='http:\/\/blog.xebia.fr\/author\/gbianchi' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-xebia.png' alt='http:\/\/blog.xebia.fr\/author\/gbianchi' width='24' height='24' \/><\/a><a class='c2w-author-icon' href='http:\/\/twitter.com\/Giulibianchl' target='_blank'><img title='http:\/\/twitter.com\/Giulibianchl' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-twitter.png' alt='http:\/\/twitter.com\/Giulibianchl' width='24' height='24' \/><\/a><\/div><span class='c2w-author-name'>Par <a href='http:\/\/blog.xebia.fr\/author\/gbianchi' target='_blank'>Giulia Bianchi<\/a><\/span><\/div>\n<p>Cette semaine a eu lieu la conf\u00e9rence <a class=\"external-link\" href=\"https:\/\/cloud.withgoogle.com\/next18\/sf\/\" rel=\"nofollow\">Google Cloud Next &rsquo;18<\/a>. L&rsquo;\u00e9quipe de <a class=\"external-link\" href=\"https:\/\/twitter.com\/drfeifei\" rel=\"nofollow\">FeiFei-Li<\/a> a annonc\u00e9 l&rsquo;arriv\u00e9e de la suite des services cloud AutoML. Apr\u00e8s <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/vision\/\" rel=\"nofollow\">AutoML vision<\/a>, maintenant en version b\u00e9ta, c&rsquo;est le tour de <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/natural-language\/\" rel=\"nofollow\">AutoML Natural Language<\/a> et <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/translate\/\" rel=\"nofollow\">AutoML Translation<\/a>. Ces produits s&rsquo;inscrivent dans l&rsquo;objectif de d\u00e9mocratisation des services d&rsquo;intelligence artificielle <span class=\"inline-comment-marker\" data-ref=\"3a3d410d-2e64-4b07-9fc4-b6ea31a77fbd\"><span class=\"inline-comment-marker\" data-ref=\"4cadadc5-928a-42df-bab9-687e2d7a842b\">port\u00e9s<\/span><\/span> par Google. Les autres annonces de la m\u00eame \u00e9quipe concernent l&rsquo;am\u00e9lioration de <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/dialogflow-enterprise\/\" rel=\"nofollow\">DialogFlow EE<\/a>, <span class=\"inline-comment-marker\" data-ref=\"db0eebed-ddc0-41d8-85e7-91a227e81c98\">et l&rsquo;apparition d&rsquo;un<\/span> nouveau service : <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/blog\/big-data\/2018\/07\/transforming-the-contact-center-with-ai\" rel=\"nofollow\">Contact Center AI<\/a>. L&rsquo;ambition est de donner plus de moyen aux centres d&rsquo;appels et de valoriser l&rsquo;exp\u00e9rience client. Contact Center AI joue le r\u00f4le d&rsquo;un\u00a0<em>agent virtuel<\/em> pendant la premi\u00e8re phase d&rsquo;un appel, et celui d&rsquo;un\u00a0<em><span class=\"inline-comment-marker\" data-ref=\"e719181e-aa83-42bc-8bc8-2939ceccbcca\">assistant d&rsquo;agent humain<\/span><\/em><span class=\"inline-comment-marker\" data-ref=\"e719181e-aa83-42bc-8bc8-2939ceccbcca\"> d\u00e8s que le besoin du client d\u00e9passe les capacit\u00e9s de l&rsquo;assistant virtuel<\/span>. La promesse <span class=\"inline-comment-marker\" data-ref=\"d69440d9-12d9-4aec-b71a-e25d4c6f3f9e\">est celle d&rsquo;un<\/span> service tr\u00e8s flexible du c\u00f4t\u00e9 du centre d&rsquo;appels <span class=\"inline-comment-marker\" data-ref=\"29cf6a1b-6f0d-4851-9951-698e4a91edd9\">et d&rsquo;une<\/span> exp\u00e9rience client personnalis\u00e9e o\u00f9 la distinction entre agent virtuel et humain se fait difficilement. Cerise sur le g\u00e2teau : tout cela dans le respect des politiques de confidentialit\u00e9 et gouvernance <span class=\"inline-comment-marker\" data-ref=\"15bc9203-61b7-4c2e-b4d3-5e37a2f11235\">et sans<\/span> infrastructure.<\/p>\n<p>&nbsp;<\/p>\n",
+    "parent": null,
+    "link": "https:\/\/blog.xebia.fr\/2018\/08\/02\/revue-de-presse-15\/",
+    "date": "2018-08-02T16:54:28",
+    "modified": "2018-08-02T16:54:28",
+    "format": "standard",
+    "slug": "revue-de-presse-15",
+    "guid": "http:\/\/blog.xebia.fr\/?p=35961",
+    "excerpt": "<p>Agilit\u00e9 Agile Coach must die Derri\u00e8re un titre volontairement provocateur, Mike MacIsaac nous annonce la mort du coach agile dans les organisations. Apr\u00e8s plus de 10 ans de pratique, les r\u00f4les de scrum master et de coach agile ont sensiblement chang\u00e9s. Les premiers sont face \u00e0 des \u00e9quipes plus matures dont l&rsquo;accompagnement doit \u00eatre plus&#8230;<\/p>\n",
+    "menu_order": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "date_tz": "Europe\/Paris",
+    "date_gmt": "2018-08-02T14:54:28",
+    "modified_tz": "Europe\/Paris",
+    "modified_gmt": "2018-08-02T14:54:28",
+    "meta": {
+      "links": {
+        "self": "https:\/\/blog.xebia.fr\/wp-json\/posts\/35961",
+        "author": "https:\/\/blog.xebia.fr\/wp-json\/users\/12",
+        "collection": "https:\/\/blog.xebia.fr\/wp-json\/posts",
+        "replies": "https:\/\/blog.xebia.fr\/wp-json\/posts\/35961\/comments",
+        "version-history": "https:\/\/blog.xebia.fr\/wp-json\/posts\/35961\/revisions"
+      }
+    },
+    "featured_image": {
+      "ID": 34462,
+      "title": "Revue-de-presse.png",
+      "status": "inherit",
+      "type": "attachment",
+      "author": {
+        "ID": 253, "username": "wordable",
+        "name": "Exports Wordable",
+        "first_name": "Exports",
+        "last_name": "Wordable",
+        "nickname": "wordable",
+        "slug": "wordable",
+        "URL": "http:\/\/wordable.io",
+        "avatar": "https:\/\/secure.gravatar.com\/avatar\/1d3ef169c6c5b8de8a3c87beb5be5d6c?s=96",
+        "description": "",
+        "registered": "2018-02-01T10:18:34+00:00",
+        "meta": {
+          "links": {
+            "self": "https:\/\/blog.xebia.fr\/wp-json\/users\/253",
+            "archives": "https:\/\/blog.xebia.fr\/wp-json\/users\/253\/posts"
+          }
+        }
+      },
+      "content": "<p class=\"attachment\"><a href='https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png'><img width=\"300\" height=\"300\" src=\"https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png\" class=\"attachment-medium size-medium\" alt=\"Revue-de-presse.png\" srcset=\"https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png 300w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-150x150.png 150w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-768x768.png 768w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-1024x1024.png 1024w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-32x32.png 32w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-50x50.png 50w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-64x64.png 64w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-96x96.png 96w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-128x128.png 128w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png 1600w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n<p>Revue-de-presse.png<\/p>\n",
+      "parent": 34463,
+      "link": "https:\/\/blog.xebia.fr\/2018\/03\/01\/revue-de-presse-xebia-236\/revue-de-presse-png-2\/",
+      "date": "2018-03-01T15:57:00",
+      "modified": "2018-03-22T13:40:42",
+      "format": "standard",
+      "slug": "revue-de-presse-png-2",
+      "guid": "http:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png",
+      "excerpt": "<p>Revue-de-presse.png<\/p>\n",
+      "menu_order": 0,
+      "comment_status": "open",
+      "ping_status": "closed",
+      "sticky": false,
+      "date_tz": "Europe\/Paris",
+      "date_gmt": "2018-03-01T14:57:00",
+      "modified_tz": "Europe\/Paris",
+      "modified_gmt": "2018-03-22T12:40:42",
+      "meta": {
+        "links": {
+          "self": "https:\/\/blog.xebia.fr\/wp-json\/media\/34462",
+          "author": "https:\/\/blog.xebia.fr\/wp-json\/users\/253",
+          "collection": "https:\/\/blog.xebia.fr\/wp-json\/media",
+          "replies": "https:\/\/blog.xebia.fr\/wp-json\/media\/34462\/comments",
+          "version-history": "https:\/\/blog.xebia.fr\/wp-json\/media\/34462\/revisions",
+          "up": "https:\/\/blog.xebia.fr\/wp-json\/media\/34463"
+        }
+      },
+      "terms": [],
+      "source": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png",
+      "is_image": true,
+      "attachment_meta": {
+        "width": 1600,
+        "height": 1600,
+        "file": "2018\/03\/Revue-de-presse.png",
+        "sizes": {
+          "thumbnail": {
+            "file": "Revue-de-presse-150x150.png", "width": 150, "height": 150, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-150x150.png"
+          }, "medium": {
+            "file": "Revue-de-presse-300x300.png", "width": 300, "height": 300, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png"
+          }, "medium_large": {
+            "file": "Revue-de-presse-768x768.png", "width": 768, "height": 768, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-768x768.png"
+          }, "large": {
+            "file": "Revue-de-presse-1024x1024.png", "width": 1024, "height": 1024, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-1024x1024.png"
+          }, "post-thumbnail": {
+            "file": "Revue-de-presse-825x510.png", "width": 825, "height": 510, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-825x510.png"
+          }, "guest-author-32": {
+            "file": "Revue-de-presse-32x32.png", "width": 32, "height": 32, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-32x32.png"
+          }, "guest-author-50": {
+            "file": "Revue-de-presse-50x50.png", "width": 50, "height": 50, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-50x50.png"
+          }, "guest-author-64": {
+            "file": "Revue-de-presse-64x64.png", "width": 64, "height": 64, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-64x64.png"
+          }, "guest-author-96": {
+            "file": "Revue-de-presse-96x96.png", "width": 96, "height": 96, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-96x96.png"
+          }, "guest-author-128": {
+            "file": "Revue-de-presse-128x128.png", "width": 128, "height": 128, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-128x128.png"
+          }
+        },
+        "image_meta": {
+          "aperture": "0", "credit": "", "camera": "", "caption": "", "created_timestamp": "0", "copyright": "", "focal_length": "0",
+          "iso": "0", "shutter_speed": "0", "title": "", "orientation": "0",
+          "keywords": []
+        }
+      }
+    },
+    "terms": {
+      "author": [
+        {
+          "ID": 608, "name": "XebiaFrance", "slug": "xebiafrance",
+          "description": "Xebia France Xebia France XebiaFrance 12 blog-france@xebia.com", "taxonomy": "author", "parent": null,
+          "count": 998,
+          "link": "https:\/\/blog.xebia.fr\/?taxonomy=author&term=xebiafrance",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/author\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/author\/terms\/598"
+            }
+          }
+        }
+      ],
+      "category": [
+        {
+          "ID": 13,
+          "name": "Agile",
+          "slug": "agilite",
+          "description": "",
+          "taxonomy": "category",
+          "parent": null,
+          "count": 567,
+          "link": "https:\/\/blog.xebia.fr\/category\/agilite\/",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/15"
+            }
+          }
+        }, {
+          "ID": 1453,
+          "name": "Craft",
+          "slug": "craftsmanship",
+          "description": "",
+          "taxonomy": "category",
+          "parent": null,
+          "count": 274,
+          "link": "https:\/\/blog.xebia.fr\/category\/craftsmanship\/",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/687"
+            }
+          }
+        }, {
+          "ID": 740,
+          "name": "Data",
+          "slug": "nosql",
+          "description": "",
+          "taxonomy": "category",
+          "parent": null,
+          "count": 257,
+          "link": "https:\/\/blog.xebia.fr\/category\/nosql\/",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/470"
+            }
+          }
+        }
+      ],
+      "following_users": [
+        {
+          "ID": 2304,
+          "name": "ariveaux",
+          "slug": "ariveaux",
+          "description": "",
+          "taxonomy": "following_users",
+          "parent": null,
+          "count": 10,
+          "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=ariveaux",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms\/2300"
+            }
+          }
+        }, {
+          "ID": 2209,
+          "name": "XebiaFrance",
+          "slug": "xebiafrance",
+          "description": "",
+          "taxonomy": "following_users",
+          "parent": null,
+          "count": 47,
+          "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=xebiafrance",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms\/2205"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "ID": 35962,
+    "title": "Revue de presse",
+    "status": "publish",
+    "type": "post",
+    "author": {
+      "ID": 12,
+      "username": "XebiaFrance",
+      "name": "Xebia France",
+      "first_name": "Xebia",
+      "last_name": "France",
+      "nickname": "Xebia France",
+      "slug": "xebiafrance",
+      "URL": "http:\/\/www.xebia.fr",
+      "avatar": "https:\/\/secure.gravatar.com\/avatar\/fd4df8067d57ff096523f2c2f2981a52?s=96",
+      "description": "Xebia est un cabinet de conseil international sp\u00e9cialis\u00e9 dans les technologies Big Data, Web, les architectures Java et la mobilit\u00e9 dans des environnements agiles. Depuis plus de 11 ans nous avons la volont\u00e9 de partager notre expertise et nos actualit\u00e9s \u00e0 travers notre blog technique.",
+      "registered": "2007-05-28T06:51:44+00:00",
+      "meta": {
+        "links": {
+          "self": "https:\/\/blog.xebia.fr\/wp-json\/users\/12",
+          "archives": "https:\/\/blog.xebia.fr\/wp-json\/users\/12\/posts"
+        }
+      }
+    },
+    "content": "<p><a href=\"http:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png\"><img class=\"size-medium wp-image-34462 alignright\" src=\"http:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png\" alt=\"Revue-de-presse.png\" width=\"300\" height=\"300\" srcset=\"https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png 300w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-150x150.png 150w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-768x768.png 768w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-1024x1024.png 1024w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-32x32.png 32w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-50x50.png 50w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-64x64.png 64w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-96x96.png 96w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-128x128.png 128w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png 1600w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n<p><em>La revue de presse hebdomadaire des technologies Big Data, DevOps et Web, architectures Java et mobilit\u00e9 dans des environnements agiles, propos\u00e9e par Xebia.<\/em><\/p><div class=\"c2w-toc\"><ul><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#\"><\/a><\/div><ul><\/ul><\/li><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#agilite\">Agilit\u00e9<\/a><\/div><ul><li class=\"c2w-toc-item c2w-toc-level3\"><div><a class=\"c2w-toc-label c2w-toc-level3\" href=\"#agile-coach-must-die\">Agile Coach must die<\/a><\/div><\/li><\/ul><\/li><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#craftsmanship\">Craftsmanship<\/a><\/div><ul><li class=\"c2w-toc-item c2w-toc-level3\"><div><a class=\"c2w-toc-label c2w-toc-level3\" href=\"#state-of-mutation-testing-at-google\">State of mutation testing at Google<\/a><\/div><\/li><\/ul><\/li><li class=\"c2w-toc-item c2w-toc-level2\"><div><a class=\"c2w-toc-label c2w-toc-level2\" href=\"#data\">Data<\/a><\/div><ul><li class=\"c2w-toc-item c2w-toc-level3\"><div><a class=\"c2w-toc-label c2w-toc-level3\" href=\"#les-nouvelles-sur-lia-de-google-cloud-next-18\">Les nouvelles sur l'IA de Google Cloud Next '18<\/a><\/div><\/li><\/ul><\/li><\/ul><\/div>\n<h2><\/h2>\n<h2 id=\"DRAFT-Revuedepresse-Agilit\u00e9\">Agilit\u00e9<\/h2>\n<h3 id=\"DRAFT-Revuedepresse-AgileCoachmustdie-Agilit\u00e9\">Agile Coach must die<\/h3>\n<div class=\"c2w-author\"><div class=\"c2w-author-icons\"><a class='c2w-author-icon' href='http:\/\/blog.xebia.fr\/author\/dlim' target='_blank'><img title='http:\/\/blog.xebia.fr\/author\/dlim' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-xebia.png' alt='http:\/\/blog.xebia.fr\/author\/dlim' width='24' height='24' \/><\/a><\/div><span class='c2w-author-name'>Par <a href='http:\/\/blog.xebia.fr\/author\/dlim' target='_blank'>Dara Lim<\/a><\/span><\/div>\n<p>Derri\u00e8re un titre volontairement provocateur, Mike MacIsaac nous annonce <a class=\"external-link\" href=\"https:\/\/www.linkedin.com\/pulse\/rip-agile-coach-why-coaches-dying-breed-mike-macisaac\/\" rel=\"nofollow\">la mort du coach agile<\/a> dans les organisations. Apr\u00e8s plus de 10 ans de pratique, les r\u00f4les de scrum master et de coach agile ont sensiblement chang\u00e9s. Les premiers sont face \u00e0 des \u00e9quipes plus matures dont l&rsquo;accompagnement doit \u00eatre plus subtile tandis que les seconds s&rsquo;attaquent \u00e0 des nouveaux challenges comme l&rsquo;agilit\u00e9 \u00e0 l&rsquo;\u00e9chelle. Nous n&rsquo;avons donc pas fini d&rsquo;entendre parler des coachs !<\/p>\n<h2 id=\"DRAFT-Revuedepresse-Craftsmanship\">Craftsmanship<\/h2>\n<h3 id=\"DRAFT-Revuedepresse-StateofmutationtestingatGoogle-Craftsmanship\">State of mutation testing at Google<\/h3>\n<div class=\"c2w-author\"><div class=\"c2w-author-icons\"><a class='c2w-author-icon' href='http:\/\/blog.xebia.fr\/author\/sbuisson' target='_blank'><img title='http:\/\/blog.xebia.fr\/author\/sbuisson' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-xebia.png' alt='http:\/\/blog.xebia.fr\/author\/sbuisson' width='24' height='24' \/><\/a><\/div><span class='c2w-author-name'>Par <a href='http:\/\/blog.xebia.fr\/author\/sbuisson' target='_blank'>Sarah Buisson<\/a><\/span><\/div>\n<p>Les tests par mutations sont un outil connu et reconnu pour valider la qualit\u00e9 d&rsquo;un jeu de test. Ils consistent \u00e0, \u00e0 l&rsquo;aide d&rsquo;un plugin, ajouter des anomalies dans le code source d&rsquo;un projet existant ( les fameuses mutations) afin de verifier que le jeu de test en place est capable de d\u00e9tecter ces changement de comportement en \u00e9chouant.<\/p>\n<p>Cette technologie est utilis\u00e9 par google, qui, dans un de leur dernier<a class=\"external-link\" href=\"https:\/\/ai.google\/research\/pubs\/pub46584\" rel=\"nofollow\"> papier de recherche<\/a>, nous d\u00e9crivent dans quels contexts ils ont mis en place les tests de mutations, et avec quels outils.<\/p>\n<h2 id=\"DRAFT-Revuedepresse-Data\">Data<\/h2>\n<h3 id=\"DRAFT-Revuedepresse-Lesnouvellessurl'IAdeGoogleCloudNext'18-Data\">Les nouvelles sur l&rsquo;IA de Google Cloud Next &rsquo;18<\/h3>\n<div class=\"c2w-author\"><div class=\"c2w-author-icons\"><a class='c2w-author-icon' href='http:\/\/blog.xebia.fr\/author\/gbianchi' target='_blank'><img title='http:\/\/blog.xebia.fr\/author\/gbianchi' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-xebia.png' alt='http:\/\/blog.xebia.fr\/author\/gbianchi' width='24' height='24' \/><\/a><a class='c2w-author-icon' href='http:\/\/twitter.com\/Giulibianchl' target='_blank'><img title='http:\/\/twitter.com\/Giulibianchl' src='http:\/\/blog.xebia.fr\/wp-content\/plugins\/confluence2wordpress\/img\/rkc-social-set\/24x24\/24x24-twitter.png' alt='http:\/\/twitter.com\/Giulibianchl' width='24' height='24' \/><\/a><\/div><span class='c2w-author-name'>Par <a href='http:\/\/blog.xebia.fr\/author\/gbianchi' target='_blank'>Giulia Bianchi<\/a><\/span><\/div>\n<p>Cette semaine a eu lieu la conf\u00e9rence <a class=\"external-link\" href=\"https:\/\/cloud.withgoogle.com\/next18\/sf\/\" rel=\"nofollow\">Google Cloud Next &rsquo;18<\/a>. L&rsquo;\u00e9quipe de <a class=\"external-link\" href=\"https:\/\/twitter.com\/drfeifei\" rel=\"nofollow\">FeiFei-Li<\/a> a annonc\u00e9 l&rsquo;arriv\u00e9e de la suite des services cloud AutoML. Apr\u00e8s <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/vision\/\" rel=\"nofollow\">AutoML vision<\/a>, maintenant en version b\u00e9ta, c&rsquo;est le tour de <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/natural-language\/\" rel=\"nofollow\">AutoML Natural Language<\/a> et <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/translate\/\" rel=\"nofollow\">AutoML Translation<\/a>. Ces produits s&rsquo;inscrivent dans l&rsquo;objectif de d\u00e9mocratisation des services d&rsquo;intelligence artificielle <span class=\"inline-comment-marker\" data-ref=\"3a3d410d-2e64-4b07-9fc4-b6ea31a77fbd\"><span class=\"inline-comment-marker\" data-ref=\"4cadadc5-928a-42df-bab9-687e2d7a842b\">port\u00e9s<\/span><\/span> par Google. Les autres annonces de la m\u00eame \u00e9quipe concernent l&rsquo;am\u00e9lioration de <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/dialogflow-enterprise\/\" rel=\"nofollow\">DialogFlow EE<\/a>, <span class=\"inline-comment-marker\" data-ref=\"db0eebed-ddc0-41d8-85e7-91a227e81c98\">et l&rsquo;apparition d&rsquo;un<\/span> nouveau service : <a class=\"external-link\" href=\"https:\/\/cloud.google.com\/blog\/big-data\/2018\/07\/transforming-the-contact-center-with-ai\" rel=\"nofollow\">Contact Center AI<\/a>. L&rsquo;ambition est de donner plus de moyen aux centres d&rsquo;appels et de valoriser l&rsquo;exp\u00e9rience client. Contact Center AI joue le r\u00f4le d&rsquo;un\u00a0<em>agent virtuel<\/em> pendant la premi\u00e8re phase d&rsquo;un appel, et celui d&rsquo;un\u00a0<em><span class=\"inline-comment-marker\" data-ref=\"e719181e-aa83-42bc-8bc8-2939ceccbcca\">assistant d&rsquo;agent humain<\/span><\/em><span class=\"inline-comment-marker\" data-ref=\"e719181e-aa83-42bc-8bc8-2939ceccbcca\"> d\u00e8s que le besoin du client d\u00e9passe les capacit\u00e9s de l&rsquo;assistant virtuel<\/span>. La promesse <span class=\"inline-comment-marker\" data-ref=\"d69440d9-12d9-4aec-b71a-e25d4c6f3f9e\">est celle d&rsquo;un<\/span> service tr\u00e8s flexible du c\u00f4t\u00e9 du centre d&rsquo;appels <span class=\"inline-comment-marker\" data-ref=\"29cf6a1b-6f0d-4851-9951-698e4a91edd9\">et d&rsquo;une<\/span> exp\u00e9rience client personnalis\u00e9e o\u00f9 la distinction entre agent virtuel et humain se fait difficilement. Cerise sur le g\u00e2teau : tout cela dans le respect des politiques de confidentialit\u00e9 et gouvernance <span class=\"inline-comment-marker\" data-ref=\"15bc9203-61b7-4c2e-b4d3-5e37a2f11235\">et sans<\/span> infrastructure.<\/p>\n<p>&nbsp;<\/p>\n",
+    "parent": null,
+    "link": "https:\/\/blog.xebia.fr\/2018\/08\/02\/revue-de-presse-15\/",
+    "date": "2018-08-02T16:54:28",
+    "modified": "2018-08-02T16:54:28",
+    "format": "standard",
+    "slug": "revue-de-presse-15",
+    "guid": "http:\/\/blog.xebia.fr\/?p=35961",
+    "excerpt": "<p>Agilit\u00e9 Agile Coach must die Derri\u00e8re un titre volontairement provocateur, Mike MacIsaac nous annonce la mort du coach agile dans les organisations. Apr\u00e8s plus de 10 ans de pratique, les r\u00f4les de scrum master et de coach agile ont sensiblement chang\u00e9s. Les premiers sont face \u00e0 des \u00e9quipes plus matures dont l&rsquo;accompagnement doit \u00eatre plus&#8230;<\/p>\n",
+    "menu_order": 0, "comment_status": "open", "ping_status": "open", "sticky": false, "date_tz": "Europe\/Paris",
+    "date_gmt": "2018-08-02T14:54:28", "modified_tz": "Europe\/Paris", "modified_gmt": "2018-08-02T14:54:28",
+    "meta": {
+      "links": {
+        "self": "https:\/\/blog.xebia.fr\/wp-json\/posts\/35961", "author": "https:\/\/blog.xebia.fr\/wp-json\/users\/12",
+        "collection": "https:\/\/blog.xebia.fr\/wp-json\/posts", "replies": "https:\/\/blog.xebia.fr\/wp-json\/posts\/35961\/comments",
+        "version-history": "https:\/\/blog.xebia.fr\/wp-json\/posts\/35961\/revisions"
+      }
+    },
+    "featured_image": {
+      "ID": 34462, "title": "Revue-de-presse.png", "status": "inherit", "type": "attachment", "author": {
+        "ID": 253, "username": "wordable", "name": "Exports Wordable", "first_name": "Exports", "last_name": "Wordable",
+        "nickname": "wordable", "slug": "wordable", "URL": "http:\/\/wordable.io",
+        "avatar": "https:\/\/secure.gravatar.com\/avatar\/1d3ef169c6c5b8de8a3c87beb5be5d6c?s=96", "description": "",
+        "registered": "2018-02-01T10:18:34+00:00", "meta": {
+          "links": {
+            "self": "https:\/\/blog.xebia.fr\/wp-json\/users\/253", "archives": "https:\/\/blog.xebia.fr\/wp-json\/users\/253\/posts"
+          }
+        }
+      },
+      "content": "<p class=\"attachment\"><a href='https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png'><img width=\"300\" height=\"300\" src=\"https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png\" class=\"attachment-medium size-medium\" alt=\"Revue-de-presse.png\" srcset=\"https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png 300w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-150x150.png 150w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-768x768.png 768w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-1024x1024.png 1024w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-32x32.png 32w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-50x50.png 50w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-64x64.png 64w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-96x96.png 96w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-128x128.png 128w, https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png 1600w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n<p>Revue-de-presse.png<\/p>\n",
+      "parent": 34463, "link": "https:\/\/blog.xebia.fr\/2018\/03\/01\/revue-de-presse-xebia-236\/revue-de-presse-png-2\/",
+      "date": "2018-03-01T15:57:00", "modified": "2018-03-22T13:40:42", "format": "standard", "slug": "revue-de-presse-png-2",
+      "guid": "http:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png", "excerpt": "<p>Revue-de-presse.png<\/p>\n",
+      "menu_order": 0, "comment_status": "open", "ping_status": "closed", "sticky": false, "date_tz": "Europe\/Paris",
+      "date_gmt": "2018-03-01T14:57:00", "modified_tz": "Europe\/Paris", "modified_gmt": "2018-03-22T12:40:42", "meta": {
+        "links": {
+          "self": "https:\/\/blog.xebia.fr\/wp-json\/media\/34462", "author": "https:\/\/blog.xebia.fr\/wp-json\/users\/253",
+          "collection": "https:\/\/blog.xebia.fr\/wp-json\/media", "replies": "https:\/\/blog.xebia.fr\/wp-json\/media\/34462\/comments",
+          "version-history": "https:\/\/blog.xebia.fr\/wp-json\/media\/34462\/revisions",
+          "up": "https:\/\/blog.xebia.fr\/wp-json\/media\/34463"
+        }
+      },
+      "terms": [],
+      "source": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse.png",
+      "is_image": true,
+      "attachment_meta": {
+        "width": 1600, "height": 1600, "file": "2018\/03\/Revue-de-presse.png", "sizes": {
+          "thumbnail": {
+            "file": "Revue-de-presse-150x150.png", "width": 150, "height": 150, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-150x150.png"
+          }, "medium": {
+            "file": "Revue-de-presse-300x300.png", "width": 300, "height": 300, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-300x300.png"
+          }, "medium_large": {
+            "file": "Revue-de-presse-768x768.png", "width": 768, "height": 768, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-768x768.png"
+          }, "large": {
+            "file": "Revue-de-presse-1024x1024.png", "width": 1024, "height": 1024, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-1024x1024.png"
+          }, "post-thumbnail": {
+            "file": "Revue-de-presse-825x510.png", "width": 825, "height": 510, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-825x510.png"
+          }, "guest-author-32": {
+            "file": "Revue-de-presse-32x32.png", "width": 32, "height": 32, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-32x32.png"
+          }, "guest-author-50": {
+            "file": "Revue-de-presse-50x50.png", "width": 50, "height": 50, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-50x50.png"
+          }, "guest-author-64": {
+            "file": "Revue-de-presse-64x64.png", "width": 64, "height": 64, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-64x64.png"
+          }, "guest-author-96": {
+            "file": "Revue-de-presse-96x96.png", "width": 96, "height": 96, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-96x96.png"
+          }, "guest-author-128": {
+            "file": "Revue-de-presse-128x128.png", "width": 128, "height": 128, "mime-type": "image\/png",
+            "url": "https:\/\/blog.xebia.fr\/wp-content\/uploads\/2018\/03\/Revue-de-presse-128x128.png"
+          }
+        },
+        "image_meta": {
+          "aperture": "0", "credit": "", "camera": "", "caption": "", "created_timestamp": "0", "copyright": "", "focal_length": "0",
+          "iso": "0", "shutter_speed": "0", "title": "", "orientation": "0", "keywords": []
+        }
+      }
+    },
+    "terms": {
+      "author": [
+        {
+          "ID": 608, "name": "XebiaFrance", "slug": "xebiafrance",
+          "description": "Xebia France Xebia France XebiaFrance 12 blog-france@xebia.com", "taxonomy": "author", "parent": null,
+          "count": 998,
+          "link": "https:\/\/blog.xebia.fr\/?taxonomy=author&term=xebiafrance", "meta": {
+          "links": {
+            "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/author\/terms",
+            "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/author\/terms\/598"
+          }
+        }
+        }
+      ],
+      "category": [
+        {
+          "ID": 13, "name": "Agile", "slug": "agilite", "description": "", "taxonomy": "category", "parent": null, "count": 567,
+          "link": "https:\/\/blog.xebia.fr\/category\/agilite\/", "meta": {
+          "links": {
+            "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
+            "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/15"
+          }
+        }
+        }, {
+          "ID": 1453, "name": "Craft", "slug": "craftsmanship", "description": "", "taxonomy": "category", "parent": null, "count": 274,
+          "link": "https:\/\/blog.xebia.fr\/category\/craftsmanship\/", "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/687"
+            }
+          }
+        }, {
+          "ID": 740, "name": "Data", "slug": "nosql", "description": "", "taxonomy": "category", "parent": null, "count": 257,
+          "link": "https:\/\/blog.xebia.fr\/category\/nosql\/", "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/470"
+            }
+          }
+        }
+      ], "following_users": [
+        {
+          "ID": 2304, "name": "ariveaux", "slug": "ariveaux", "description": "", "taxonomy": "following_users", "parent": null, "count": 10,
+          "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=ariveaux", "meta": {
+          "links": {
+            "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms",
+            "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms\/2300"
+          }
+        }
+        }, {
+          "ID": 2209, "name": "XebiaFrance", "slug": "xebiafrance", "description": "", "taxonomy": "following_users", "parent": null,
+          "count": 47, "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=xebiafrance", "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms\/2205"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

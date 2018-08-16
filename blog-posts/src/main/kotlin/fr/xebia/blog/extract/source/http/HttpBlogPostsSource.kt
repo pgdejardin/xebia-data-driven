@@ -19,18 +19,16 @@ class HttpBlogPostsSource : BlogPostsSource {
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
   }
 
-  override fun find(tag: String?): List<Post> {
-    val queryParams = "?filter=$tag"
+  override fun find(category: String, tag: String): List<Post> {
+    val filterByTag = if (!tag.isBlank()) "&filter[tag]=$tag" else ""
+    val queryParams = "?filter[category_name]=$category$filterByTag"
 
     return runBlocking {
-      val (request, response, result) = "$blogURL/$postsPathName$queryParams"
+      "$blogURL/$postsPathName$queryParams"
               .httpGet()
               .awaitStringResponse()
-
-      result.fold({ data ->
-        //                println(data)
-        return@fold mapper.readValue(data, Array<Post>::class.java).toList()
-//                return@fold data
+              .third.fold({ data ->
+        return@runBlocking mapper.readValue(data, Array<Post>::class.java).toList()
       }, { error ->
         println("An error of type ${error.exception} happened: ${error.message}")
         throw error

@@ -10,10 +10,10 @@ class HttpBlogPostsSourceTest {
   @Test
   fun should_get_list_of_posts() {
     // Given
-    val tag = "data"
+    val category = "nosql"
 
     // When
-    val posts = httpBlogPostsSource.find(tag)
+    val posts = httpBlogPostsSource.find(category)
 
     // Then
     println(posts)

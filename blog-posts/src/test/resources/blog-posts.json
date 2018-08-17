@@ -369,42 +369,66 @@
       ],
       "category": [
         {
-          "ID": 13, "name": "Agile", "slug": "agilite", "description": "", "taxonomy": "category", "parent": null, "count": 567,
-          "link": "https:\/\/blog.xebia.fr\/category\/agilite\/", "meta": {
-          "links": {
-            "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
-            "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/15"
+          "ID": 13,
+          "name": "Agile",
+          "slug": "agilite",
+          "description": "",
+          "taxonomy": "category",
+          "parent": null,
+          "count": 567,
+          "link": "https:\/\/blog.xebia.fr\/category\/agilite\/",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/15"
+            }
           }
-        }
         }, {
-          "ID": 1453, "name": "Craft", "slug": "craftsmanship", "description": "", "taxonomy": "category", "parent": null, "count": 274,
-          "link": "https:\/\/blog.xebia.fr\/category\/craftsmanship\/", "meta": {
+          "ID": 1453,
+          "name": "Craft",
+          "slug": "craftsmanship",
+          "description": "",
+          "taxonomy": "category",
+          "parent": null,
+          "count": 274,
+          "link": "https:\/\/blog.xebia.fr\/category\/craftsmanship\/",
+          "meta": {
             "links": {
               "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
               "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/687"
             }
           }
         }, {
-          "ID": 740, "name": "Data", "slug": "nosql", "description": "", "taxonomy": "category", "parent": null, "count": 257,
-          "link": "https:\/\/blog.xebia.fr\/category\/nosql\/", "meta": {
+          "ID": 740,
+          "name": "Data",
+          "slug": "nosql",
+          "description": "",
+          "taxonomy": "category",
+          "parent": null,
+          "count": 257,
+          "link": "https:\/\/blog.xebia.fr\/category\/nosql\/",
+          "meta": {
             "links": {
               "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms",
               "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/category\/terms\/470"
             }
           }
         }
-      ], "following_users": [
+      ],
+      "following_users": [
         {
           "ID": 2304, "name": "ariveaux", "slug": "ariveaux", "description": "", "taxonomy": "following_users", "parent": null, "count": 10,
-          "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=ariveaux", "meta": {
-          "links": {
-            "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms",
-            "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms\/2300"
+          "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=ariveaux",
+          "meta": {
+            "links": {
+              "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms",
+              "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms\/2300"
+            }
           }
-        }
         }, {
           "ID": 2209, "name": "XebiaFrance", "slug": "xebiafrance", "description": "", "taxonomy": "following_users", "parent": null,
-          "count": 47, "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=xebiafrance", "meta": {
+          "count": 47, "link": "https:\/\/blog.xebia.fr\/?taxonomy=following_users&term=xebiafrance",
+          "meta": {
             "links": {
               "collection": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms",
               "self": "https:\/\/blog.xebia.fr\/wp-json\/taxonomies\/following_users\/terms\/2205"

@@ -44,8 +44,7 @@ dependencies {
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.7'
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6"
 
-//    compile 'com.github.kittinunf.fuel:fuel:1.15.0'
-    compile 'com.github.kittinunf.fuel:fuel-coroutines:1.15.0' //for Kotlin Coroutines support
+    compile 'com.github.kittinunf.fuel:fuel:1.15.0'
 
     testCompile 'org.mockito:mockito-core:2.17.0'
 
@@ -58,11 +57,5 @@ task buildLambda(type: Zip, dependsOn: 'build', group: 'serverless') {
     from processResources
     into('lib') {
         from configurations.runtime
-    }
-}
-
-kotlin {
-    experimental {
-        coroutines "enable"
     }
 }

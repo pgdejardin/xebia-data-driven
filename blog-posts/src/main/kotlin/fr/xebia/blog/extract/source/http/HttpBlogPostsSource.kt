@@ -1,12 +1,10 @@
 package fr.xebia.blog.extract.source.http
 
-import awaitStringResponse
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.kittinunf.fuel.httpGet
 import fr.xebia.blog.extract.Post
 import fr.xebia.blog.extract.source.BlogPostsSource
-import kotlinx.coroutines.experimental.runBlocking
 
 class HttpBlogPostsSource : BlogPostsSource {
 
@@ -22,18 +20,14 @@ class HttpBlogPostsSource : BlogPostsSource {
   override fun find(category: String, tag: String): List<Post> {
     val filterByTag = if (!tag.isBlank()) "&filter[tag]=$tag" else ""
     val queryParams = "?filter[category_name]=$category$filterByTag"
+    val url = "$blogURL/$postsPathName$queryParams"
 
-    return runBlocking {
-      "$blogURL/$postsPathName$queryParams"
-              .httpGet()
-              .awaitStringResponse()
-              .third.fold({ data ->
-        return@runBlocking mapper.readValue(data, Array<Post>::class.java).toList()
-      }, { error ->
-        println("An error of type ${error.exception} happened: ${error.message}")
-        throw error
-      })
-    }
+    url.httpGet().responseString().third.fold(
+            { data -> return mapper.readValue(data, Array<Post>::class.java).toList() },
+            { error ->
+              println("An error of type ${error.exception} happened: ${error.message}")
+              throw error
+            })
   }
 
 }

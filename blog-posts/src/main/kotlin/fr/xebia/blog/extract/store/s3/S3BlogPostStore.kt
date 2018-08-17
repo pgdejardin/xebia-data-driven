@@ -16,29 +16,25 @@ import java.time.format.DateTimeFormatter
 
 class S3BlogPostStore(private val amazonS3: AmazonS3, private val bucketName: String, private val bucketKey: String) : BlogPostsStore {
 
-    private val objectMapper = ObjectMapper()
-        .registerModule(JavaTimeModule()
-            .addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer()))
+  private val objectMapper = ObjectMapper()
+          .registerModule(JavaTimeModule()
+                  .addSerializer(LocalDateTime::class.java, LocalDateTimeSerializer()))
 
-    private val extractDateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-    private val calendarDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
+  private val extractDateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
 
-    override fun store(extractDate: LocalDate, postsDate: LocalDate, blogPosts: List<Post>) {
-        val extractFormat = extractDate.format(extractDateFormatter)
-        val postsDateFormat = postsDate.format(calendarDateFormatter)
+  override fun store(category: String, blogPosts: List<Post>) {
+    val extractFormat = LocalDate.now().format(extractDateFormatter)
+    val bucketContent = objectMapper.writeValueAsString(blogPosts)
+    val objectMetadata = ObjectMetadata()
+    objectMetadata.contentType = "application/json"
+    objectMetadata.contentEncoding = Charsets.UTF_8.name()
 
-        val bucketContent = objectMapper.writeValueAsString(blogPosts)
-
-        val objectMetadata = ObjectMetadata()
-        objectMetadata.contentType = "application/json"
-        objectMetadata.contentEncoding = Charsets.UTF_8.name()
-
-        amazonS3.putObject(bucketName, "$bucketKey/$extractFormat/$postsDateFormat.json", StringInputStream(bucketContent), objectMetadata)
-    }
+    amazonS3.putObject(bucketName, "$bucketKey/$extractFormat/$category.json", StringInputStream(bucketContent), objectMetadata)
+  }
 }
 
 private class LocalDateTimeSerializer : JsonSerializer<LocalDateTime>() {
-    override fun serialize(value: LocalDateTime, gen: JsonGenerator, serializer: SerializerProvider) {
-        gen.writeString(DateTimeFormatter.ISO_DATE_TIME.format(value))
-    }
+  override fun serialize(value: LocalDateTime, gen: JsonGenerator, serializer: SerializerProvider) {
+    gen.writeString(DateTimeFormatter.ISO_DATE_TIME.format(value))
+  }
 }

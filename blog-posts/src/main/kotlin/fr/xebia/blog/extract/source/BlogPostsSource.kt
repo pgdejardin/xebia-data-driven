@@ -4,5 +4,4 @@ import fr.xebia.blog.extract.Post
 
 interface BlogPostsSource {
     fun find(category: String, tag: String = ""): List<Post>
-//    fun find(tag: String?): String
 }

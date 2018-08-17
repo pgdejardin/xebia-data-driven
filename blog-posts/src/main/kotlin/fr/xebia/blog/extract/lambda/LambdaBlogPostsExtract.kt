@@ -22,7 +22,7 @@ class LambdaBlogPostsExtract : RequestHandler<String, Unit> {
 
     blogPostsExtract.extract(category)
 
-    println("Finished xke calendar extraction")
+    println("Finished blog post extraction")
   }
 
   private fun blogPostsStore(): BlogPostsStore {
